@@ -1,0 +1,28 @@
+
+
+.form
+{
+    //border: 1px solid blueviolet;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset, legend
+{
+    all:revert;
+}
+
+.field
+{
+    all:revert;
+}
+
+ mat-form-field {
+    width: 100%;
+}
+
+.mat-card, .form
+{
+    width: 30%;
+}
