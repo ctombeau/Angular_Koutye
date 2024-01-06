@@ -1,14 +1,50 @@
-p
+
+p, h4
 {
     margin-top: 0;
     margin-bottom: 0;
-    color: #86A4D0;
+    color: #06509F;
+}
+
+h4
+{
     font-weight: bold;
 }
 
+.footer p em>a
+{
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #06509F;
+}
+
+/*
 p a
 {
     text-decoration: none;
-    color: #86A4D0;
+    color: #06509F;
     font-weight: bold;
+}
+*/
+.footer
+{
+    background-color: #E5E7E9;
+    height: 20%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 5%;
+}
+
+#chrisnor
+{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#info-chrisnor
+{
+    display: flex;
+    flex-direction: row;
 }

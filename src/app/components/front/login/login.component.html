@@ -18,12 +18,13 @@
     <div class="form mt-4 mx-auto">
      <!-- / <fieldset class="field"> -->
         <!-- <legend class="field">LOGIN</legend> -->
-        <form [formGroup]="loginForm" class="center" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginForm" class="center" (ngSubmit)="Login()">
 
           <mat-card class=".mat-card">
             <fieldset class="field">
               <legend class="field">LOGIN</legend>
             <mat-card-header class="mb-3"> Entrez vos informations</mat-card-header>
+            <!-- <p>{{"titleLogin" | translate}}</p> -->
             <mat-card-content>
               <mat-form-field >
                  <mat-label>Username</mat-label>
@@ -41,10 +42,14 @@
              </mat-form-field>
             </mat-card-content>
             <mat-card-actions>
-                <button  type="submit" class="btn btn-primary" mat-raised-button>
-                   Connexion
+                <button  type="submit" class="btn btn-primary" mat-raised-button id="btnLogin">
+                   CONNEXION
                 </button>
             </mat-card-actions>
+            <div class="otherAction">
+              <p style="margin-bottom: -4px"><a href="" >mot de passe oublié</a></p>
+              <p><a href="">Nouveau? créer un compte</a></p>
+            </div>
           </fieldset>
           </mat-card>
         </form>
@@ -52,9 +57,7 @@
     </div>
   </div>
 
-
-
-  <!-- <app-footer></app-footer> -->
+  <app-footer></app-footer> 
 </body>
 
 </html>

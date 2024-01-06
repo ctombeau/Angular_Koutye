@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment.development';
+import { UserLogin } from 'src/app/models/user-login.model';
+
 
 @Component({
   selector: 'app-login',
@@ -25,17 +28,15 @@ export class LoginComponent {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-      
+    console.log(environment.apiUrl)
   }
 
    public Login(): void
    {
-       this.router.navigate(['home']);
+       console.log(this.loginForm.value.username);
+       //user = new UserLogin(this.loginForm.value.username, this.loginForm.value.password);
+       //this.router.navigate(['home']);
    }
 
-   public onSubmit() : void
-   {
-      console.log(this.loginForm.value);
-   }
 
 }

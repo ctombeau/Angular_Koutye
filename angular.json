@@ -10,6 +10,15 @@
           "style": "scss"
         }
       },
+      "i18n":{
+            "sourceLocale":"en",
+            "locales": {
+              "fr-FR":"src/locale/i18n/fr",
+              "en-US":"src/locale/i18n/en",
+              "ht-HT":"src/locale/i18n/ht",
+              "sp-SP":"src/locale/i18n/sp"
+            }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -65,7 +74,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -85,7 +100,8 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Koutye:build"
+            "browserTarget": "Koutye:build",
+            "localize":false
           }
         },
         "test": {

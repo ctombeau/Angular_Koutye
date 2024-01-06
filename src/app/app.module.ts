@@ -10,18 +10,38 @@ import { SharedModule } from './components/shared/shared.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import { FrontModule } from './components/front/front.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+/*
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
+export function HttpLoaderFactory(http: HttpClient){
+   return new TranslateHttpLoader(http,'./locale/i18n/','.json');
+}
+*/
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    GestionUserModule,
-    SharedModule,
+    //GestionUserModule,
+    //SharedModule,
     AppRoutingModule,
-    BrowserAnimationsModule
-    
+    BrowserAnimationsModule,
+    HttpClientModule
+    /*
+    HttpClientModule,
+    TranslateModule.forRoot({
+       //defaultLanguage: 'en',
+       loader:{
+           provide:TranslateLoader,
+           useFactory:(HttpLoaderFactory),
+           deps:[HttpClient]
+       }
+    })
+    */
   ],
   providers: [
     //{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
