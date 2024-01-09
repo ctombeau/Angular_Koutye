@@ -1,7 +1,12 @@
 #navsup{
     background-color: #06509F;
-    height: 15%;
+    height: 20%;
+    color: white;
 }
+ .nav-link
+ {
+    color:white;
+ }
 
 #navbanner
 {
@@ -24,4 +29,7 @@
     border-radius: 50%;
 }
   
-  
+.offcanvas
+{
+    background-color: #06509F;
+}

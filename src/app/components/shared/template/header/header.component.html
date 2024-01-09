@@ -1,9 +1,66 @@
+<nav class="navbar navbar-expand-lg navbar-light px-2" id="navsup">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#" style="color:#86A4D0"> 
+      <img src="assets/images/logo.PNG" id="logo"/>
+      KOUTYE</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <a class="navbar-brand" href="#" style="color:#86A4D0"> 
+          <img src="assets/images/logo.PNG" id="logo"/>
+          KOUTYE</a>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <select class="form-select" aria-label="Default select example" id="langue">
+              <option value="0" selected>Français</option>
+              <option value="1">Créole</option>
+              <option value="2">Anglais</option>
+              <option value="3">Espagnol</option>
+            </select>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" >Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="navbanner">
+     
+</div>
+
+<!--
 <nav class="navbar navbar-expand-lg navbar-light px-2"  id="navsup">
     
     <a class="navbar-brand" href="#" style="color:#86A4D0"> 
       <img src="assets/images/logo.PNG" id="logo"/>
       KOUTYE</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" 
+           data-bs-toggle="offcanvas" 
+           data-target="#navbarSupportedContent" 
+           aria-controls="navbarSupportedContent" 
+           aria-expanded="false" 
+           aria-label="Toggle navigation"
+           (click)="actionMenu()">
       <span class="navbar-toggler-icon"></span>
     </button>
   
@@ -41,3 +98,4 @@
   <div id="navbanner">
      
   </div>
+-->
