@@ -16,11 +16,12 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <select class="form-select" aria-label="Default select example" id="langue">
-              <option value="0" selected>Français</option>
-              <option value="1">Créole</option>
-              <option value="2">Anglais</option>
-              <option value="3">Espagnol</option>
+            <select #input class="form-select" (change)="translateWord(input.value)"
+            aria-label="Default select example" id="langue">
+              <option value="fr">Français</option>
+              <option value="ht">Créole</option>
+              <option value="en">Anglais</option>
+              <option value="es">Espagnol</option>
             </select>
           </li>
           <li class="nav-item">
@@ -48,7 +49,7 @@
      
 </div>
 
-<!--
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-light px-2"  id="navsup">
     
     <a class="navbar-brand" href="#" style="color:#86A4D0"> 
