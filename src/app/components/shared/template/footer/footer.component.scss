@@ -1,5 +1,5 @@
 
-p, h4
+p
 {
     margin-top: 0;
     margin-bottom: 0;
@@ -8,7 +8,10 @@ p, h4
 
 h4
 {
+    margin-top: 0;
+    margin-bottom: 0;
     font-weight: bold;
+    color:#FF5733;
 }
 
 .footer p em>a
@@ -30,7 +33,7 @@ p a
 .footer
 {
     background-color: #E5E7E9;
-    height: 20%;
+    height: auto;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 5%;
@@ -47,4 +50,10 @@ p a
 {
     display: flex;
     flex-direction: row;
+}
+//--------------------------------------------
+.row-footer
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
 }

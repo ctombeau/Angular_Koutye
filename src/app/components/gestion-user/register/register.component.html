@@ -8,54 +8,67 @@
 <body>
     <app-header></app-header>
     <div class="container mt-5 d-flex align-items-center justify-content-center">
-        <mat-card id="card-register" class=" ">
+      <form [formGroup]="registerForm" class="center" (ngSubmit)="addUser()">
+        <mat-card id="card-register" >
+           
             <mat-card-header >NOUVEL UTILISATEUR</mat-card-header>
             <mat-card-content>
+              <i (click)="input.click()"  class="bi bi-person-circle" id="person"></i>
+              <input #input  type="file" hidden >
                 <div class="line-register mt-2">
                     <mat-form-field>
                         <mat-label>Nom</mat-label>
-                        <input matInput>
+                        <input type="text" formControlName="nom" matInput>
                       </mat-form-field>
                       <mat-form-field>
                         <mat-label>Prénom</mat-label>
-                        <input matInput>
+                        <input type="text" formControlName="prenom" matInput>
                       </mat-form-field>
                 </div>
                 <div class="line-register mt-2">
                     <mat-form-field>
                         <mat-label>Nom d'utilisateur</mat-label>
-                        <input matInput>
+                        <input type="text" formControlName="username" matInput>
                       </mat-form-field>
                       <mat-form-field>
                         <mat-label>Email</mat-label>
-                        <input matInput>
+                        <input type="email" formControlName="email" matInput
+                        placeholder="Ex: ctombeau@gmail.com">
+                        
                       </mat-form-field>
                 </div>
 
                 <div class="line-register mt-2">
                     <mat-form-field>
                         <mat-label>Mot de passe</mat-label>
-                        <input matInput>
+                        <input type="password" formControlName="password" matInput>
                       </mat-form-field>
                       <mat-form-field>
                         <mat-label>Confirmation du mot de passe</mat-label>
-                        <input matInput>
+                        <input type="password" formControlName="confirmPassword" matInput>
                       </mat-form-field>
                 </div>
 
                 <div class="line-register mt-2">
                     <mat-form-field>
                         <mat-label>Type utilisateur</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="type">
                           <mat-option value="Locataire">Locataire</mat-option>
                           <mat-option value="Proprietaire">Propriétaire</mat-option>
                         </mat-select>
                       </mat-form-field>
                       <mat-form-field>
-                        <mat-label>Photo</mat-label>
-                        <input matInput>
+                        <mat-label>Téléphone</mat-label>
+                        <input type="text" formControlName="phone" matInput>
                       </mat-form-field>
                 </div>
+
+                <!-- <div class="line-register mt-2">
+                    <mat-form-field>
+                      <mat-label>Photo profil</mat-label>
+                      <input  formControlName="photo" matInput>
+                    </mat-form-field>
+               </div> -->
 
                 <button mat-raised-button extended color="warn" style="float: right">
                   <mat-icon>save</mat-icon>
@@ -63,6 +76,8 @@
                 </button>
             </mat-card-content>
         </mat-card>
+      </form>
     </div>
+    <app-footer></app-footer>
 </body>
 </html>
