@@ -7,8 +7,8 @@
 </head>
 <body>
     <app-header></app-header>
-    <div class="container mt-5">
-        <mat-card id="card-register">
+    <div class="container mt-5 d-flex align-items-center justify-content-center">
+        <mat-card id="card-register" class=" ">
             <mat-card-header>NOUVEL UTILISATEUR</mat-card-header>
             <mat-card-content>
                 <div class="line-register mt-2">
@@ -47,8 +47,8 @@
                     <mat-form-field>
                         <mat-label>Type utilisateur</mat-label>
                         <mat-select>
-                          <mat-option value="one">First option</mat-option>
-                          <mat-option value="two">Second option</mat-option>
+                          <mat-option value="Locataire">Locataire</mat-option>
+                          <mat-option value="Proprietaire">Propriétaire</mat-option>
                         </mat-select>
                       </mat-form-field>
                       <mat-form-field>
@@ -56,6 +56,11 @@
                         <input matInput>
                       </mat-form-field>
                 </div>
+
+                <button mat-raised-button extended color="warn">
+                  <mat-icon>save</mat-icon>
+                  Enregistrer
+                </button>
             </mat-card-content>
         </mat-card>
     </div>

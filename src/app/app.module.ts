@@ -26,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient){
   imports: [
     BrowserModule,
     GestionUserModule,
-    //FrontModule,
+    FrontModule,
     //SharedModule,
     AppRoutingModule,
     BrowserAnimationsModule,

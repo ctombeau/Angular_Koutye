@@ -43,9 +43,11 @@
              </mat-form-field>
             </mat-card-content>
             <mat-card-actions>
-                <button  type="submit" class="btn btn-primary" mat-raised-button id="btnLogin">
-                   CONNEXION
-                </button>
+              <mat-spinner *ngIf="showSpinner" color="warn"></mat-spinner>
+              <button mat-raised-button extended color="warn">
+                <mat-icon>login</mat-icon>
+                CONNEXION
+              </button>
             </mat-card-actions>
             <div class="otherAction">
               <p style="margin-bottom: -4px"><a href="" >mot de passe oublié</a></p>

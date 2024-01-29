@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 
 export class LoginComponent {
+   showSpinner : boolean = false;
     
   loginForm = new FormGroup({
       username : new FormControl("",[
@@ -36,7 +37,8 @@ export class LoginComponent {
   }
 
    public Login(): void
-   {
+   {  
+        this.showSpinner=true;
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
