@@ -2,8 +2,9 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { UserLogin } from '../models/user-login.model';
-import { Observable, catchError, map } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,43 @@ export class UserService {
    
   private url = environment.apiUrl;
 
+  private _message$ : BehaviorSubject<string> = new BehaviorSubject<string>("");
+  get message$(): Observable<string>
+  {
+      return this._message$.asObservable();
+  }
+
   constructor(
-    private http : HttpClient
+    private http : HttpClient,
+    private router : Router
   ) { 
-     console.log(environment.apiUrl)
+     //console.log(environment.apiUrl)
   }
 
   public postLogin(user : UserLogin) 
   {
        return this.http.post<any>(this.url+"login",user).pipe(
-     
-       map((response : HttpResponse<any>)=>{
-           if(response.status===200)
+       
+       map((response : any)=>{
+           //console.log(response.success);
+           if(response.success===true)
            {
-               console.log(response);
+              console.log(response);
+              this._message$.next("");
+               this.router.navigate(["/home"]);
            }
+           else
+              this._message$.next("Nom utilisateur ou modepasse incorrect...");
        }),
        catchError((error : HttpErrorResponse)=>{
+          if(error.status==0 || error.status==500)
+          {
+             this._message$.next("nous n'arrivons pas a contacter le serveur");
+          }
+          else if(error.status==401)
+          {
+             this._message$.next("Nom utilisateur ou modepasse incorrect...");
+          }
            return "";
        })
        

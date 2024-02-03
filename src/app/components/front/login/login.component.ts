@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.development';
 import { UserLogin } from 'src/app/models/user-login.model';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 export class LoginComponent {
    showSpinner : boolean = false;
+   userApiMessage$?: Observable<string>;
     
   loginForm = new FormGroup({
       username : new FormControl("",[
@@ -33,7 +35,8 @@ export class LoginComponent {
     private translate : TranslateService) { }
 
   ngOnInit(): void {
-    console.log(environment.apiUrl)
+    //console.log(environment.apiUrl)
+    this.userApiMessage$ = this.userService.message$;
   }
 
    public Login(): void
@@ -43,9 +46,9 @@ export class LoginComponent {
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
         this.userService.postLogin(userLogin).subscribe();
-       console.log(this.loginForm.value.username);
+       //console.log(this.loginForm.value.username);
        //user = new UserLogin(this.loginForm.value.username, this.loginForm.value.password);
-       //this.router.navigate(['home']);
+        //this.router.navigate(['home']);
    }
  
    //test traduction
