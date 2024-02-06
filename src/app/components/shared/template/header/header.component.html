@@ -24,20 +24,34 @@
               <option value="es">Espagnol</option>
             </select>
           </li>
+       <!--   <li class="nav-item">
+            <a class="nav-link" *ngIf="checkUrl" href="#">
+              <i class="bi bi-person-fill"></i>
+               Utilisateur</a>
+          </li>  -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" *ngIf="checkUrl" href="#">
+              <i class="bi bi-house-door-fill"></i>
+               Appartement</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+            <a class="nav-link dropdown-toggle" *ngIf="checkUrl"
+            style="color: white"
+             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-person-fill"></i>
+              Utilisateur
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#" >Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
+              <li><a class="dropdown-item" href="#" >
+                <i class="bi bi-person-lines-fill"></i>
+                 Courtier</a></li>
+              <li><a class="dropdown-item" href="#">
+                <i class="bi bi-box-arrow-left"></i>
+                 Deconnexion</a></li>
+          <!--  <li>
                 <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </li> 
+              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
         </ul>
@@ -49,54 +63,3 @@
      
 </div>
 
-<!-- 
-<nav class="navbar navbar-expand-lg navbar-light px-2"  id="navsup">
-    
-    <a class="navbar-brand" href="#" style="color:#86A4D0"> 
-      <img src="assets/images/logo.PNG" id="logo"/>
-      KOUTYE</a>
-    <button class="navbar-toggler" type="button" 
-           data-bs-toggle="offcanvas" 
-           data-target="#navbarSupportedContent" 
-           aria-controls="navbarSupportedContent" 
-           aria-expanded="false" 
-           aria-label="Toggle navigation"
-           (click)="actionMenu()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-      <ul class="navbar-nav ms-auto " >
-        <li class="nav-item">
-          <select class="form-select" aria-label="Default select example" id="langue">
-            <option value="0" selected>Français</option>
-            <option value="1">Créole</option>
-            <option value="2">Anglais</option>
-            <option value="3">Espagnol</option>
-          </select>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" style="color:#86A4D0">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#86A4D0">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" style="color:#86A4D0">Disabled</a>
-        </li>
-      </ul>
-      
-    </div>
-  </nav>
-  <div id="navbanner">
-     
-  </div>
--->

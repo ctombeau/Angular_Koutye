@@ -28,6 +28,10 @@ export class UserService {
 
   public postLogin(user : UserLogin) 
   {
+     if(user != null && user !=undefined)
+     {
+
+     }
        return this.http.post<any>(this.url+"login",user).pipe(
        
        map((response : any)=>{
@@ -48,7 +52,7 @@ export class UserService {
           }
           else if(error.status==401)
           {
-             this._message$.next("Nom utilisateur ou modepasse incorrect...");
+             this._message$.next("Nom utilisateur et/ou mot de passe incorrect...");
           }
            return "";
        })

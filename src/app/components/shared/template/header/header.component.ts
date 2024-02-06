@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -7,10 +8,12 @@ import { LanguageService } from 'src/app/services/language.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
-    constructor( private languageService: LanguageService)
+   checkUrl : boolean= false;
+    constructor( private languageService: LanguageService,
+      private router: Router)
     {
-
+       //console.log(this.router.url)
+       this.checkUrl = this.router.url != '/';
     }
      
     actionMenu()

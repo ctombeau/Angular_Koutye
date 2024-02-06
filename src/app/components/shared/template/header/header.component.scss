@@ -33,3 +33,20 @@
 {
     background-color: #06509F;
 }
+
+.dropdown-menu li a
+{
+   // background-color: #06509F;
+    color:#06509F;
+}
+
+.dropdown-menu :hover
+{
+    background-color: #06509F;
+    color: white;
+}
+
+.dropdown-menu li a:hover 
+{
+    color: white;
+}

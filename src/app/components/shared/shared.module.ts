@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { Router, RouterModule } from '@angular/router';
 
 const MaterialComponents=[
   MatFormFieldModule, 
@@ -38,7 +39,8 @@ const MaterialComponents=[
     HeaderComponent,
     FooterComponent,
     MaterialComponents,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class SharedModule { }

@@ -45,10 +45,8 @@ export class LoginComponent {
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
+        
         this.userService.postLogin(userLogin).subscribe();
-       //console.log(this.loginForm.value.username);
-       //user = new UserLogin(this.loginForm.value.username, this.loginForm.value.password);
-        //this.router.navigate(['home']);
    }
  
    //test traduction
