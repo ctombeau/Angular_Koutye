@@ -7,13 +7,17 @@ import { GestionUserRoutingModule } from './gestion-user-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { FrontModule } from '../front/front.module';
 import { SharedModule } from '../shared/shared.module';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 
 
 
 @NgModule({
   declarations: [
     ListUserComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent
   ],
   imports: [
     CommonModule,

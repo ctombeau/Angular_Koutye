@@ -13,7 +13,7 @@ export class HeaderComponent {
       private router: Router)
     {
        //console.log(this.router.url)
-       this.checkUrl = this.router.url != '/';
+       this.checkUrl = this.router.url != '/' && this.router.url != '/reset-password' && this.router.url!='/forgot-password';
     }
      
     actionMenu()
