@@ -3,6 +3,7 @@
 .form
 {
     //border: 1px solid blueviolet;
+    display: flex;
     width: 30%;
     justify-content: center;
     align-items: center;
@@ -10,8 +11,7 @@
 
 fieldset, legend
 {
-    all:revert;
-    
+    all:revert; 
 }
 
 .field
