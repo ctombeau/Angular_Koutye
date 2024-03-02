@@ -13,10 +13,10 @@
       "i18n":{
             "sourceLocale":"en",
             "locales": {
-              "fr-FR":"src/locale/i18n/fr",
-              "en-US":"src/locale/i18n/en",
-              "ht-HT":"src/locale/i18n/ht",
-              "sp-SP":"src/locale/i18n/sp"
+              "fr-FR":"src/assets/i18n/fr",
+              "en-US":"src/assets/i18n/en",
+              "ht-HT":"src/assets/i18n/ht",
+              "es-ES":"src/assets/i18n/sp"
             }
       },
       "root": "",

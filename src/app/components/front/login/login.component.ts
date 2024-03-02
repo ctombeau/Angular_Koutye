@@ -45,8 +45,28 @@ export class LoginComponent {
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
-        
-        this.userService.postLogin(userLogin).subscribe();
+        console.log("username: "+ userLogin.username);
+        console.log("password: "+userLogin.password);
+        /*
+        if(userLogin.username !="" && userLogin.password!="")
+        {
+           this.showSpinner = false;
+           this.userService.postLogin(userLogin).subscribe();
+        }
+        else
+        {
+            this.showSpinner = false;
+            console.log( "Les champs sont obligatoires");
+            
+            this.userApiMessage$?.subscribe({ 
+              
+                next : ()=>{
+                    "Les champs sont obligatoires"
+                }
+             });
+        } 
+      */
+      this.router.navigate(['/home']);
    }
  
    //test traduction

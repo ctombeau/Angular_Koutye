@@ -12,6 +12,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Router, RouterModule } from '@angular/router';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import {MatTabsModule} from '@angular/material/tabs';
+/*
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json');
+}
+*/
 
 const MaterialComponents=[
   MatFormFieldModule, 
@@ -22,7 +31,8 @@ const MaterialComponents=[
   MatCardModule,
   MatInputModule,
   MatButtonModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTabsModule
 ];
 
 @NgModule({
@@ -33,14 +43,27 @@ const MaterialComponents=[
   imports: [
     CommonModule,
     MaterialComponents,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    TranslateModule.forRoot({
+      //defaultLanguage: 'en',
+      /*
+      loader:{
+          provide:TranslateLoader,
+          useFactory:(HttpLoaderFactory),
+          deps:[HttpClient]
+      }
+      */
+   })
   ],
   exports:[
     HeaderComponent,
     FooterComponent,
     MaterialComponents,
     ReactiveFormsModule,
-    RouterModule
-  ]
+    RouterModule,
+    TranslateModule
+  ],
+  //providers:[TranslateService]
 })
 export class SharedModule { }

@@ -9,6 +9,9 @@ import { FrontModule } from '../front/front.module';
 import { SharedModule } from '../shared/shared.module';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { CourtierComponent } from './courtier/courtier.component';
 
 
 
@@ -17,7 +20,10 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
     ListUserComponent,
     RegisterComponent,
     ForgotpasswordComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    UserHomeComponent,
+    UserDetailComponent,
+    CourtierComponent
   ],
   imports: [
     CommonModule,

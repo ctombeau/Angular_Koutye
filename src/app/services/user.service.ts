@@ -28,10 +28,6 @@ export class UserService {
 
   public postLogin(user : UserLogin) 
   {
-     if(user != null && user !=undefined)
-     {
-
-     }
        return this.http.post<any>(this.url+"login",user).pipe(
        
        map((response : any)=>{

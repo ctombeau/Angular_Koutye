@@ -18,7 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FrontRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class FrontModule { }
