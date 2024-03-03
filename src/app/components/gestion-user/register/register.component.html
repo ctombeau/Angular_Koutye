@@ -22,41 +22,41 @@
               <!-- <i (click)="input.click()"  class="bi bi-person-circle" id="person"></i>
               <input #input  type="file" hidden > -->
                 <div class="line-register mt-2">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Nom</mat-label>
                         <input type="text" formControlName="nom" matInput>
                       </mat-form-field>
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                         <mat-label>Prénom</mat-label>
                         <input type="text" formControlName="prenom" matInput>
                       </mat-form-field>
                 </div>
                 <div class="line-register mt-2">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Nom d'utilisateur</mat-label>
                         <input type="text" formControlName="username" matInput>
                       </mat-form-field>
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                         <mat-label>Email</mat-label>
                         <input type="email" formControlName="email" matInput
                         placeholder="Ex: ctombeau@gmail.com">
-                        
+                        <mat-hint>Ex:ctombeau@gmail.com</mat-hint>
                       </mat-form-field>
                 </div>
 
                 <div class="line-register mt-2">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Mot de passe</mat-label>
                         <input type="password" formControlName="password" matInput>
                       </mat-form-field>
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                         <mat-label>Confirmation du mot de passe</mat-label>
                         <input type="password" formControlName="confirmPassword" matInput>
                       </mat-form-field>
                 </div>
 
                 <div class="line-register mt-2">
-                    <mat-form-field>
+                    <mat-form-field appearance="outline">
                         <mat-label>Type utilisateur</mat-label>
                         <mat-select formControlName="type">
                           <mat-option value="Courtier">Courtier</mat-option>
@@ -64,18 +64,11 @@
                           <mat-option value="Proprietaire">Propriétaire</mat-option>
                         </mat-select>
                       </mat-form-field>
-                      <mat-form-field>
+                      <mat-form-field appearance="outline">
                         <mat-label>Téléphone</mat-label>
                         <input type="text" formControlName="phone" matInput>
                       </mat-form-field>
                 </div>
-
-                <!-- <div class="line-register mt-2">
-                    <mat-form-field>
-                      <mat-label>Photo profil</mat-label>
-                      <input  formControlName="photo" matInput>
-                    </mat-form-field>
-               </div> -->
 
                 <button mat-raised-button extended color="warn" style="float: right">
                   <mat-icon>save</mat-icon>

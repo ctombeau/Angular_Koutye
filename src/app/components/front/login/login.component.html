@@ -30,17 +30,18 @@
               <div class="col-12 d-flex justify-content-center" *ngIf="userApiMessage$ | async as message">
                 <mat-error>{{message}}</mat-error>
              </div>
-              <mat-form-field >
+              <mat-form-field appearance="outline">
                  <mat-label>Username</mat-label>
                  <input matInput type="text" placeholder="Nom utilisateur" 
                     formControlName="username"
                     data-toggle="tooltip"
                     data-bs-placement="top"
                     tile="Le nom d'utilisateur doit"
+                    
                     />
               </mat-form-field>
 
-              <mat-form-field>
+              <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" placeholder="Mot de passe" formControlName="password"/>
              </mat-form-field>
