@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+
+    constructor(private userService : UserService){}
 
     registerForm = new FormGroup({
         nom : new FormControl("",[
@@ -39,6 +43,32 @@ export class RegisterComponent {
 
     addUser()
     {
+        const nom  = this.registerForm.value.nom ?? "";
+        const prenom = this.registerForm.value.prenom ?? "";
+        const username = this.registerForm.value.username ?? "";
+        const email = this.registerForm.value.email ?? "";
+        const password = this.registerForm.value.password ?? "";
+        const confirmPassword = this.registerForm.value.confirmPassword ?? "";
+        const photo = "";
+        const phone = this.registerForm.value.phone ?? "";
+        const nomType = this.registerForm.value.type ?? "";
 
+        const user: User = new User(nom,prenom,username,email,password,photo, phone,nomType);
+
+        if (nom !="" && prenom !="" && username != "" && email != "" && password != "" && phone != "" &&nomType !="")
+        {
+             if(password == confirmPassword)
+             {
+                 this.userService.postUser(user).subscribe();
+             }
+             else
+             {
+
+             }
+        }
+        else
+        {
+
+        }
     }
 }

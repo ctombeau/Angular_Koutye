@@ -5,6 +5,7 @@ import { UserLogin } from '../models/user-login.model';
 import { BehaviorSubject, Observable, catchError, map } from 'rxjs';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -57,4 +58,22 @@ export class UserService {
      
   }
 
+  public postUser(user : User)
+  {
+     console.log(user);
+      return this.http.post(this.url+"user/add",user).pipe(
+         map((response: any)=>{
+               console.log(response);
+               if(response.success==true)
+               {
+                  
+               }
+         }),
+         catchError((error : HttpErrorResponse)=>{
+            console.log(error);
+            return "";
+         })
+      )
+  }
+  
 }
