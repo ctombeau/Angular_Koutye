@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     RouterModule.forChild([
       {path: 'home', component:HomeComponent},
-      {path:'',component:LoginComponent}
+      {path:'',component:LoginComponent, data:{message: ""}}
     ])
   ],
   exports:[RouterModule]

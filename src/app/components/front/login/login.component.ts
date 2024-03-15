@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment.development';
 import { UserLogin } from 'src/app/models/user-login.model';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { Observable } from 'rxjs';
 export class LoginComponent {
    showSpinner : boolean = false;
    userApiMessage$?: Observable<string>;
+   routeMessage$? : Observable<string> ;
     
   loginForm = new FormGroup({
       username : new FormControl("",[
@@ -32,11 +34,29 @@ export class LoginComponent {
 
   constructor(private router: Router,
     private userService : UserService,
-    private translate : TranslateService) { }
+    private translate : TranslateService,
+    private route : ActivatedRoute,
+    private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
-    //console.log(environment.apiUrl)
+    
     this.userApiMessage$ = this.userService.message$;
+    this.routeMessage$ = this.userService.routeMessage$;
+   
+     //this.route.data.subscribe(data=> console.warn("message: "+data["message"]))
+    
+      this.routeMessage$.subscribe(
+         data => {
+            if(data != "")
+            {
+               this.snackBar.open(data, 'Undo', {
+                  duration: 3000
+                });
+            }
+            
+         } 
+      );
+      
   }
 
    public Login(): void
