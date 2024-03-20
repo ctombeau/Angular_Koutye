@@ -49,8 +49,10 @@ export class LoginComponent {
          data => {
             if(data != "")
             {
-               this.snackBar.open(data, 'Undo', {
-                  duration: 3000
+               this.snackBar.open(data, 'dismiss', {
+                  duration: 3000,
+                  panelClass: ['blue-snackbar'],
+                  verticalPosition :'top'
                 });
             }
             

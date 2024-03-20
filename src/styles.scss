@@ -4,3 +4,11 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.blue-snackbar {
+    background: #FF5733;
+    color: white;
+    //margin: 0 !important;
+    //position: absolute;
+    //right: 25px;
+    //top: 60px;
+  }

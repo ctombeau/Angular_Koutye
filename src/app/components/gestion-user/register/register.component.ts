@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Behavior } from 'popper.js';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,6 +11,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+    //userApiMessage$? : Observable<string>;
+
+    userApiMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
     constructor(private userService : UserService){}
 
@@ -59,16 +64,18 @@ export class RegisterComponent {
         {
              if(password == confirmPassword)
              {
+                 this.userApiMessage$.next("");
                  this.userService.postUser(user).subscribe();
              }
              else
              {
-
+                this.userApiMessage$.next("Les mots de passe sont differents.");
+                
              }
         }
         else
         {
-
+            this.userApiMessage$.next("Les champs sont obligatoires.");
         }
     }
 }
