@@ -25,16 +25,19 @@
           </mat-tab-group>
 
           <div class="content">
-            <ng-container *ngIf="tabRef.selectedIndex==0">
-                <app-user-detail class="mt-3" ></app-user-detail>
+            <ng-container  *ngIf="tabRef.selectedIndex==0">
+                <app-user-detail  ></app-user-detail>
+                
             </ng-container>
             
             <ng-container *ngIf="tabRef.selectedIndex==1">
-                <app-courtier class="mt-3" ></app-courtier>
+                <app-courtier ></app-courtier>
+                
             </ng-container>
             
           </div>
     </div>
 
+    <!-- <app-footer ></app-footer> -->
 </body>
 </html>
