@@ -16,7 +16,16 @@ export class UserService {
 
   private _message$ : BehaviorSubject<string> = new BehaviorSubject<string>("");
   
-   private _routeMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+  private _routeMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
+  user : any ;
+  private token = "token";
+  private nom = "nom";
+  private prenom = "prenom";
+  private username="username";
+  private email= "email";
+  private phone = "phone";
+  private photo="photo";
 
   get message$(): Observable<string>
   {
@@ -54,9 +63,11 @@ export class UserService {
            //console.log(response.success);
            if(response.success===true)
            {
-              console.log(response);
+              console.log(response.object["user-info"].username);
+              this.saveUserInfo(response.object);
               this._message$.next("");
-               this.router.navigate(["/home"]);
+              console.log("Dans login : "+sessionStorage.getItem("username"));
+              this.router.navigate(["/home"]);
            }
            else
               this._message$.next("Nom utilisateur ou modepasse incorrect...");
@@ -79,20 +90,10 @@ export class UserService {
 
   public postUser(user : User)
   {
-
-   /*
-   const navigationExtras: NavigationExtras = {
-      queryParams: { message : this.setMessage("utilisateur enregistre avec success") },
-    };
-    */
-     console.log(user);
-    // this.router.navigate(['/'],navigationExtras);
-     
-     
       return this.http.post(this.url+"user/add",user).pipe(
          map((response: any)=>{
-               console.log(response);
-               if(response.success==true)
+               //console.log(response);
+               if(response.success===true)
                {
                   this.setRouteMessage("Utilisateur créé avec succès");
                   this.router.navigate(['/']);
@@ -106,4 +107,45 @@ export class UserService {
       
   }
   
+  public getUser(username : string) : Observable<any>
+  {
+     return this.http.get(this.url + "user?username="+username);
+     /*
+     .pipe(
+        map((response : any)=>{
+            if(response.success===true)
+            {
+                this.user = response.object;
+            }
+        }),
+        catchError((error : HttpErrorResponse)=>{
+
+
+            return "";
+        })
+     )
+     */
+  }
+
+  public saveUserInfo(data : any): void
+  {
+      sessionStorage.setItem(this.token, data["access-token"]);
+      sessionStorage.setItem(this.username,data["user-info"].username);
+      sessionStorage.setItem(this.nom,data["user-info"].nom);
+      sessionStorage.setItem(this.prenom,data["user-info"].prenom);
+      sessionStorage.setItem(this.photo,data["user-info"].photo);
+      sessionStorage.setItem(this.phone,data["user-info"].phone);
+      sessionStorage.setItem(this.email,data["user-info"].email);
+  }
+
+  public removeUserInfo() : void
+  {
+     sessionStorage.removeItem(this.token);
+     sessionStorage.removeItem(this.nom);
+     sessionStorage.removeItem(this.prenom);
+     sessionStorage.removeItem(this.username);
+     sessionStorage.removeItem(this.email);
+     sessionStorage.removeItem(this.phone);
+     sessionStorage.removeItem(this.photo);
+  }
 }

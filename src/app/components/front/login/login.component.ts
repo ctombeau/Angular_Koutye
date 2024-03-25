@@ -67,9 +67,7 @@ export class LoginComponent {
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
-        console.log("username: "+ userLogin.username);
-        console.log("password: "+userLogin.password);
-        /*
+       
         if(userLogin.username !="" && userLogin.password!="")
         {
            this.showSpinner = false;
@@ -87,8 +85,8 @@ export class LoginComponent {
                 }
              });
         } 
-      */
-      this.router.navigate(['/home']);
+      
+      //this.router.navigate(['/home']);
    }
  
    //test traduction

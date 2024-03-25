@@ -15,7 +15,7 @@
 
 .detail-body{
      text-align: center;
-     width: 80%;
+     width: 90%;
      position: relative;
     left: 50%;
     transform: translate(-50%, -0%);
@@ -53,4 +53,9 @@
 .info h2
 {
     font-weight: bold;
+}
+
+.space-after
+{
+    margin-bottom: -2px;
 }

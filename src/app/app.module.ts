@@ -10,9 +10,10 @@ import { SharedModule } from './components/shared/shared.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import { FrontModule } from './components/front/front.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { RequestInterceptor } from './interceptor/request.interceptor';
 
 
 export function HttpLoaderFactory(http: HttpClient){
@@ -45,7 +46,12 @@ export function HttpLoaderFactory(http: HttpClient){
   ],
   providers: [
     //{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
-    TranslateService
+    TranslateService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+     }
   ],
   bootstrap: [AppComponent]
 })
