@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { LanguageService } from 'src/app/services/language.service';
 export class HeaderComponent {
    checkUrl : boolean= false;
     constructor( private languageService: LanguageService,
+      private userService : UserService,
       private router: Router)
     {
        //console.log(this.router.url)
@@ -26,5 +28,11 @@ export class HeaderComponent {
     {
        console.log(language);
        this.languageService.setLanguage(language);
+    }
+
+    public logout() : void
+    {
+        this.userService.removeUserInfo();
+        this.router.navigate(['/']);
     }
 }

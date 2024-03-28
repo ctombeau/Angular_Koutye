@@ -8,6 +8,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CourtierComponent } from './courtier/courtier.component';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 
 
@@ -16,13 +17,13 @@ import { CourtierComponent } from './courtier/courtier.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: 'users', component:ListUserComponent},
-      {path:'register', component:RegisterComponent},
+      {path: 'users', component:ListUserComponent, canActivate:[AuthGuard]},
+      {path:'register', component:RegisterComponent,canActivate:[AuthGuard]},
       {path:'forgot-password',component:ForgotpasswordComponent},
       {path:'reset-password',component:ResetpasswordComponent},
-      {path:'user-home', component: UserHomeComponent},
-      {path:'user-detail',component: UserDetailComponent},
-      {path:'courtier', component:CourtierComponent}
+      {path:'user-home', component: UserHomeComponent,canActivate:[AuthGuard]},
+      {path:'user-detail',component: UserDetailComponent,canActivate:[AuthGuard]},
+      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]}
     ])
   ],
   exports:[

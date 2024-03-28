@@ -15,9 +15,10 @@ export class RequestInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = sessionStorage.getItem("token");
 
-    if(token != null)
+    if(token !== null || token !=="")
     { 
-      if(!request.url.includes("/"))
+      //console.log(request.url)
+      if(!request.url.includes("login"))
       {
          let clone = request.clone({
           headers : request.headers.set('Authorization','Bearer '+token)

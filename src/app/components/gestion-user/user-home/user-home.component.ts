@@ -7,10 +7,10 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 })
 export class UserHomeComponent implements AfterViewInit{
   
-  @Input() tabRef : any;
+  @Input("tabRef") tabRef : any;
+
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
-      
+      console.log(this.tabRef);
   }
  
 }
