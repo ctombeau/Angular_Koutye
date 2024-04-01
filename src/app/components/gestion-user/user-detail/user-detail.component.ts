@@ -28,7 +28,7 @@ export class UserDetailComponent implements OnInit{
                console.log(this.user);
            },
            (error: HttpErrorResponse)=>{
-
+              console.log("erreur constatee: "+ error.message);
            }
        );
     }

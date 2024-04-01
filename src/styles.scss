@@ -2,6 +2,13 @@
 
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~bootstrap/dist/css/bootstrap.css";
+@font-face {
+  font-family:"Roboto";
+  src:url("./assets/fonts/Caveat/static/Caveat-Regular.ttf") format("truetype");      
+  font-weight:normal;
+  font-style:normal;
+  font-size: medium;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .blue-snackbar {

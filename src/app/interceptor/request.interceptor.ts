@@ -17,11 +17,16 @@ export class RequestInterceptor implements HttpInterceptor {
 
     if(token !== null || token !=="")
     { 
-      //console.log(request.url)
+      //console.log(token);
       if(!request.url.includes("login"))
       {
          let clone = request.clone({
-          headers : request.headers.set('Authorization','Bearer '+token)
+          //headers : request.headers.set('Authorization','Bearer '+token)
+          setHeaders: {
+            'Content-Type' : 'application/json; charset=utf-8',
+            'Accept'       : 'application/json',
+            Authorization: 'Bearer ${token}'
+          }
         });
         return next.handle(clone);
       }

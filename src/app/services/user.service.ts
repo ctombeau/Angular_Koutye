@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { UserLogin } from '../models/user-login.model';
@@ -26,7 +26,15 @@ export class UserService {
   private email= "email";
   private phone = "phone";
   private photo="photo";
-
+  
+  httpOptions = {
+   headers: new HttpHeaders({
+     'Content-Type':  'application/json',
+     'Access-Control-Allow-Origin': '*',
+     'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+   })
+  };
+  
   get message$(): Observable<string>
   {
       return this._message$.asObservable();
@@ -109,7 +117,7 @@ export class UserService {
   
   public getUser(username : string) : Observable<any>
   {
-     return this.http.get(this.url + "user?username="+username);
+     return this.http.get(this.url + "user?username="+username, this.httpOptions);
      /*
      .pipe(
         map((response : any)=>{
