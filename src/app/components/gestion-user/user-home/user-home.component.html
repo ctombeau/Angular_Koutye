@@ -9,7 +9,7 @@
     <app-header></app-header>
 
     <div class="container">
-        <mat-tab-group class="mt-2" #tabRef>
+        <mat-tab-group class="mt-2" #tabRef (selectedTabChange)="changeTab(tabRef.selectedIndex)">
             <mat-tab label="Profil Utilisateur"> 
                 <div class="text-center mt-3 mb-3">
                     <h3>Profil Utilisateur</h3>
@@ -25,13 +25,18 @@
           </mat-tab-group>
 
           <div class="content">
-            <ng-container  *ngIf="tabRef.selectedIndex==0">
+            <ng-container  *ngIf="indexDetail">
                 <app-user-detail  ></app-user-detail>
                 
             </ng-container>
             
-            <ng-container *ngIf="tabRef.selectedIndex==1">
+            <ng-container *ngIf="indexCourtier">
                 <app-courtier ></app-courtier>
+                
+            </ng-container>
+
+            <ng-container *ngIf="indexMessage">
+               <p>Test de Mat Tab</p>
                 
             </ng-container>
             

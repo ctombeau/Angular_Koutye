@@ -30,6 +30,11 @@ export class CourtierComponent {
     ]),
     
 })
+
+attachUser()
+{
+  
+}
      
   displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];
   dataSource = ELEMENT_DATA;

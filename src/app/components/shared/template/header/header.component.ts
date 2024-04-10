@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user.service';
@@ -8,8 +8,10 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
    checkUrl : boolean= false;
+   //public title = '';
+
     constructor( private languageService: LanguageService,
       private userService : UserService,
       private router: Router)
@@ -18,6 +20,9 @@ export class HeaderComponent {
        this.checkUrl = this.router.url != '/' && this.router.url != '/reset-password' &&
                        this.router.url!='/forgot-password' && this.router.url != '/register';
     }
+   ngOnInit(): void {
+      //this.title= this.configLoaderService.appTitle;
+   }
      
     actionMenu()
     {
@@ -35,4 +40,11 @@ export class HeaderComponent {
         this.userService.removeUserInfo();
         this.router.navigate(['/']);
     }
+
+    /*
+    applyStyles() {
+      const styles = {'font-family' : this.title};
+      return styles;
+   }
+   */
 }

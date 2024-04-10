@@ -16,7 +16,7 @@ export class UserDetailComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
-       this.getUser();
+       //this.getUser();
        console.log("username session: "+sessionStorage.getItem("username"))
     }
     
