@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -7,6 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forgotpassword.component.scss']
 })
 export class ForgotpasswordComponent {
+
+  constructor(private formBuilder: FormBuilder){}
+  /*
   forgotPasswordForm = new FormGroup({
     email: new FormControl("",[
         Validators.required,
@@ -14,9 +17,14 @@ export class ForgotpasswordComponent {
     ]),
     
 });
+*/
+
+ forgotPasswordForm = this.formBuilder.group({
+     email : ["", Validators.required, Validators.email]
+ });
 
  public forgotPassword()
-{
+ {
 
-}
+ }
 }

@@ -19,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
+import { NotfoundComponent } from './notfound/notfound.component';
 /*
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http,'./assets/i18n/','.json');
@@ -44,7 +45,8 @@ const MaterialComponents=[
 @NgModule({
   declarations: [
      HeaderComponent,
-     FooterComponent
+     FooterComponent,
+     NotfoundComponent
   ],
   imports: [
     CommonModule,

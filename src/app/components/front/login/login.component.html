@@ -48,7 +48,8 @@
             </mat-card-content>
             <mat-card-actions>
               <mat-spinner *ngIf="showSpinner" color="warn"></mat-spinner>
-              <button mat-raised-button extended color="warn">
+              <button mat-raised-button extended color="warn" 
+               [disabled]="!loginForm.valid">
                 <i class="bi bi-box-arrow-in-right"></i>
                 CONNEXION
               </button>

@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angul
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { UserLogin } from '../models/user-login.model';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, shareReplay } from 'rxjs';
 import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { User } from '../models/user.model';
@@ -26,7 +26,12 @@ export class UserService {
   private email= "email";
   private phone = "phone";
   private photo="photo";
+
+  getToken(): string | null{
+       return sessionStorage.getItem(this.token);
+  }
   
+
   httpOptions = {
    headers: new HttpHeaders({
      'Content-Type':  'application/json',
@@ -71,10 +76,11 @@ export class UserService {
            //console.log(response.success);
            if(response.success===true)
            {
-              console.log(response.object["user-info"].username);
+              //console.log(response.object["user-info"].username);
+              //console.log(response.object["access-token"]);
+              //this.tokenUser= response.object["access-token"];
               this.saveUserInfo(response.object);
               this._message$.next("");
-              console.log("Dans login : "+sessionStorage.getItem("username"));
               this.router.navigate(["/home"]);
            }
            else
@@ -105,6 +111,7 @@ export class UserService {
                {
                   this.setRouteMessage("Utilisateur créé avec succès");
                   this.router.navigate(['/']);
+                  shareReplay();
                }
          }),
          catchError((error : HttpErrorResponse)=>{
@@ -117,8 +124,7 @@ export class UserService {
   
   public getUser(username : string) : Observable<any>
   {
-     return this.http.get(this.url + "user?username="+username, this.httpOptions);
-     /*
+     return this.http.get(this.url + "user?username="+username)
      .pipe(
         map((response : any)=>{
             if(response.success===true)
@@ -132,7 +138,16 @@ export class UserService {
             return "";
         })
      )
-     */
+     
+  }
+
+  public getAttachUsers(username: string)
+  {
+     return this.http.get(this.url+"show-attach-users?username="+username).pipe(
+        map((response)=>{
+            console.log(response);
+        }
+     ));
   }
 
   public saveUserInfo(data : any): void

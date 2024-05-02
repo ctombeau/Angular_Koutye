@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 export interface Courtier {
   photo: string;
@@ -22,7 +23,15 @@ const ELEMENT_DATA: Courtier[] = [
   templateUrl: './courtier.component.html',
   styleUrls: ['./courtier.component.scss']
 })
-export class CourtierComponent {
+export class CourtierComponent implements OnInit{
+
+   username: string | null= sessionStorage.getItem("username");
+
+  constructor(private userService: UserService){}
+
+  ngOnInit(): void {
+    this.attachUser();
+  }
 
   courtierForm = new FormGroup({
     email : new FormControl("",[
@@ -33,7 +42,7 @@ export class CourtierComponent {
 
 attachUser()
 {
-  
+    this.userService.getAttachUsers(this.username?? "").subscribe();
 }
      
   displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];

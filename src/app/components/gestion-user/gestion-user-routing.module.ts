@@ -9,6 +9,7 @@ import { UserHomeComponent } from './user-home/user-home.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CourtierComponent } from './courtier/courtier.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { NotfoundComponent } from '../shared/notfound/notfound.component';
 
 
 
@@ -23,7 +24,8 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
       {path:'reset-password',component:ResetpasswordComponent},
       {path:'user-home', component: UserHomeComponent,canActivate:[AuthGuard]},
       {path:'user-detail',component: UserDetailComponent,canActivate:[AuthGuard]},
-      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]}
+      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]},
+      
     ])
   ],
   exports:[

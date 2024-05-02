@@ -16,12 +16,13 @@ export class UserDetailComponent implements OnInit{
     ){}
 
     ngOnInit(): void {
-       //this.getUser();
-       console.log("username session: "+sessionStorage.getItem("username"))
+       this.getUser();
+       //console.log("username session: "+sessionStorage.getItem("username"))
     }
     
     public getUser() : void
     {
+       console.log("On test getUser()");
        this.userService.getUser(this.username).subscribe(
            (data: any)=>{
                this.user = data;
