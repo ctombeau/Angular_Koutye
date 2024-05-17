@@ -1,13 +1,15 @@
 import { Component, Injectable } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { environment } from 'src/environments/environment.development';
 import { UserLogin } from 'src/app/models/user-login.model';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, combineLatest } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+
 
 
 @Component({
@@ -17,9 +19,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 
 export class LoginComponent {
-   showSpinner : boolean = false;
+   showSpinner! : Observable<boolean>;
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
+   testLogin : Subscription | undefined;
     
   loginForm = new FormGroup({
       username : new FormControl("",[
@@ -58,24 +61,21 @@ export class LoginComponent {
             
          } 
       );
-      
+     // this.initState();
   }
 
    public Login(): void
    {  
-        this.showSpinner=true;
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
-       
+        
         if(userLogin.username !="" && userLogin.password!="")
         {
-           this.showSpinner = false;
            this.userService.postLogin(userLogin).subscribe();
         }
         else
         {
-            this.showSpinner = false;
             console.log( "Les champs sont obligatoires");
             
             this.userApiMessage$?.subscribe({ 
@@ -96,5 +96,14 @@ export class LoginComponent {
           console.log(textAEcrire);
       });
    }
+   
+   initState(){
+       this.testLogin = combineLatest([this.showSpinner, this.userService.isLoggedIn]).pipe(
+         //   tap(async([spinner, login])=>{
+         //       if(spinner==true && login==true){
 
+         //       }
+         //   })
+       ).subscribe();
+   }
 }

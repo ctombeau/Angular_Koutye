@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
 
 export interface Courtier {
@@ -24,13 +26,18 @@ const ELEMENT_DATA: Courtier[] = [
   styleUrls: ['./courtier.component.scss']
 })
 export class CourtierComponent implements OnInit{
-
-   username: string | null= sessionStorage.getItem("username");
+   
+  @ViewChild(MatPaginator) paginator! : MatPaginator;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];
+  username: string | null= sessionStorage.getItem("username");
 
   constructor(private userService: UserService){}
 
   ngOnInit(): void {
     this.attachUser();
+    //this.dataSource.paginator = this.paginator;
+    setTimeout(() => this.dataSource.paginator = this.paginator);
   }
 
   courtierForm = new FormGroup({
@@ -45,6 +52,6 @@ attachUser()
     this.userService.getAttachUsers(this.username?? "").subscribe();
 }
      
-  displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];
-  dataSource = ELEMENT_DATA;
+  
+  
 }

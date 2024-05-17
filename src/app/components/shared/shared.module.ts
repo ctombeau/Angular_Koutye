@@ -20,6 +20,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import { NotfoundComponent } from './notfound/notfound.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 /*
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http,'./assets/i18n/','.json');
@@ -39,7 +40,8 @@ const MaterialComponents=[
   MatTabsModule,
   MatAutocompleteModule,
   MatSnackBarModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

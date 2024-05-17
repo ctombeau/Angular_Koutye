@@ -19,6 +19,7 @@ export class UserService {
   private _routeMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
   user : any ;
+  isLoggedIn! : Observable<boolean>;
   private token = "token";
   private nom = "nom";
   private prenom = "prenom";
@@ -81,10 +82,14 @@ export class UserService {
               //this.tokenUser= response.object["access-token"];
               this.saveUserInfo(response.object);
               this._message$.next("");
+              //this.isLoggedIn.subscribe({next(x){x=true}});
               this.router.navigate(["/home"]);
            }
-           else
-              this._message$.next("Nom utilisateur ou modepasse incorrect...");
+           else{
+            this.isLoggedIn.subscribe({next(x){x=false}});
+               this._message$.next("Nom utilisateur ou modepasse incorrect...");
+           }
+              
        }),
        catchError((error : HttpErrorResponse)=>{
           if(error.status==0 || error.status==500)
