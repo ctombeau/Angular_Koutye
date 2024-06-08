@@ -18,8 +18,11 @@ export class UserService {
   
   private _routeMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
+  isError : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  
+
   user : any ;
-  isLoggedIn! : Observable<boolean>;
+  isLoggedIn = new BehaviorSubject<boolean>(false);
   private token = "token";
   private nom = "nom";
   private prenom = "prenom";
@@ -74,7 +77,7 @@ export class UserService {
        return this.http.post<any>(this.url+"login",user).pipe(
        
        map((response : any)=>{
-           //console.log(response.success);
+           
            if(response.success===true)
            {
               //console.log(response.object["user-info"].username);
@@ -82,11 +85,14 @@ export class UserService {
               //this.tokenUser= response.object["access-token"];
               this.saveUserInfo(response.object);
               this._message$.next("");
-              //this.isLoggedIn.subscribe({next(x){x=true}});
-              this.router.navigate(["/home"]);
+              this.isLoggedIn.next(true);
+              this.isError.next(false);
+              //this.router.navigate(["/home"]);
+              
            }
            else{
-            this.isLoggedIn.subscribe({next(x){x=false}});
+               this.isLoggedIn.next(false);
+               this.isError.next(true);
                this._message$.next("Nom utilisateur ou modepasse incorrect...");
            }
               
@@ -94,10 +100,14 @@ export class UserService {
        catchError((error : HttpErrorResponse)=>{
           if(error.status==0 || error.status==500)
           {
+             this.isError.next(true);
+             this.isLoggedIn.next(false);
              this._message$.next("nous n'arrivons pas a contacter le serveur");
           }
           else if(error.status==401)
           {
+             this.isError.next(true);
+             this.isLoggedIn.next(false);
              this._message$.next("Nom utilisateur et/ou mot de passe incorrect...");
           }
            return "";
@@ -111,7 +121,6 @@ export class UserService {
   {
       return this.http.post(this.url+"user/add",user).pipe(
          map((response: any)=>{
-               //console.log(response);
                if(response.success===true)
                {
                   this.setRouteMessage("Utilisateur créé avec succès");
@@ -120,7 +129,6 @@ export class UserService {
                }
          }),
          catchError((error : HttpErrorResponse)=>{
-            console.log(error);
             return "";
          })
       )
@@ -175,5 +183,6 @@ export class UserService {
      sessionStorage.removeItem(this.email);
      sessionStorage.removeItem(this.phone);
      sessionStorage.removeItem(this.photo);
+     this.isLoggedIn.next(false);
   }
 }

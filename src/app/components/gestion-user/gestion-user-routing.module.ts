@@ -18,14 +18,22 @@ import { NotfoundComponent } from '../shared/notfound/notfound.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
+      /*
       {path: 'users', component:ListUserComponent, canActivate:[AuthGuard]},
       {path:'register', component:RegisterComponent,canActivate:[AuthGuard]},
       {path:'forgot-password',component:ForgotpasswordComponent},
       {path:'reset-password',component:ResetpasswordComponent},
       {path:'user-home', component: UserHomeComponent,canActivate:[AuthGuard]},
       {path:'user-detail',component: UserDetailComponent,canActivate:[AuthGuard]},
-      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]},
-      
+      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]}
+      */
+      {path: 'list', component:ListUserComponent, canActivate:[AuthGuard]},
+      {path:'add', component:RegisterComponent},
+      {path:'forgot-password',component:ForgotpasswordComponent},
+      {path:'reset-password',component:ResetpasswordComponent},
+      {path:'home', component: UserHomeComponent,canActivate:[AuthGuard]},
+      {path:'detail',component: UserDetailComponent,canActivate:[AuthGuard]},
+      {path:'courtier', component:CourtierComponent,canActivate:[AuthGuard]} 
     ])
   ],
   exports:[

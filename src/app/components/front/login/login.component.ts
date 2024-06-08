@@ -6,23 +6,54 @@ import { environment } from 'src/environments/environment.development';
 import { UserLogin } from 'src/app/models/user-login.model';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable, Subscription, combineLatest } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, combineLatest,tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {trigger,state,style,animate,transition} from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  
+  animations:[
+   /*
+   state('open', style({
+      height: '200px',
+      opacity: 1,
+      backgroundColor: 'yellow'
+    })),
+    
+    state('closed', style({
+      height: '100px',
+      opacity: 0.8,
+      backgroundColor: 'blue'
+    })),
+    transition('open => closed', [
+      animate('1s')
+    ]),
+    */
+
+     trigger('fade',[
+         transition('void=>*',[
+            style({color: 'yellow', opacity:0}),
+            animate(200, style({color:'red', opacity:1, transform:'scale(0.85)'})),
+            animate(1000)
+         ])
+     ])
+  ]
+  
 })
 
 export class LoginComponent {
-   showSpinner! : Observable<boolean>;
+   showSpinner = new BehaviorSubject<boolean>(true);
+   
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
    testLogin : Subscription | undefined;
+   boolShowSpinner: boolean=false;
+   
     
   loginForm = new FormGroup({
       username : new FormControl("",[
@@ -61,23 +92,28 @@ export class LoginComponent {
             
          } 
       );
-     // this.initState();
+     this.initState();
+  }
+
+  ngOnDestroy(){
+      this.testLogin?.unsubscribe();
   }
 
    public Login(): void
    {  
+        this.showSpinner.next(true);
         const userLogin : UserLogin = new UserLogin();
         userLogin.username = this.loginForm.value.username ?? "";
         userLogin.password = this.loginForm.value.password ?? "";
         
         if(userLogin.username !="" && userLogin.password!="")
         {
+           this.showSpinner.next(false);
            this.userService.postLogin(userLogin).subscribe();
         }
         else
         {
-            console.log( "Les champs sont obligatoires");
-            
+            this.showSpinner.next(false);
             this.userApiMessage$?.subscribe({ 
               
                 next : ()=>{
@@ -98,12 +134,29 @@ export class LoginComponent {
    }
    
    initState(){
-       this.testLogin = combineLatest([this.showSpinner, this.userService.isLoggedIn]).pipe(
-         //   tap(async([spinner, login])=>{
-         //       if(spinner==true && login==true){
-
-         //       }
-         //   })
+       this.testLogin = combineLatest([this.userService.isLoggedIn, this.userService.isError]).pipe(
+           tap(async([login, error])=>{
+              // console.log("Spinner", spinner);
+               console.log("login", error);
+               if(login==true && error==false){
+                  console.log("it's true");
+                  this.boolShowSpinner= false;
+                  this.router.navigate(['/home']);
+               }
+               else if(login=false && error==false)
+               {
+                  this.boolShowSpinner=true;
+                  console.log("it's false");
+                  
+               }
+               else if(login==false && error ==true)
+               {
+                  this.boolShowSpinner=false;
+               }
+               else {
+                  this.boolShowSpinner==true;
+               }
+           })
        ).subscribe();
    }
 }

@@ -11,8 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-    //userApiMessage$? : Observable<string>;
-
+    
     userApiMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
     constructor(private userService : UserService){}

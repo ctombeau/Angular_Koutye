@@ -14,6 +14,7 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RequestInterceptor } from './interceptor/request.interceptor';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 export function HttpLoaderFactory(http: HttpClient){
@@ -26,7 +27,6 @@ export function HttpLoaderFactory(http: HttpClient){
   ],
   imports: [
     BrowserModule,
-    GestionUserModule,
     FrontModule,
     //SharedModule,
     AppRoutingModule,
@@ -51,7 +51,8 @@ export function HttpLoaderFactory(http: HttpClient){
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
       multi: true
-     }
+     },
+     provideAnimations()
   ],
   bootstrap: [AppComponent]
 })

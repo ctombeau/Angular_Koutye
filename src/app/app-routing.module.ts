@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/front/login/login.component';
 import { HomeComponent } from './components/front/home/home.component';
 import { NotfoundComponent } from './components/shared/notfound/notfound.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-   //{path:'',component: LoginComponent},
-   //{path:'home', component:HomeComponent}
-   {path: 'notfound', component: NotfoundComponent},
+   
+  {path: 'user',
+       loadChildren:()=>import('./components/gestion-user/gestion-user.module').then((m)=>m.GestionUserModule)},
+  {path: 'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound'}
 ];
 
