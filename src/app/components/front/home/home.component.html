@@ -8,14 +8,46 @@
 <body>
     <app-header></app-header>
     <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <p>Ma maison</p>
+        <div class="form mt-3 mb-2">
+             <form action="">
+                <mat-form-field appearance="outline" class="mt-2">
+                    <mat-label>Commune</mat-label>
+                    <input matInput type="text" placeholder="Rechercher par commune" 
+                       formControlName="commune"
+                       data-toggle="tooltip"
+                       data-bs-placement="top"
+                       />
+                 </mat-form-field>
+             </form>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <img class="img-app" src="/assets/images/app/img1.jpg"/>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="bi bi-info-circle-fill"></i> Appartement de luxe avec 6 pieces</p>
+                        <p> <i class="bi bi-geo-alt-fill"></i> 13, rue sibert, croix-des-bouquets</p>
+                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p>inserez image et video ici</p>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <img class="img-app" src="/assets/images/app/img2.jpg"/>
+                    </div>
+                    <div class="card-body">
+                        <p><i class="bi bi-info-circle-fill"></i> Appartement de luxe avec 4 pieces</p>
+                        <p> <i class="bi bi-geo-alt-fill"></i> 31, rue Soeur Georges,Delmas</p>
+                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 4909-3578</p>
+                    </div>
+                </div>
             </div>
         </div>
+        
     </div>
     <app-footer></app-footer>
 </body>
