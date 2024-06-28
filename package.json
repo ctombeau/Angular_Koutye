@@ -26,6 +26,7 @@
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.10.5",
     "jquery": "^3.7.1",
+    "ng-image-slider": "^7.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

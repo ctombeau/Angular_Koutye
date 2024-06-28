@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, Subscription, combineLatest,tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {trigger,state,style,animate,transition} from '@angular/animations';
+import {trigger,state,style,animate,transition, keyframes} from '@angular/animations';
 
 
 
@@ -38,8 +38,14 @@ import {trigger,state,style,animate,transition} from '@angular/animations';
      trigger('fade',[
          transition('void=>*',[
             style({color: 'yellow', opacity:0}),
-            animate(200, style({color:'red', opacity:1, transform:'scale(0.85)'})),
-            animate(1000)
+            //animate(200, style({color:'red', opacity:1, transform:'scale(0.85)'})),
+            //animate(1000)
+            animate("5s", keyframes([
+               style({ backgroundColor: "red", offset: 0 }),
+               style({ backgroundColor: "blue", offset: 0.2 }),
+               style({ backgroundColor: "orange", offset: 0.3 }),
+               style({ backgroundColor: "black", offset: 1 })
+             ]))
          ])
      ])
   ]

@@ -15,7 +15,7 @@ import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RequestInterceptor } from './interceptor/request.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import { NgImageSliderModule } from 'ng-image-slider';
 
 export function HttpLoaderFactory(http: HttpClient){
    return new TranslateHttpLoader(http,'./assets/i18n/','.json');
@@ -32,7 +32,7 @@ export function HttpLoaderFactory(http: HttpClient){
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-  
+    NgImageSliderModule,
     HttpClientModule,
     TranslateModule.forRoot({
        //defaultLanguage: 'en',

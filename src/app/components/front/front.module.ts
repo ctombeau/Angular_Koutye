@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { FrontRoutingModule } from './front-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { NgImageSliderModule } from 'ng-image-slider';
 
 
 @NgModule({
@@ -19,7 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FrontRoutingModule,
     FormsModule,
     SharedModule,
-    TranslateModule
+    TranslateModule,
+    NgImageSliderModule
   ]
 })
 export class FrontModule { }
