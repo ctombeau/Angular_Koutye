@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit{
    checkUrl : boolean= false;
+   nom = sessionStorage.getItem("nom");
+   prenom  = sessionStorage.getItem("prenom");
    //public title = '';
 
     constructor( private languageService: LanguageService,

@@ -72,8 +72,8 @@
    }
    
    .body-row{
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      gap: 5px;
       justify-content: center;
       margin-left: auto;
       margin-right: auto;
