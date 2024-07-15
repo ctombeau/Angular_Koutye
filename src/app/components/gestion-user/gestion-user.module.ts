@@ -12,6 +12,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { UserHomeComponent } from './user-home/user-home.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { CourtierComponent } from './courtier/courtier.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -23,7 +24,8 @@ import { CourtierComponent } from './courtier/courtier.component';
     ResetpasswordComponent,
     UserHomeComponent,
     UserDetailComponent,
-    CourtierComponent
+    CourtierComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,

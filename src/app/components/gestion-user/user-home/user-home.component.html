@@ -21,7 +21,11 @@
                     <h3>Gestion Courtier</h3>
                 </div>
             </mat-tab>
-            <mat-tab label="Third"> Content 3 </mat-tab>
+            <mat-tab label="Chat"> 
+                <div class="text-center mt-3 mb-3">
+                    <h3>Demandez plus d'Infos</h3>
+                </div>    
+            </mat-tab>
           </mat-tab-group>
 
           <div class="content">
@@ -36,8 +40,7 @@
             </ng-container>
 
             <ng-container *ngIf="indexMessage">
-               <p>Test de Mat Tab</p>
-                
+                <app-chat></app-chat>
             </ng-container>
             
           </div>

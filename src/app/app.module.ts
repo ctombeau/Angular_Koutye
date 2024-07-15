@@ -17,6 +17,7 @@ import { RequestInterceptor } from './interceptor/request.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
 
+
 export function HttpLoaderFactory(http: HttpClient){
    return new TranslateHttpLoader(http,'./assets/i18n/','.json');
 }
