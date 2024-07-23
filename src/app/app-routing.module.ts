@@ -9,6 +9,9 @@ const routes: Routes = [
    
   {path: 'user',
        loadChildren:()=>import('./components/gestion-user/gestion-user.module').then((m)=>m.GestionUserModule)},
+  {path:'appartement',
+    loadChildren:()=>import('./components/gestion-appartement/gestion-appartement.module').then((m)=>m.GestionAppartementModule)
+  },
   {path: 'notfound', component: NotfoundComponent},
   {path:'**', redirectTo:'notfound'}
 ];
