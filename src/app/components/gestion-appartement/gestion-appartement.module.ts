@@ -16,6 +16,9 @@ import { GestionAppartementRoutingModule } from './gestion-appartement-routing.m
     SharedModule,
     FormsModule,
     GestionAppartementRoutingModule
+  ],
+  exports:[
+    ListAppartementComponent
   ]
 })
 export class GestionAppartementModule { }

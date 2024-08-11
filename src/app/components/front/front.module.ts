@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { FrontRoutingModule } from './front-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { GestionAppartementModule } from '../gestion-appartement/gestion-appartement.module';
+import { ListAppartementComponent } from '../gestion-appartement/list-appartement/list-appartement.component';
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
     FormsModule,
     SharedModule,
     TranslateModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    GestionAppartementModule
   ]
 })
 export class FrontModule { }

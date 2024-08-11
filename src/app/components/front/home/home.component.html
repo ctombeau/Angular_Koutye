@@ -7,70 +7,8 @@
 </head>
 <body>
     <app-header></app-header>
-    <div class="container mt-5">
-        <div class="form mt-3 mb-2">
-             <form action="">
-                <mat-form-field appearance="outline" class="mt-2">
-                    <mat-label>Commune</mat-label>
-                    <input matInput type="text" placeholder="Rechercher par commune" 
-                       formControlName="commune"
-                       data-toggle="tooltip"
-                       data-bs-placement="top"
-                       />
-                 </mat-form-field>
-             </form>
-        </div>
-        <div class="body-row">
-            <div class="content">
-                <div class="card">
-                    <img class="img-app" src="/assets/images/app/img1.jpg"/>
-                    <!-- <ng-image-slider class="img-app" [images]="imageObject1" #nav></ng-image-slider> -->
-                    <!-- <div class="card-header">
-                        
-                    </div> -->
-                    <div class="card-body">
-                        <p><strong>2,500USD</strong></p>
-                        <p><i class="bi bi-info-circle-fill"></i> Appartement de luxe avec 6 pieces</p>
-                        <p> <i class="bi bi-geo-alt-fill"></i> 13, rue sibert, croix-des-bouquets</p>
-                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <div class="card">
-                    <!-- <img class="img-app" src="/assets/images/app/img2.jpg"/> -->
-                    <img class="img-app" [src]="showImage"/>
-                    <!-- <ng-image-slider class="img-app" [images]="imageObject2" #nav></ng-image-slider> -->
-                    <!-- <div class="card-header">
-                        
-                    </div> -->
-                    <div class="card-body">
-                        <p><strong>3,000USD</strong></p>
-                        <p><i class="bi bi-info-circle-fill"></i> Appartement de luxe avec 4 pieces</p>
-                        <p> <i class="bi bi-geo-alt-fill"></i> 31, rue Soeur Georges,Delmas</p>
-                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 4909-3578</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content">
-                <div class="card">
-                    <img class="img-app" src="/assets/images/app/img1.jpg"/>
-                    <!-- <ng-image-slider class="img-app" [images]="imageObject1" #nav></ng-image-slider> -->
-                    <!-- <div class="card-header">
-                        
-                    </div> -->
-                    <div class="card-body">
-                        <p><strong>2,000USD</strong></p>
-                        <p><i class="bi bi-info-circle-fill"></i> Appartement de luxe avec 6 pieces</p>
-                        <p> <i class="bi bi-geo-alt-fill"></i> 13, rue sibert, croix-des-bouquets</p>
-                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+    <div>
+        <app-list-appartement></app-list-appartement>
     </div>
     <app-footer></app-footer>
 </body>
