@@ -58,7 +58,7 @@ export class LoginComponent {
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
    testLogin : Subscription | undefined;
-   boolShowSpinner: boolean=false;
+   boolShowSpinner$=this.userService.boolSpinner$.asObservable();
    
     
   loginForm = new FormGroup({
@@ -146,21 +146,18 @@ export class LoginComponent {
                console.log("login", error);
                if(login==true && error==false){
                   console.log("it's true");
-                  this.boolShowSpinner= false;
                   this.router.navigate(['/home']);
                }
                else if(login=false && error==false)
                {
-                  this.boolShowSpinner=true;
                   console.log("it's false");
                   
                }
                else if(login==false && error ==true)
                {
-                  this.boolShowSpinner=false;
                }
                else {
-                  this.boolShowSpinner==true;
+                  
                }
            })
        ).subscribe();

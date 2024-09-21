@@ -10,12 +10,14 @@ import { SharedModule } from './components/shared/shared.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import { FrontModule } from './components/front/front.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { RequestInterceptor } from './interceptor/request.interceptor';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, rootReducer } from './state/koutye-reducer';
 
 
 export function HttpLoaderFactory(http: HttpClient){
@@ -42,6 +44,11 @@ export function HttpLoaderFactory(http: HttpClient){
            useFactory:(HttpLoaderFactory),
            deps:[HttpClient]
        }
+    }),
+    StoreModule.forRoot({
+      root: rootReducer
+    }, {
+       metaReducers : metaReducers
     })
     
   ],

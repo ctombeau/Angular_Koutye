@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable,catchError,map,of, tap } from 'rxjs';
+import { BehaviorSubject, Observable,catchError,map,of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Appartement } from '../models/appartement.model';
 
@@ -9,17 +9,19 @@ import { Appartement } from '../models/appartement.model';
 })
 export class AppartementService {
   private baseApi = environment.apiUrl;
-  
-
+ 
   constructor(private http: HttpClient) { }
 
-   public showByUsername(username: string) : Observable<Appartement[]>{
-       return this.http.get<Appartement[]>(this.baseApi+"appartement/show-by-commune?username="+username).pipe(
-        tap(apps=>console.log(apps)),
-        map((apps: Appartement[]) =>apps.map(app=>({
-                //...app
-               
-          })as Appartement)),
+   public showByUsername(username: any):Observable<Appartement[]> {
+       return this.http.get<any>(this.baseApi+"appartement/show-by-username?username="+username);
+       /*
+       .pipe(
+        
+        map((apps: any)=>{
+              const listApps : Appartement[] =apps ; 
+              this.appartements=apps.object;
+               return listApps ;
+         }),
           catchError((err:HttpErrorResponse)=>{
               if(err.status){
 
@@ -27,5 +29,6 @@ export class AppartementService {
               return [];
           })
        );
+       */
    }
 }

@@ -23,6 +23,7 @@ export class UserService {
 
   user : any ;
   isLoggedIn = new BehaviorSubject<boolean>(false);
+  boolSpinner$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private token = "token";
   private nom = "nom";
   private prenom = "prenom";
@@ -74,25 +75,24 @@ export class UserService {
 
   public postLogin(user : UserLogin) : Observable<any>
   {
+       this.boolSpinner$.next(true);
        return this.http.post<any>(this.url+"login",user).pipe(
        
        map((response : any)=>{
            
            if(response.success===true)
            {
-              //console.log(response.object["user-info"].username);
-              //console.log(response.object["access-token"]);
-              //this.tokenUser= response.object["access-token"];
+              this.boolSpinner$.next(false);
               this.saveUserInfo(response.object);
               this._message$.next("");
               this.isLoggedIn.next(true);
               this.isError.next(false);
-              //this.router.navigate(["/home"]);
               
            }
            else{
                this.isLoggedIn.next(false);
                this.isError.next(true);
+               this.boolSpinner$.next(false);
                this._message$.next("Nom utilisateur ou modepasse incorrect...");
            }
               
@@ -100,12 +100,14 @@ export class UserService {
        catchError((error : HttpErrorResponse)=>{
           if(error.status==0 || error.status==500)
           {
+             this.boolSpinner$.next(false);
              this.isError.next(true);
              this.isLoggedIn.next(false);
              this._message$.next("nous n'arrivons pas a contacter le serveur");
           }
           else if(error.status==401)
           {
+             this.boolSpinner$.next(false);
              this.isError.next(true);
              this.isLoggedIn.next(false);
              this._message$.next("Nom utilisateur et/ou mot de passe incorrect...");

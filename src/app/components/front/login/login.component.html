@@ -46,10 +46,11 @@
                 <input matInput type="password" placeholder="Mot de passe" formControlName="password"/>
              </mat-form-field>
             </mat-card-content>
+            
+            <mat-spinner *ngIf="boolShowSpinner$ |async" color="warn"></mat-spinner>
+
             <mat-card-actions>
-              <mat-spinner *ngIf="boolShowSpinner" color="warn"></mat-spinner>
               <button mat-raised-button extended color="warn"  
-               *ngIf="!boolShowSpinner"
                [disabled]="!loginForm.valid">
                 <i class="bi bi-box-arrow-in-right"></i>
                 CONNEXION

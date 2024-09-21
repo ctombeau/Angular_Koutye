@@ -19,7 +19,7 @@ export class RequestInterceptor implements HttpInterceptor {
     //const token = sessionStorage.getItem("token");
     const token = this.userService.getToken();
 
-    console.log("token interceptor: "+token)
+    //console.log("token interceptor: "+token)
 
       if(token !== null)
       {
@@ -28,11 +28,15 @@ export class RequestInterceptor implements HttpInterceptor {
              let clone = request.clone({
               headers : request.headers.set('Authorization','Bearer '+token)
             });
+            //console.log("clone request", clone)
             return next.handle(clone);
         }
-        return next.handle(request);
+        else
+          return next.handle(request);
       }
-      return next.handle(request);
+      else
+        return next.handle(request);
     
   }
+      
 }
