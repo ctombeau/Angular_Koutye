@@ -16,9 +16,9 @@ import {trigger,state,style,animate,transition, keyframes} from '@angular/animat
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  
+  /*
   animations:[
-   /*
+   
    state('open', style({
       height: '200px',
       opacity: 1,
@@ -33,8 +33,8 @@ import {trigger,state,style,animate,transition, keyframes} from '@angular/animat
     transition('open => closed', [
       animate('1s')
     ]),
-    */
-
+    
+   
      trigger('fade',[
          transition('void=>*',[
             style({color: 'yellow', opacity:0}),
@@ -49,6 +49,7 @@ import {trigger,state,style,animate,transition, keyframes} from '@angular/animat
          ])
      ])
   ]
+*/
   
 })
 
@@ -143,7 +144,7 @@ export class LoginComponent {
        this.testLogin = combineLatest([this.userService.isLoggedIn, this.userService.isError]).pipe(
            tap(async([login, error])=>{
               // console.log("Spinner", spinner);
-               console.log("login", error);
+              //console.log("login", error);
                if(login==true && error==false){
                   console.log("it's true");
                   this.router.navigate(['/home']);

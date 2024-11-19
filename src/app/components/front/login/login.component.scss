@@ -12,6 +12,7 @@
 fieldset, legend
 {
     all:revert; 
+    
 }
 
 .field
@@ -22,6 +23,7 @@ fieldset, legend
 
  mat-form-field {
     width: 100%;
+    
 }
 
 .mat-card, .form
@@ -34,7 +36,17 @@ fieldset, legend
 {
     text-decoration: none;
     padding: 0;
-    color: #06509F;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #FF5733 !important;
+}
+
+button{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.otherAction p a:hover{
+    color:#00008B;
 }
 
 #btnLogin
@@ -46,8 +58,27 @@ fieldset, legend
     
 }
 
+.header-text{
+    font-family: cursive;
+}
+
+
 mat-spinner{
     margin-left: auto;
     margin-right: auto;
     color:#FF5733;
+}
+
+.socio{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+ }
+ 
+ .socio i{
+   color: #00008B;
+ }
+
+ ::ng-deep mat-form-field {
+    margin: 0;
 }

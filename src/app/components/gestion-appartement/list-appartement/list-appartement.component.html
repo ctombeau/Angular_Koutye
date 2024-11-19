@@ -8,24 +8,24 @@
 <body>
     <div class="container mt-5 mb-5">
         <div class="form mt-3 mb-2">
-             <form [formGroup]="fgSearch" action="">
                 <mat-form-field appearance="outline" class="mt-2">
                     <mat-label>Commune</mat-label>
                     <input matInput type="text" placeholder="Rechercher par commune" 
-                       formControlName="commune"
+                       [formControl]="commune"
                        data-toggle="tooltip"
                        data-bs-placement="top"
+                       (ngModelChange)="modelChanged($event)"
                        />
                  </mat-form-field>
-             </form>
         </div>
+    
         <div class="body-row">
-            <div class="content" *ngFor="let app of apps; let i=index">
+            <div class="content" *ngFor="let app  of listAppartement$ | async; let i=index">
                 
                 <div class="card">
                     <!-- <img class="img-app" src="/assets/images/app/img1.jpg"/> -->
                      
-                     <img class="img-app" src="C:/Koutye_Folder/ImageApp/1/back.webp"/>
+                     <img class="img-app" src="imagePath"/>
                     <div class="card-body">
                         <p><strong>{{app.prix}} {{app.devise}}</strong></p>
                         <p><i class="bi bi-info-circle-fill"></i> {{app.description}}</p>

@@ -12,15 +12,16 @@ export class AppartementService {
  
   constructor(private http: HttpClient) { }
 
-   public showByUsername(username: any):Observable<Appartement[]> {
-       return this.http.get<any>(this.baseApi+"appartement/show-by-username?username="+username);
-       /*
+   public showByUsername(username: any):Observable<any> {
+       return this.http.get<any>(this.baseApi+"appartement/show-by-username?username="+username)
        .pipe(
         
-        map((apps: any)=>{
-              const listApps : Appartement[] =apps ; 
-              this.appartements=apps.object;
-               return listApps ;
+        map((data: any)=>{
+          if(data.success==true){
+            return of(data.object);
+          }
+          else
+            return of([]);
          }),
           catchError((err:HttpErrorResponse)=>{
               if(err.status){
@@ -29,6 +30,6 @@ export class AppartementService {
               return [];
           })
        );
-       */
+       
    }
 }

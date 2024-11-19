@@ -14,7 +14,7 @@
       <form [formGroup]="registerForm" class="center" (ngSubmit)="addUser()">
         <mat-card id="card-register" >
            
-            <mat-card-header class="text-center">
+            <mat-card-header class="text-center" style="color: #FF5733;">
               <i class="bi bi-person-circle" ></i> 
                NOUVEL UTILISATEUR
             </mat-card-header>
@@ -41,7 +41,7 @@
                         <mat-label>Email</mat-label>
                         <input type="email" formControlName="email" matInput
                         placeholder="Ex: ctombeau@gmail.com">
-                        <mat-hint>Ex:ctombeau@gmail.com</mat-hint>
+                        <mat-hint>Ex:ctombeau&#64;gmail.com</mat-hint>
                       </mat-form-field>
                 </div>
 
