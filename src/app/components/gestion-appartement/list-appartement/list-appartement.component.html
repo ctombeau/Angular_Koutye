@@ -11,17 +11,19 @@
                 <mat-form-field appearance="outline" class="mt-2">
                     <mat-label>Commune</mat-label>
                     <input matInput type="text" placeholder="Rechercher par commune" 
-                       [formControl]="commune"
+                       [formControl]="communeCtrl"
                        data-toggle="tooltip"
                        data-bs-placement="top"
                        (ngModelChange)="modelChanged($event)"
                        />
                  </mat-form-field>
         </div>
-    
+        
         <div class="body-row">
-            <div class="content" *ngFor="let app  of listAppartement$ | async; let i=index">
-                
+            <ng-container *ngIf="listAppartement$ | async as apps">
+            
+            <div class="content" *ngFor="let app  of apps; let i=index">
+             
                 <div class="card">
                     <!-- <img class="img-app" src="/assets/images/app/img1.jpg"/> -->
                      
@@ -37,7 +39,7 @@
                     </div>
                 </div>
             </div>
-        
+        </ng-container>
         </div>
         
     </div>

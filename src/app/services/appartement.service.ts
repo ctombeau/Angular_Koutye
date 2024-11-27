@@ -12,20 +12,20 @@ export class AppartementService {
  
   constructor(private http: HttpClient) { }
 
-   public showByUsername(username: any):Observable<any> {
-       return this.http.get<any>(this.baseApi+"appartement/show-by-username?username="+username)
+   public showByUsername(username: any):Observable<Appartement[]> {
+       return this.http.get<Appartement[]>(this.baseApi+"appartement/show-by-username?username="+username)
        .pipe(
         
         map((data: any)=>{
           if(data.success==true){
-            return of(data.object);
+            return data.object;
           }
           else
-            return of([]);
+            return [];
          }),
           catchError((err:HttpErrorResponse)=>{
               if(err.status){
-
+                  return [];
               }
               return [];
           })

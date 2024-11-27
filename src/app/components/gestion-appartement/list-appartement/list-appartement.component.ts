@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, combineLatest, delay, map, Observable, Observer, of, startWith, Subscription, tap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, delay, map, Observable, Observer, of, scan, startWith, Subscription, tap } from 'rxjs';
 import { Appartement } from 'src/app/models/appartement.model';
 import { ImageAppartement } from 'src/app/models/image-appartement.model';
 import { VideoAppartement } from 'src/app/models/video-appartement.model';
@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./list-appartement.component.scss']
 })
 export class ListAppartementComponent implements OnInit, OnDestroy{
-  commune! : FormControl;
+  communeCtrl : FormControl=new FormControl();;
   communeValue$! : Observable<string>;
   communeValueSub! : Subscription;
   showImage : String="";
@@ -26,16 +26,18 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   imagesAndVideosApp : string[][] = [];
   listAppartement$! : Observable<any>;
 
-  private initCommuneCtrl(){
-     this.commune = new FormControl();
+   
+
+  // private initCommuneCtrl(){
      
-     this.communeValueSub = this.commune.valueChanges.pipe(
-      tap(value=>{
-          this.commune.setValue(value);
-      })
-    ).subscribe();
+     
+  //    this.communeValueSub = this.communeCtrl.valueChanges.pipe(
+  //     tap(value=>{
+  //         this.communeCtrl.setValue(value);
+  //     })
+  //   ).subscribe();
   
-  }
+  // }
 
 
   constructor(private router: Router,
@@ -44,7 +46,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
-     this.initCommuneCtrl();
+    // this.initCommuneCtrl();
      this.initListAppartement();
   }
 
@@ -61,17 +63,28 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
  
   
   initListAppartement(){
-    const searchValue$ = this.commune.valueChanges.pipe(
-        startWith(this.commune.value)
-    )
+
+    const searchValue$ : Observable<string[]> = this.communeCtrl.valueChanges.pipe(
+       startWith(this.communeCtrl.value)
+       
+    );
 
     console.log("SearchValue: ",searchValue$)
        this.listAppartement$ = combineLatest ([this.appService.showByUsername(this.username),
          searchValue$]).pipe(
           map(([data, comm ])=>{
                let appartements = data;
+               
                console.log(data)
                console.log("commune:",comm)
+            
+               if(comm==null){
+                  return appartements;
+               }
+               else{
+                  appartements = appartements.filter((app: any)=>String(app.adresse.commune.startWith(comm)))
+               }
+              
                return appartements;
            }));
   }
