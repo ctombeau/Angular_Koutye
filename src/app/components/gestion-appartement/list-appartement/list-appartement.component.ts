@@ -82,10 +82,12 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
                   return appartements;
                }
                else{
-                  appartements = appartements.filter((app: any)=>String(app.adresse.commune.startWith(comm)))
-               }
+                   appartements = appartements.filter((app: Appartement)=>app.adresse.commune.includes(String(comm)))
+                  //appartements.filter((app:Appartement)=>console.log(app.adresse.commune))
+                  return appartements;
+                }
               
-               return appartements;
+               //return appartements;
            }));
   }
 
