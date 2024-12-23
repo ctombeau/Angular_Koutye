@@ -51,7 +51,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.communeValueSub.unsubscribe();
+    //this.communeValueSub.unsubscribe();
   }
 
   Repeat() {

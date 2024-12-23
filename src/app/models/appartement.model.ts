@@ -10,16 +10,19 @@ export class Appartement{
     devise: string;
     adresse : Adresse;
     user : User;
-    imageAppartements!: ImageAppartement[];
-    videoAppartements! : VideoAppartement[];
+    imageAppartements: ImageAppartement[];
+    videoAppartements : VideoAppartement[];
     
-    constructor(description: string,prix: number, devise: string,adresse:Adresse, user:User){
+    constructor(description: string,prix: number, devise: string,adresse:Adresse,
+        imgs:ImageAppartement[],videos:VideoAppartement[], user:User){
         //this.id = id;
         this.description = description;
         this.prix=prix;
         this.devise=devise;
         this.adresse=adresse;
         this.user=user;
+        this.imageAppartements=imgs;
+        this.videoAppartements=videos;
     }
 
 }
