@@ -20,13 +20,26 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   communeValueSub! : Subscription;
   showImage : String="";
   username= sessionStorage.getItem("username");
-  imagePath : any;
+  imagePath : any="/assets/Koutye_Folder/ImageApp/2/back.webp";
   apps:Observable<Appartement[]>= of([]);
   imagesAndvideos : string[]=[];
   imagesAndVideosApp : string[][] = [];
   listAppartement$! : Observable<any>;
 
-   
+  /* pour defiler l'image */
+  currentIndex: number = 0;
+  intervalId: any;
+
+  /*
+  images: string[] = [
+    'assets/Koutye_Folder/ImageApp/2/back.webp',
+    'assets/Koutye_Folder/ImageApp/2/image1.jpg',
+    'assets/Koutye_Folder/ImageApp/2/image2.jpg',
+    'assets/Koutye_Folder/ImageApp/2/image3.jpg'
+  ];
+   */
+  
+  images: string[]=[];
 
   // private initCommuneCtrl(){
      
@@ -46,17 +59,19 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   ){}
 
   ngOnInit(): void {
-    // this.initCommuneCtrl();
      this.initListAppartement();
+     this.startImageRotation();
   }
 
   ngOnDestroy(): void {
-    //this.communeValueSub.unsubscribe();
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   Repeat() {
     setTimeout(() => {
-     // this.FunctionSlide();
+     
      this.Repeat();
     }, 1000);
   }
@@ -69,15 +84,38 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
        
     );
 
-    console.log("SearchValue: ",searchValue$)
        this.listAppartement$ = combineLatest ([this.appService.showByUsername(this.username),
          searchValue$]).pipe(
           map(([data, comm ])=>{
+               let i=0;
                let appartements = data;
-               
-               console.log(data)
-               console.log("commune:",comm)
-            
+               //appartements.forEach(app=>{
+               /*
+               for(let i=0; i<appartements.length;i++){
+                
+                  console.log(appartements[i].imageAppartements[0].image)
+                   for(let j=0;j<appartements[i].imageAppartements.length;j++){
+                      this.imagesAndVideosApp[i][j]=appartements[i].imageAppartements[j].image;
+                   }
+                
+                   for(let k=0;k<appartements[i].videoAppartements.length;k++){
+                     this.imagesAndVideosApp[i][k+appartements[i].imageAppartements.length]=appartements[i].videoAppartements[k].video;
+                 }
+                
+                }    
+                 */ 
+                //   i=i+1;
+               //});
+
+               appartements.forEach(app=>{
+
+                    for(let i=0; i<app.imageAppartements.length;i++){
+                         app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
+                    }
+                
+               });
+               console.log(appartements[0].imageAppartements[0].image.substr(53))
+               this.showImage=appartements[0].imageAppartements[0].image.substr(53);
                if(comm==null){
                   return appartements;
                }
@@ -91,6 +129,12 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
               
                //return appartements;
            }));
+  }
+
+  startImageRotation(): void {
+    this.intervalId = setInterval(() => {
+        this.currentIndex = (this.currentIndex + 1) //% this.images.length;
+    }, 5000);  // 5000 ms = 5 secondes
   }
 
   listAppartementByCommune(commune : any): Observable<Appartement[]>{

@@ -25,11 +25,9 @@
             <div class="content" *ngFor="let app  of apps; let i=index">
              
                 <div class="card">
-                    <!-- <img class="img-app" src="/assets/images/app/img1.jpg"/>  -->
-                    <img class="img-app" src="/assets/Koutye_Folder/ImageApp/2/back.webp"/>
-                     <!-- <img class="img-app" src="{{app.imageAppartements[0].image }}"/> -->
+                   <img class="img-app" [src]="app.imageAppartements[currentIndex].image"/> 
+                    
                     <div class="card-body">
-                        <!-- {{app.imageAppartements[0].image}} -->
                         <p><strong>{{app.prix}} {{app.devise}}</strong></p>
                         <p><i class="bi bi-info-circle-fill"></i> {{app.description}}</p>
                         <p> <i class="bi bi-geo-alt-fill"></i> {{app.adresse.numero}},
