@@ -29,7 +29,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   /* pour defiler l'image */
   currentIndex: number = 0;
   intervalId: any;
-
+  imgLength : number=0;
   /*
   images: string[] = [
     'assets/Koutye_Folder/ImageApp/2/back.webp',
@@ -39,7 +39,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   ];
    */
   
-  images: string[]=[];
+  images: any[]=[];
 
   // private initCommuneCtrl(){
      
@@ -60,7 +60,8 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
      this.initListAppartement();
-     this.startImageRotation();
+     //this.startImageRotation();
+    
   }
 
   ngOnDestroy(): void {
@@ -108,12 +109,13 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
                //});
 
                appartements.forEach(app=>{
-
-                    for(let i=0; i<app.imageAppartements.length;i++){
+                for(let i=0; i<app.imageAppartements.length;i++){
                          app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
-                    }
-                
+                         
+                      }
+                    
                });
+               
                console.log(appartements[0].imageAppartements[0].image.substr(53))
                this.showImage=appartements[0].imageAppartements[0].image.substr(53);
                if(comm==null){
@@ -133,8 +135,17 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
 
   startImageRotation(): void {
     this.intervalId = setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) //% this.images.length;
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        console.log(this.currentIndex)
     }, 5000);  // 5000 ms = 5 secondes
+  }
+
+  imageRotation(imgs : {id: number, image: string}[]): any {
+      for(let i=0; i< imgs.length;i++){
+         delay(5000)
+         console.log(imgs[i].image)
+         return imgs[i].image;
+      }
   }
 
   listAppartementByCommune(commune : any): Observable<Appartement[]>{
