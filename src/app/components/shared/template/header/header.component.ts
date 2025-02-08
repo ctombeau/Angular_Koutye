@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalService } from 'src/app/services/global.service';
 import { LanguageService } from 'src/app/services/language.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit{
 
     constructor( private languageService: LanguageService,
       private userService : UserService,
-      private router: Router)
+      private router: Router,
+      private gs : GlobalService)
     {
        //console.log(this.router.url)
        this.checkUrl = this.router.url != '/' && this.router.url != '/reset-password' &&
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit{
     public translateWord(language : string)
     {
        console.log(language);
+       this.gs.setGlobalVariable(language);
        this.languageService.setLanguage(language);
     }
 

@@ -2,5 +2,10 @@
     "username":"Nom d'utilisateur",
     "password": "Mot de passe",
     "login": "Se connecter",
+    "info":"Entrez vos informations",
+    "con": "CONNEXION",
+    "with": "Ou connectez avec",
+    "forgot":"Mot de passe oublié",
+    "new":"Nouveau, créer un compte?",
     "exemple": "Voici le nom '{{nom}}'"
 }

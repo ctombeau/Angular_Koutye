@@ -22,16 +22,16 @@
 
           <mat-card class=".mat-card">
             <fieldset class="field" >
-              <legend class="field" style="color: #FF5733;">LOGIN </legend>
+              <legend class="field" style="color: #FF5733;">{{login}}</legend>
               
-            <mat-card-header class="mb-3 header-text" @fade > Entrez vos informations</mat-card-header>
+            <mat-card-header class="mb-3 header-text" @fade > {{info}}</mat-card-header>
             <!-- <p>{{"titleLogin" | translate}}</p> -->
             <mat-card-content>
               <div class="col-12 d-flex justify-content-center" *ngIf="userApiMessage$ | async as message">
                 <mat-error>{{message}}</mat-error>
              </div>
               <mat-form-field appearance="outline" class="mt-2">
-                 <mat-label>Username</mat-label>
+                 <mat-label>{{username}}</mat-label>
                  <input matInput type="text" placeholder="Nom utilisateur" 
                     formControlName="username"
                     data-toggle="tooltip"
@@ -42,7 +42,7 @@
               </mat-form-field>
 
               <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
+                <mat-label>{{password}}</mat-label>
                 <input matInput type="password" placeholder="Mot de passe" formControlName="password"/>
              </mat-form-field>
             </mat-card-content>
@@ -53,10 +53,10 @@
               <button mat-raised-button extended color="warn"  
                [disabled]="!loginForm.valid">
                 <i class="bi bi-box-arrow-in-right"></i>
-                CONNEXION
+                {{con}}
               </button>
             </mat-card-actions>
-            <p class="header-text">ou connectez avec</p>
+            <p class="header-text">{{with}}</p>
               <div class="socio">
                 <i class="btn bi bi-facebook"></i>
                 <i class="btn bi bi-google"></i>
@@ -64,8 +64,8 @@
                 <i class="btn bi bi-github"></i>
               </div>
             <div class="otherAction">
-              <p style="margin-bottom: -4px"><a href="" routerLink="/user/forgot-password">Mot de passe oublié</a></p>
-              <p><a href="" routerLink="/user/add">Nouveau? créer un compte</a></p>
+              <p style="margin-bottom: -4px"><a href="" routerLink="/user/forgot-password">{{forgot}}</a></p>
+              <p><a href="" routerLink="/user/add">{{new}}</a></p>
             </div>
           </fieldset>
           </mat-card>

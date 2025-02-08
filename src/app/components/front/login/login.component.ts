@@ -9,6 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable, Subscription, combineLatest,tap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {trigger,state,style,animate,transition, keyframes} from '@angular/animations';
+import { GlobalService } from 'src/app/services/global.service';
+import { EnService } from 'src/app/services/i18n/en.service';
+import { HtService } from 'src/app/services/i18n/ht.service';
+import { FrService } from 'src/app/services/i18n/fr.service';
 
 
 
@@ -55,6 +59,14 @@ import {trigger,state,style,animate,transition, keyframes} from '@angular/animat
 
 export class LoginComponent {
    showSpinner = new BehaviorSubject<boolean>(true);
+   username : string="";
+   password : string="";
+   login : string="";
+   info : string="";
+   con: string="";
+    with: string="";
+    forgot:string="";
+    new:string="";
    
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
@@ -77,10 +89,16 @@ export class LoginComponent {
     private userService : UserService,
     private translate : TranslateService,
     private route : ActivatedRoute,
-    private snackBar : MatSnackBar) { }
+    private snackBar : MatSnackBar,
+    private gs: GlobalService,
+    private enService: EnService,
+    private frService: FrService,
+    private htService: HtService
+) { }
 
   ngOnInit(): void {
-    
+    //console.log("La langue: ", this.gs.getGlobalVariable().subscribe())
+    this.variableI18n();
     this.userApiMessage$ = this.userService.message$;
     this.routeMessage$ = this.userService.routeMessage$;
    
@@ -100,6 +118,47 @@ export class LoginComponent {
          } 
       );
      this.initState();
+  }
+
+  variableI18n(){
+   this.gs.globalVariable$.subscribe(
+      val=>{
+          if(val=="en"){
+            this.enService.getData().subscribe(response => {
+                this.username = response.username;
+                this.password=response.password;
+                this.login=response.login;
+                this.info=response.info;
+                this.con=response.con;
+                this.with=response.with;
+                this.new=response.new;
+                this.forgot=response.forgot;
+             });
+          }else if(val=="fr"){
+            this.frService.getData().subscribe(response2 => {
+                this.username = response2.username;
+                this.password=response2.password;
+                this.login=response2.login;
+                this.info=response2.info;
+                this.con=response2.con;
+                this.with=response2.with;
+                this.new=response2.new;
+                this.forgot=response2.forgot;
+             });
+          }if(val=="ht"){
+            this.htService.getData().subscribe(response3 => {
+                this.username = response3.username;
+                this.password=response3.password;
+                this.login=response3.login;
+                this.info=response3.info;
+                this.con=response3.con;
+                this.with=response3.with;
+                this.new=response3.new;
+                this.forgot=response3.forgot;
+             });
+          }
+      }
+    )
   }
 
   ngOnDestroy(){
@@ -136,7 +195,7 @@ export class LoginComponent {
    public traductionExemple()
    {
       this.translate.get("exemple", {nom : this.loginForm.value.username}).subscribe((textAEcrire: string)=>{
-          console.log(textAEcrire);
+          //console.log(textAEcrire);
       });
    }
    
@@ -146,7 +205,6 @@ export class LoginComponent {
               // console.log("Spinner", spinner);
               //console.log("login", error);
                if(login==true && error==false){
-                  console.log("it's true");
                   this.router.navigate(['/home']);
                }
                else if(login=false && error==false)

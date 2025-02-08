@@ -20,7 +20,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   communeValueSub! : Subscription;
   showImage : String="";
   username= sessionStorage.getItem("username");
-  imagePath : any="/assets/Koutye_Folder/ImageApp/2/back.webp";
+  imagePath : any;
   apps:Observable<Appartement[]>= of([]);
   imagesAndvideos : string[]=[];
   imagesAndVideosApp : string[][] = [];
@@ -141,11 +141,29 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   }
 
   imageRotation(imgs : {id: number, image: string}[]): any {
+    //console.log(imgs)
+    
       for(let i=0; i< imgs.length;i++){
-         delay(5000)
-         console.log(imgs[i].image)
+         //delay(5000)
+         this.sleep(1000);
+         //console.warn(imgs[i].image)
          return imgs[i].image;
       }
+      
+     //imgs.forEach(i=>console.log(i.image));
+     /*
+     imgs.forEach(i=>{
+         
+         console.log(i.image.replaceAll("\\","/"))
+         this.sleep(5000);
+          //return imgs[0].image;
+     });
+     */
+      
+  }
+
+   sleep(ms : number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   listAppartementByCommune(commune : any): Observable<Appartement[]>{
