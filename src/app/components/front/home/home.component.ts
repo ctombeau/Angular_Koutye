@@ -13,7 +13,6 @@ export class HomeComponent implements OnInit {
    
     ngOnInit(): void{
       this.enService.getData().subscribe(response => {
-        console.log(response.username)
          this.data = response;
       });
     }

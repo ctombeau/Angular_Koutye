@@ -25,32 +25,13 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   imagesAndvideos : string[]=[];
   imagesAndVideosApp : string[][] = [];
   listAppartement$! : Observable<any>;
+  images: any[][]=[];
 
   /* pour defiler l'image */
   currentIndex: number = 0;
   intervalId: any;
   imgLength : number=0;
-  /*
-  images: string[] = [
-    'assets/Koutye_Folder/ImageApp/2/back.webp',
-    'assets/Koutye_Folder/ImageApp/2/image1.jpg',
-    'assets/Koutye_Folder/ImageApp/2/image2.jpg',
-    'assets/Koutye_Folder/ImageApp/2/image3.jpg'
-  ];
-   */
-  
-  images: any[]=[];
-
-  // private initCommuneCtrl(){
-     
-     
-  //    this.communeValueSub = this.communeCtrl.valueChanges.pipe(
-  //     tap(value=>{
-  //         this.communeCtrl.setValue(value);
-  //     })
-  //   ).subscribe();
-  
-  // }
+  currentElement: string="";
 
 
   constructor(private router: Router,
@@ -61,20 +42,17 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
      this.initListAppartement();
      //this.startImageRotation();
-    
+     console.log(this.images)
   }
+  /*
+    Notes : Le tableau images contient les images, c'est sur lui qu'on doit travailler pour
+    afficher les images dans le template.
+  */
 
   ngOnDestroy(): void {
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
-  }
-
-  Repeat() {
-    setTimeout(() => {
-     
-     this.Repeat();
-    }, 1000);
   }
  
   
@@ -90,34 +68,18 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
           map(([data, comm ])=>{
                let i=0;
                let appartements = data;
-               //appartements.forEach(app=>{
-               /*
-               for(let i=0; i<appartements.length;i++){
-                
-                  console.log(appartements[i].imageAppartements[0].image)
-                   for(let j=0;j<appartements[i].imageAppartements.length;j++){
-                      this.imagesAndVideosApp[i][j]=appartements[i].imageAppartements[j].image;
-                   }
-                
-                   for(let k=0;k<appartements[i].videoAppartements.length;k++){
-                     this.imagesAndVideosApp[i][k+appartements[i].imageAppartements.length]=appartements[i].videoAppartements[k].video;
-                 }
-                
-                }    
-                 */ 
-                //   i=i+1;
-               //});
-
+               
+               let k=0;
                appartements.forEach(app=>{
-                for(let i=0; i<app.imageAppartements.length;i++){
+                  
+                  for(let i=0; i<app.imageAppartements.length;i++){
                          app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
                          
-                      }
-                    
+                   }
+                   this.images[k]=app.imageAppartements;
+                   k=k+1;    
                });
-               
-               console.log(appartements[0].imageAppartements[0].image.substr(53))
-               this.showImage=appartements[0].imageAppartements[0].image.substr(53);
+               console.warn(this.images)
                if(comm==null){
                   return appartements;
                }
@@ -129,7 +91,6 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
                    return appartements;
                 }
               
-               //return appartements;
            }));
   }
 
@@ -137,32 +98,25 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
     this.intervalId = setInterval(() => {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
         console.log(this.currentIndex)
-    }, 5000);  // 5000 ms = 5 secondes
+    }, 5000);  
   }
+
+  
 
   imageRotation(imgs : {id: number, image: string}[]): any {
-    //console.log(imgs)
-    
-      for(let i=0; i< imgs.length;i++){
-         //delay(5000)
-         this.sleep(1000);
-         //console.warn(imgs[i].image)
-         return imgs[i].image;
+    let index = 0;
+    console.log(imgs)
+    setInterval(() => {
+      if (index <  Object.entries(imgs).length) {
+        this.currentElement = imgs[index].image;
+        index++;
+      } else {
+        index = 0; // Recommencer à partir du début du tableau après avoir parcouru tous les éléments
       }
-      
-     //imgs.forEach(i=>console.log(i.image));
-     /*
-     imgs.forEach(i=>{
-         
-         console.log(i.image.replaceAll("\\","/"))
-         this.sleep(5000);
-          //return imgs[0].image;
-     });
-     */
-      
+    }, 5000); // 5000 ms = 5 secondes
   }
 
-   sleep(ms : number) {
+  sleep(ms : number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
