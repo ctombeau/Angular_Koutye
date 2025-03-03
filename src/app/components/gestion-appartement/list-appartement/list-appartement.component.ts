@@ -28,7 +28,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   images: any[][]=[];
 
   /* pour defiler l'image */
-  currentIndex: number = 0;
+  currentIndex: number []= [];
   intervalId: any;
   imgLength : number=0;
   currentElement: string="";
@@ -41,7 +41,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
      this.initListAppartement();
-     //this.startImageRotation();
+     this.startImageRotation();
      console.log(this.images)
   }
   /*
@@ -77,6 +77,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
                          
                    }
                    this.images[k]=app.imageAppartements;
+                   this.currentIndex[k]=app.imageAppartements.length;
                    k=k+1;    
                });
                console.warn(this.images)
@@ -96,8 +97,9 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
 
   startImageRotation(): void {
     this.intervalId = setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
-        console.log(this.currentIndex)
+        for(let i=0; i<this.currentIndex.length; i++)
+          this.currentIndex[i] = (this.currentIndex[i] + 1) % this.images[i].length;
+        //console.log(this.currentIndex)
     }, 5000);  
   }
 

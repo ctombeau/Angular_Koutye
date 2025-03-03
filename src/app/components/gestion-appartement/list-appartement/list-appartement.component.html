@@ -25,8 +25,7 @@
             <div class="content" *ngFor="let app  of apps; let i=index">
              
                 <div class="card">
-                   <!--<img class="img-app" [src]="app.imageAppartements[currentIndex].image"/>--> 
-                 <img class="img-app" [src]="currentElement"/> 
+                   <img class="img-app" [src]="images[i][currentIndex[i]]?.image"/>
                   
                     <div class="card-body">
                         <p><strong>{{app.prix}} {{app.devise}}</strong></p>
