@@ -22,7 +22,7 @@
         <div class="body-row">
             <ng-container *ngIf="listAppartement$ | async as apps">
             
-            <div class="content" *ngFor="let app  of apps; let i=index">
+            <div class="content" *ngFor="let app  of apps ; let i=index">
              
                 <div class="card">
                    <img class="img-app" [src]="images[i][currentIndex[i]]?.image"/>

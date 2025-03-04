@@ -9,6 +9,7 @@ import { VideoAppartement } from 'src/app/models/video-appartement.model';
 import { AppartementService } from 'src/app/services/appartement.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-list-appartement',
   templateUrl: './list-appartement.component.html',
@@ -32,17 +33,16 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   intervalId: any;
   imgLength : number=0;
   currentElement: string="";
-
+  
 
   constructor(private router: Router,
     private appService : AppartementService,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
   ){}
 
   ngOnInit(): void {
      this.initListAppartement();
      this.startImageRotation();
-     console.log(this.images)
   }
   /*
     Notes : Le tableau images contient les images, c'est sur lui qu'on doit travailler pour
@@ -70,56 +70,51 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
                let appartements = data;
                
                let k=0;
-               appartements.forEach(app=>{
+               
+               if(comm==null || comm.length==0){
+                  this.transformImage(appartements);
                   
-                  for(let i=0; i<app.imageAppartements.length;i++){
-                         app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
-                         
-                   }
-                   this.images[k]=app.imageAppartements;
-                   this.currentIndex[k]=app.imageAppartements.length;
-                   k=k+1;    
-               });
-               console.warn(this.images)
-               if(comm==null){
+                   console.warn("comm null ou vide")
+                   console.log(appartements)
                   return appartements;
                }
-               else{
+               else {
+                  console.warn("comm non null et non vide")
+                  console.log(appartements)
+                  
                    appartements = appartements.filter((app: Appartement)=>
                                         app.adresse.commune.toString().toLowerCase()
-                                        .startsWith(comm.toString().toLowerCase()))
-                 
-                   return appartements;
-                }
-              
+                                        .startsWith(comm.toString().toLowerCase())
+                      
+                  );
+                      
+                  return appartements;
+              }
+              //return appartements;
            }));
+          
   }
 
   startImageRotation(): void {
     this.intervalId = setInterval(() => {
         for(let i=0; i<this.currentIndex.length; i++)
           this.currentIndex[i] = (this.currentIndex[i] + 1) % this.images[i].length;
-        //console.log(this.currentIndex)
+         console.log(this.currentIndex)
     }, 5000);  
   }
-
-  
-
-  imageRotation(imgs : {id: number, image: string}[]): any {
-    let index = 0;
-    console.log(imgs)
-    setInterval(() => {
-      if (index <  Object.entries(imgs).length) {
-        this.currentElement = imgs[index].image;
-        index++;
-      } else {
-        index = 0; // Recommencer à partir du début du tableau après avoir parcouru tous les éléments
-      }
-    }, 5000); // 5000 ms = 5 secondes
-  }
-
-  sleep(ms : number) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+ 
+  transformImage(appartements : Appartement[]){
+    let k=0;
+    appartements.forEach(app=>{
+                  
+      for(let i=0; i<app.imageAppartements.length;i++){
+             app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
+             
+       }
+       this.images[k]=app.imageAppartements;
+       this.currentIndex[k]=app.imageAppartements.length;
+       k=k+1;    
+   });
   }
 
   listAppartementByCommune(commune : any): Observable<Appartement[]>{
