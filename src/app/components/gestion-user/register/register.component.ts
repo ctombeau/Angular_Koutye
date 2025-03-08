@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Behavior } from 'popper.js';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/user.model';
@@ -14,7 +15,9 @@ export class RegisterComponent {
     
     userApiMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
 
-    constructor(private userService : UserService){}
+    constructor(private userService : UserService,
+        private router: Router
+    ){}
 
     registerForm = new FormGroup({
         nom : new FormControl("",[
@@ -76,5 +79,9 @@ export class RegisterComponent {
         {
             this.userApiMessage$.next("Les champs sont obligatoires.");
         }
+    }
+
+    cancel(): void{
+       this.router.navigate(['/']);
     }
 }

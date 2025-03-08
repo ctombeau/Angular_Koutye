@@ -136,6 +136,10 @@ export class UserService {
       )
       
   }
+
+  public processForgotPassword(){
+   
+  }
   
   public getUser(username : string) : Observable<any>
   {

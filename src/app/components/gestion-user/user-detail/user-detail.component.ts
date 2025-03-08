@@ -10,6 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 export class UserDetailComponent implements OnInit{
    user : any;
    username: string = sessionStorage.getItem("username") ?? "";
+   email: string = sessionStorage.getItem("email")?? "";
+   prenom: string = sessionStorage.getItem("prenom")?? "";
+   nom: string = sessionStorage.getItem("nom")?? "";
+   phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "";
 
     constructor(
       private userService : UserService

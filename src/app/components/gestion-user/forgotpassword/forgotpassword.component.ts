@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -8,7 +9,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class ForgotpasswordComponent {
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder,
+    private router: Router
+  ){}
   /*
   forgotPasswordForm = new FormGroup({
     email: new FormControl("",[
@@ -23,8 +26,12 @@ export class ForgotpasswordComponent {
      email : ["", Validators.required, Validators.email]
  });
 
- public forgotPassword()
- {
+  public forgotPassword()
+  {
+    console.log("Forgot password");
+  }
 
- }
+  cancel(): void{
+     this.router.navigate(['/']);
+  }
 }

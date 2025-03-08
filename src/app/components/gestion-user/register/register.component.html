@@ -7,9 +7,7 @@
 </head>
 <body>
     <app-header></app-header>
-    <div class="mt-2" id="back">
-      <a href="" routerLink="/"><i class="bi bi-skip-backward-fill"></i> retour</a>
-    </div>
+    
     <div class="container mt-5 d-flex align-items-center justify-content-center">
       <form [formGroup]="registerForm" class="center" (ngSubmit)="addUser()">
         <mat-card id="card-register" >
@@ -71,10 +69,17 @@
                       </mat-form-field>
                 </div>
 
-                <button mat-raised-button extended color="warn" style="float: right">
-                  <mat-icon>save</mat-icon>
-                  Enregistrer
-                </button>
+                <div class="line-register mt-2">
+                  <button mat-raised-button extended color="primary" (click)="cancel()">
+                    <mat-icon>cancel</mat-icon>
+                    Annuler
+                  </button>
+                  <button mat-raised-button extended color="warn" style="float: right">
+                    <mat-icon>save</mat-icon>
+                    Enregistrer
+                  </button>
+                </div>
+                
             </mat-card-content>
         </mat-card>
       </form>
