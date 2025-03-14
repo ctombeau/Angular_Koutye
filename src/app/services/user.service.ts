@@ -137,8 +137,9 @@ export class UserService {
       
   }
 
-  public processForgotPassword(){
-   
+  public processForgotPassword(email: string){
+      console.log("Appel du service pour forgotEmail: ", email);
+       return this.http.get(this.url+"send-email?emailTo="+ email);
   }
   
   public getUser(username : string) : Observable<any>

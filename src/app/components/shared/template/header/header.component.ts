@@ -22,7 +22,9 @@ export class HeaderComponent implements OnInit{
     {
        //console.log(this.router.url)
        this.checkUrl = this.router.url != '/' && this.router.url != '/reset-password' &&
-                       this.router.url!='/forgot-password' && this.router.url != '/register';
+                       this.router.url!='/forgot-password' && this.router.url != '/register' &&
+                       this.router.url!='/user/add' && this.router.url!='/user/forgot-password'
+                       && this.router.url!='/user/reset-password';
     }
    ngOnInit(): void {
       //this.title= this.configLoaderService.appTitle;
