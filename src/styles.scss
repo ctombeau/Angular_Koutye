@@ -17,3 +17,26 @@ html, body { height: 100%; }
    
   }
   
+
+.spinner {
+    position: absolute;
+    z-index: 1;
+}
+
+.spinner-container {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; 
+  }
+
+  .spinner-image {
+    position: absolute;
+    width: 55px;  
+    height: 55px; 
+    z-index: 2;   
+  }

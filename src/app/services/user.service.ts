@@ -7,6 +7,7 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { User } from '../models/user.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -121,19 +122,7 @@ export class UserService {
 
   public postUser(user : User)
   {
-      return this.http.post(this.url+"user/add",user).pipe(
-         map((response: any)=>{
-               if(response.success===true)
-               {
-                  this.setRouteMessage("Utilisateur créé avec succès");
-                  this.router.navigate(['/']);
-                  shareReplay();
-               }
-         }),
-         catchError((error : HttpErrorResponse)=>{
-            return "";
-         })
-      )
+      return this.http.post(this.url+"user/add",user);
       
   }
 
@@ -153,8 +142,6 @@ export class UserService {
             }
         }),
         catchError((error : HttpErrorResponse)=>{
-
-
             return "";
         })
      )

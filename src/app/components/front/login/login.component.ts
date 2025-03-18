@@ -202,8 +202,6 @@ export class LoginComponent {
    initState(){
        this.testLogin = combineLatest([this.userService.isLoggedIn, this.userService.isError]).pipe(
            tap(async([login, error])=>{
-              // console.log("Spinner", spinner);
-              //console.log("login", error);
                if(login==true && error==false){
                   this.router.navigate(['/home']);
                }

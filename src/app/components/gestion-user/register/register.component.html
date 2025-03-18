@@ -68,13 +68,17 @@
                         <input type="text" formControlName="phone" matInput>
                       </mat-form-field>
                 </div>
-
+                <div class="spinner-container" *ngIf="isLoading | async">
+                  <mat-spinner class="spinner"  color="warn" ></mat-spinner>
+                  <img class="spinner-image" src="../../../../assets/images/logoKoutye.PNG">
+                </div>
+                
                 <div class="line-register mt-2">
                   <button mat-raised-button extended color="primary" (click)="cancel()">
                     <mat-icon>cancel</mat-icon>
                     Annuler
                   </button>
-                  <button mat-raised-button extended color="warn" style="float: right">
+                  <button type="submit" mat-raised-button extended color="warn" style="float: right">
                     <mat-icon>save</mat-icon>
                     Enregistrer
                   </button>

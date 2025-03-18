@@ -1,10 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Behavior } from 'popper.js';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, shareReplay } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent {
     
     userApiMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
+    isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(private userService : UserService,
         private router: Router
@@ -48,7 +51,7 @@ export class RegisterComponent {
     });
 
 
-    addUser()
+    public addUser(): void
     {
         const nom  = this.registerForm.value.nom ?? "";
         const prenom = this.registerForm.value.prenom ?? "";
@@ -63,16 +66,63 @@ export class RegisterComponent {
         const user: User = new User(nom,prenom,username,email,password,photo, phone,nomType);
 
         if (nom !="" && prenom !="" && username != "" && email != "" && password != "" && phone != "" &&nomType !="")
-        {
+        {   
+             this.isLoading.next(true);
              if(password == confirmPassword)
-             {
+             {   
                  this.userApiMessage$.next("");
-                 this.userService.postUser(user).subscribe();
+                 this.isLoading.next(false);
+                 this.userService.postUser(user).pipe(
+                    map((response: any)=>{
+                    if(response.success===true)
+                    {
+                        this.isLoading.next(false);
+                        Swal.fire({
+                          title: "Utilisateur créé avec succès",
+                          showClass: {
+                            popup: `
+                              animate__animated
+                              animate__fadeInUp
+                              animate__faster
+                            `
+                          },
+                          hideClass: {
+                            popup: `
+                              animate__animated
+                              animate__fadeOutDown
+                              animate__faster
+                            `
+                          }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                this.router.navigate(['/']);
+                     
+                            }
+                          });;
+                         
+                         shareReplay();
+                      }
+                      else{
+                         this.isLoading.next(false);
+                         this.userApiMessage$.next("Problème lors de l'enregistrement")
+                      }
+                   }),
+                   catchError((err: HttpErrorResponse)=>{
+                      if(err.status===500 || err.status===0){
+                          this.isLoading.next(false);
+                          this.userApiMessage$.next("Nous avons rencontré un problème serveur.");
+                      }
+                      else if(err.status===409){
+                        this.isLoading.next(false);
+                        this.userApiMessage$.next("L'utilisateur existe déja.");
+                      }
+                       return "";
+                   })
+                 ).subscribe();
              }
              else
              {
-                this.userApiMessage$.next("Les mots de passe sont differents.");
-                
+                this.userApiMessage$.next("Les mots de passe sont différents.");
              }
         }
         else
