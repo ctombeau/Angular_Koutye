@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class RegisterComponent {
     
     userApiMessage$: BehaviorSubject<string> = new BehaviorSubject<string>("");
-    isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
     constructor(private userService : UserService,
         private router: Router
