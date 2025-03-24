@@ -1,4 +1,5 @@
-{
+{ 
+    
     "username":"Username",
     "password": "Password",
     "login": "Login",
@@ -7,5 +8,18 @@
     "with": "Or connect with",
     "forgot":"forgot password",
     "new":"New, create an account?",
-    "exemple": "this teh name '{{nom}}'"
+    "exemple": "this teh name '{{nom}}'",
+
+    "newUser":"NEW USER",
+    "lastname" : "LatName",
+    "firstname": "FirstName",
+    "email": "Email",
+    "cfPassword":"Confirm password",
+    "typeUser": "User's type",
+    "phone":"Phone",
+    "cancel": "Cancel",
+    "save": "Save",
+    "broker":"Broker",
+    "householder":"Householder",
+    "leaseholder":"Leaseholder"
 }

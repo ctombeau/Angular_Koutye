@@ -7,5 +7,18 @@
     "with": "Ou connectez avec",
     "forgot":"Mot de passe oublié",
     "new":"Nouveau, créer un compte?",
-    "exemple": "Voici le nom '{{nom}}'"
+    "exemple": "Voici le nom '{{nom}}'",
+
+    "newUser":"NOUVEL UTILISATEUR",
+    "lastname" : "Nom",
+    "firstname": "Prénom",
+    "email": "Email",
+    "cfPassword":"Confirmez mot de passe",
+    "typeUser": "Type utilisateur",
+    "phone":"téléphone",
+    "cancel": "Annuler",
+    "save": "Enrejistrer",
+    "broker":"Courtier",
+    "householder":"Propriétaire",
+    "leaseholder":"Locataire"
 }

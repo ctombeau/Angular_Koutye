@@ -14,7 +14,7 @@
            
             <mat-card-header class="text-center" style="color: #FF5733;">
               <i class="bi bi-person-circle" ></i> 
-               NOUVEL UTILISATEUR
+              {{newUser}}
             </mat-card-header>
             <mat-card-content class="m-3">
               <div class="col-12 d-flex justify-content-center" *ngIf="userApiMessage$ | async as message">
@@ -22,21 +22,21 @@
              </div>
                 <div class="line-register mt-2">
                     <mat-form-field appearance="outline">
-                        <mat-label>Nom</mat-label>
+                        <mat-label>{{lastname}}</mat-label>
                         <input type="text" formControlName="nom" matInput>
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Prénom</mat-label>
+                        <mat-label>{{firstname}}</mat-label>
                         <input type="text" formControlName="prenom" matInput>
                       </mat-form-field>
                 </div>
                 <div class="line-register mt-2">
                     <mat-form-field appearance="outline">
-                        <mat-label>Nom d'utilisateur</mat-label>
+                        <mat-label>{{username}}</mat-label>
                         <input type="text" formControlName="username" matInput>
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Email</mat-label>
+                        <mat-label>{{email}}</mat-label>
                         <input type="email" formControlName="email" matInput
                         placeholder="Ex: ctombeau@gmail.com">
                         <mat-hint>Ex:ctombeau&#64;gmail.com</mat-hint>
@@ -45,26 +45,26 @@
 
                 <div class="line-register mt-2">
                     <mat-form-field appearance="outline">
-                        <mat-label>Mot de passe</mat-label>
+                        <mat-label>{{password}}</mat-label>
                         <input type="password" formControlName="password" matInput>
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Confirmation du mot de passe</mat-label>
+                        <mat-label>{{cfPassword}}</mat-label>
                         <input type="password" formControlName="confirmPassword" matInput>
                       </mat-form-field>
                 </div>
 
                 <div class="line-register mt-2">
                     <mat-form-field appearance="outline">
-                        <mat-label>Type utilisateur</mat-label>
+                        <mat-label>{{typeUser}}</mat-label>
                         <mat-select formControlName="type">
-                          <mat-option value="Courtier">Courtier</mat-option>
-                          <mat-option value="Locataire">Locataire</mat-option>
-                          <mat-option value="Proprietaire">Propriétaire</mat-option>
+                          <mat-option value="Courtier">{{broker}}</mat-option>
+                          <mat-option value="Locataire">{{leaseholder}}</mat-option>
+                          <mat-option value="Proprietaire">{{householder}}</mat-option>
                         </mat-select>
                       </mat-form-field>
                       <mat-form-field appearance="outline">
-                        <mat-label>Téléphone</mat-label>
+                        <mat-label>{{phone}}</mat-label>
                         <input type="text" formControlName="phone" matInput>
                       </mat-form-field>
                 </div>
@@ -74,13 +74,13 @@
                 </div>
                 
                 <div class="line-register mt-2">
-                  <button mat-raised-button extended color="primary" (click)="cancel()">
+                  <button mat-raised-button extended color="primary" (click)="fCancel()">
                     <mat-icon>cancel</mat-icon>
-                    Annuler
+                    {{cancel}}
                   </button>
                   <button type="submit" mat-raised-button extended color="warn" style="float: right">
                     <mat-icon>save</mat-icon>
-                    Enregistrer
+                    {{save}}
                   </button>
                 </div>
             </mat-card-content>

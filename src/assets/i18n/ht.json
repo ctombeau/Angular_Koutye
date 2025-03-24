@@ -7,5 +7,18 @@
     "with": "Oubyen konekte ak",
     "forgot":"bliye modpas",
     "new":"Ou nouvo, Kreye yon kont?",
-    "exemple": "Voici le nom '{{nom}}'"
+    "exemple": "Voici le nom '{{nom}}'",
+
+    "newUser":"YON LÒT ITILIZATÈ",
+    "lastname" : "Siyati",
+    "firstname": "Non",
+    "email": "Imèl",
+    "cfPassword":"konfime modpas",
+    "typeUser": "tip itilizatè",
+    "phone":"telefòn",
+    "cancel": "Anile",
+    "save": "Anrejistre",
+    "broker":"Koutye",
+    "householder":"Pwopriyetè",
+    "leaseholder":"Lokatè"
 }

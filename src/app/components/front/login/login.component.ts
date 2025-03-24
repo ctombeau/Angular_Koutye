@@ -64,9 +64,9 @@ export class LoginComponent {
    login : string="";
    info : string="";
    con: string="";
-    with: string="";
-    forgot:string="";
-    new:string="";
+   with: string="";
+   forgot:string="";
+   new:string="";
    
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
