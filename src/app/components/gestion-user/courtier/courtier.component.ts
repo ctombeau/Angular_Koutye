@@ -23,7 +23,8 @@ const ELEMENT_DATA: Courtier[] = [
 @Component({
   selector: 'app-courtier',
   templateUrl: './courtier.component.html',
-  styleUrls: ['./courtier.component.scss']
+  styleUrls: ['./courtier.component.scss'],
+  standalone: false
 })
 export class CourtierComponent implements OnInit{
    

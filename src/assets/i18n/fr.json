@@ -20,5 +20,7 @@
     "save": "Enrejistrer",
     "broker":"Courtier",
     "householder":"Propriétaire",
-    "leaseholder":"Locataire"
+    "leaseholder":"Locataire",
+    "send":"Envoer",
+    "forgotF":"OUBLI DE MOT DE PASSE"
 }

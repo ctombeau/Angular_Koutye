@@ -12,11 +12,13 @@ import { FrService } from 'src/app/services/i18n/fr.service';
 import { HtService } from 'src/app/services/i18n/ht.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { FooterComponent } from "../../shared/template/footer/footer.component";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  standalone: false
 })
 export class RegisterComponent implements OnInit {
     
@@ -134,11 +136,11 @@ export class RegisterComponent implements OnInit {
                }
            }
          )
-       }
+    }
 
     public addUser(): void
     {
-
+        this.isLoading.next(true);
         const nom  = this.registerForm.value.nom ?? "";
         const prenom = this.registerForm.value.prenom ?? "";
         const username = this.registerForm.value.username ?? "";
@@ -153,18 +155,17 @@ export class RegisterComponent implements OnInit {
 
         if (nom !="" && prenom !="" && username != "" && email != "" && password != "" && phone != "" &&nomType !="")
         {   
-             this.isLoading.next(true);
+            
              if(password == confirmPassword)
              {   
-                 this.userApiMessage$.next("");
-                 this.isLoading.next(false);
+                 this.userApiMessage$.next(""); 
                  this.userService.postUser(user).pipe(
                     map((response: any)=>{
                     if(response.success===true)
-                    {
+                    {   
                         this.isLoading.next(false);
                         Swal.fire({
-                          title: "Utilisateur créé avec succès",
+                          text: "Utilisateur créé avec succès",
                           width:'300px',
                           icon: 'success'
                          
@@ -196,12 +197,14 @@ export class RegisterComponent implements OnInit {
                  ).subscribe();
              }
              else
-             {
+             { 
+                this.isLoading.next(false);
                 this.userApiMessage$.next("Les mots de passe sont différents.");
              }
         }
         else
         {
+            this.isLoading.next(false);
             this.userApiMessage$.next("Les champs sont obligatoires.");
         }
     }

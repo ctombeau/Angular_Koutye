@@ -20,5 +20,7 @@
     "save": "Anrejistre",
     "broker":"Koutye",
     "householder":"Pwopriyetè",
-    "leaseholder":"Lokatè"
+    "leaseholder":"Lokatè",
+    "send":"Voye ale",
+    "forgotF":"BLIYE MODPASS"
 }

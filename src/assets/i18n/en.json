@@ -21,5 +21,7 @@
     "save": "Save",
     "broker":"Broker",
     "householder":"Householder",
-    "leaseholder":"Leaseholder"
+    "leaseholder":"Leaseholder",
+    "send": "Send",
+    "forgotF":"FORGOT PASSWORD"
 }

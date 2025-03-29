@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-home',
   templateUrl: './user-home.component.html',
-  styleUrls: ['./user-home.component.scss']
+  styleUrls: ['./user-home.component.scss'],
+  standalone: false
 })
 export class UserHomeComponent implements OnInit,AfterViewInit{
   //@ViewChild('tabRef', { static: true }) tabRef?: MatTabGroup;
