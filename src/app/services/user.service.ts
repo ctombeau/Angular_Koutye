@@ -127,7 +127,6 @@ export class UserService {
   }
 
   public processForgotPassword(email: string){
-      console.log("Appel du service pour forgotEmail: ", email);
        return this.http.get(this.url+"send-email?emailTo="+ email);
   }
   
@@ -155,6 +154,10 @@ export class UserService {
             console.log(response);
         }
      ));
+  }
+
+  public setPicture(formData: FormData){
+      return this.http.post(this.url+"update-picture",formData);
   }
 
   public saveUserInfo(data : any): void

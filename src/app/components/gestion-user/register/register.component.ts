@@ -75,7 +75,8 @@ export class RegisterComponent implements OnInit {
              Validators.required
         ]),
         phone: new FormControl("",[
-            Validators.required
+            Validators.required,
+            
         ])
     });
 

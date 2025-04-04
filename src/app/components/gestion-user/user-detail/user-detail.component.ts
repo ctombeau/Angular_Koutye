@@ -15,6 +15,8 @@ export class UserDetailComponent implements OnInit{
    prenom: string = sessionStorage.getItem("prenom")?? "";
    nom: string = sessionStorage.getItem("nom")?? "";
    phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "";
+   imageUrl: string | ArrayBuffer | null="assets/images/user.jpg";
+   selectedFile: File | null = null;
 
     constructor(
       private userService : UserService
@@ -37,5 +39,32 @@ export class UserDetailComponent implements OnInit{
               console.log("erreur constatee: "+ error.message);
            }
        );
+    }
+
+    getPicture(event: any){
+      const input = event.target as HTMLInputElement;
+      if (input?.files?.length) {
+         this.selectedFile = input.files[0];
+        const reader = new FileReader();
+  
+        reader.onload = () => {
+          this.imageUrl = reader.result; // Met l'URL de l'image dans `imageUrl`
+          console.log(this.imageUrl)
+        };
+  
+        reader.readAsDataURL(this.selectedFile); // Convertit le fichier en URL pour l'affichage
+        if(this.selectedFile){
+         const formData = new FormData();
+         formData.append('username',this.username);
+         formData.append('photo', this.selectedFile, this.selectedFile.name);
+   
+         this.userService.setPicture(formData).subscribe(response => {
+           console.log('Fichier téléchargé avec succès!', response);
+         }, error => {
+           console.error('Erreur de téléchargement', error);
+         });
+        }
+      }
+       
     }
 }
