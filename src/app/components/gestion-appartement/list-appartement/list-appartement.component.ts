@@ -108,7 +108,8 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
     appartements.forEach(app=>{
                   
       for(let i=0; i<app.imageAppartements.length;i++){
-             app.imageAppartements[i].image=app.imageAppartements[i].image.substr(53)
+             let index= app.imageAppartements[i].image.indexOf("assets");
+             app.imageAppartements[i].image=app.imageAppartements[i].image.substring(index);
              
        }
        this.images[k]=app.imageAppartements;

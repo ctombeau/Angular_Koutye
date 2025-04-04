@@ -15,7 +15,10 @@ export class UserDetailComponent implements OnInit{
    prenom: string = sessionStorage.getItem("prenom")?? "";
    nom: string = sessionStorage.getItem("nom")?? "";
    phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "";
-   imageUrl: string | ArrayBuffer | null="assets/images/user.jpg";
+   photo: string = sessionStorage.getItem("photo") ?? "";
+   index= this.photo?.lastIndexOf("assets");
+   subPhoto : string= this.photo?.substring(this.index);
+   imageUrl: string | ArrayBuffer | null= this.subPhoto ?? "assets/images/user.jpg"  ;
    selectedFile: File | null = null;
 
     constructor(
@@ -24,7 +27,9 @@ export class UserDetailComponent implements OnInit{
 
     ngOnInit(): void {
        this.getUser();
-       //console.log("username session: "+sessionStorage.getItem("username"))
+       console.warn(this.index)
+       console.log(this.photo)
+       console.log(this.imageUrl)
     }
     
     public getUser() : void
