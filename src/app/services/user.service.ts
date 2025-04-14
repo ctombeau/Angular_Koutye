@@ -32,6 +32,7 @@ export class UserService {
   private email= "email";
   private phone = "phone";
   private photo="photo";
+  private type="type";
 
   getToken(): string | null{
        return sessionStorage.getItem(this.token);
@@ -132,19 +133,21 @@ export class UserService {
   
   public getUser(username : string) : Observable<any>
   {
-     return this.http.get(this.url + "user?username="+username)
+     return this.http.get(this.url + "user?username="+username);
+     /*
      .pipe(
         map((response : any)=>{
             if(response.success===true)
             {
                 this.user = response.object;
+                console.log(this.user)
             }
         }),
         catchError((error : HttpErrorResponse)=>{
             return "";
         })
      )
-     
+     */
   }
 
   public getAttachUsers(username: string)
@@ -169,6 +172,7 @@ export class UserService {
       sessionStorage.setItem(this.photo,data["user-info"].photo);
       sessionStorage.setItem(this.phone,data["user-info"].phone);
       sessionStorage.setItem(this.email,data["user-info"].email);
+      sessionStorage.setItem(this.type,data["user-info"].nomType);
   }
 
   public removeUserInfo() : void

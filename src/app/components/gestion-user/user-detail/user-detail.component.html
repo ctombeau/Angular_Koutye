@@ -22,10 +22,13 @@
                         <div class="info">
                             <h2 class="space-after">{{prenom}} {{nom | uppercase}}</h2>
                             <h3 class="space-after">Email : {{email}}</h3>
-                            <h4 class="space-after">username: {{username}}</h4>
+                            <h4 class="space-after">Username: {{username}}</h4>
+                            <p class="space-after">Type: {{type}}</p>
                             <p class="space-after">Téléphone : {{phone}}</p>
                         </div>
-                        
+                        <div id="button" (click)="showHtmlUpdate()">
+                            <button class="btn">Modifier</button>
+                        </div>
                     </mat-card-content>
                 </mat-card>
                 
