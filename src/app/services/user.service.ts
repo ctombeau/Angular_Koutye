@@ -33,6 +33,7 @@ export class UserService {
   private phone = "phone";
   private photo="photo";
   private type="type";
+  private id="id"
 
   getToken(): string | null{
        return sessionStorage.getItem(this.token);
@@ -89,7 +90,7 @@ export class UserService {
               this._message$.next("");
               this.isLoggedIn.next(true);
               this.isError.next(false);
-              
+              console.log(response)
            }
            else{
                this.isLoggedIn.next(false);
@@ -127,6 +128,10 @@ export class UserService {
       
   }
 
+  public putUser(id: number,user: User){
+     return this.http.put(this.url+"user/update/"+id,user);
+  }
+
   public processForgotPassword(email: string){
        return this.http.get(this.url+"send-email?emailTo="+ email);
   }
@@ -134,20 +139,7 @@ export class UserService {
   public getUser(username : string) : Observable<any>
   {
      return this.http.get(this.url + "user?username="+username);
-     /*
-     .pipe(
-        map((response : any)=>{
-            if(response.success===true)
-            {
-                this.user = response.object;
-                console.log(this.user)
-            }
-        }),
-        catchError((error : HttpErrorResponse)=>{
-            return "";
-        })
-     )
-     */
+     
   }
 
   public getAttachUsers(username: string)
@@ -166,6 +158,7 @@ export class UserService {
   public saveUserInfo(data : any): void
   {
       sessionStorage.setItem(this.token, data["access-token"]);
+      sessionStorage.setItem(this.id,data["user-info"].utilisateurId)
       sessionStorage.setItem(this.username,data["user-info"].username);
       sessionStorage.setItem(this.nom,data["user-info"].nom);
       sessionStorage.setItem(this.prenom,data["user-info"].prenom);
@@ -184,6 +177,7 @@ export class UserService {
      sessionStorage.removeItem(this.email);
      sessionStorage.removeItem(this.phone);
      sessionStorage.removeItem(this.photo);
+     sessionStorage.removeItem(this.id);
      this.isLoggedIn.next(false);
   }
 }

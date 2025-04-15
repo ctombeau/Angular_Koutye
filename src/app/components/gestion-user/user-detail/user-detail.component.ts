@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -12,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class UserDetailComponent implements OnInit{
    user? : any;
+   id: any = sessionStorage.getItem("id") ?? "" +this.user.utilisateurId;
    username: string = sessionStorage.getItem("username") ?? "" ?? this.user.username;
    email: string = sessionStorage.getItem("email")?? "" ?? this.user.email;
    prenom: string = sessionStorage.getItem("prenom")?? "" ?? this.user.email;
@@ -21,11 +24,12 @@ export class UserDetailComponent implements OnInit{
    photo: string = sessionStorage.getItem("photo") ?? "" ?? this.user.photo;
    index= this.photo?.lastIndexOf("assets");
    subPhoto : string= this.photo?.substring(this.index);
-   imageUrl: string | ArrayBuffer | null= this.subPhoto ?? "assets/images/user.jpg"  ;
+   imageUrl: string | ArrayBuffer | null= this.subPhoto == "" ? "assets/images/user.jpg" : this.subPhoto ;
    selectedFile: File | null = null;
 
     constructor(
-      private userService : UserService
+      private userService : UserService,
+      private router : Router
     ){}
 
     ngOnInit(): void {
@@ -35,7 +39,16 @@ export class UserDetailComponent implements OnInit{
        console.log(this.imageUrl)
     }
 
-    
+    updateUser(user: User){
+       this.userService.putUser(this.id,user).subscribe(
+           (response: any)=>{
+
+           },(error: HttpErrorResponse)=>{
+               if(error.status===500){
+                  console.log(error)
+               }
+           })
+    }
     
     public getUser() : void
     {
@@ -79,21 +92,31 @@ export class UserDetailComponent implements OnInit{
     }
 
     async showHtmlUpdate() {
+      let nom= "", prenom="",username="",email="",phone="";
+
       Swal.fire({
         title: 'Mise à jour utilisateur',
         html: `
           <form id="contact-form">
             <div class="form-group">
+              <label class="swal2-label">Nom</label>
               <input type="text" id="nom" class="swal2-input"  placeholder="Nom">
             </div>
             <div class="form-group">
+              <label>Preom</label>
               <input type="text" id="prenom" class="swal2-input" placeholder="Prenom">
             </div>
             <div class="form-group">
+              <label>Username</label>
               <input type="text" id="username" class="swal2-input" placeholder="Username">
             </div>
             <div class="form-group">
+              <label>Email</label>
               <input type="email" id="email" class="swal2-input"  placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="text" id="phone" class="swal2-input"  placeholder="Phone">
             </div>
           </form>
         `,
@@ -106,15 +129,16 @@ export class UserDetailComponent implements OnInit{
           (document.getElementById('prenom') as HTMLInputElement).value = this.prenom;
           (document.getElementById('username') as HTMLInputElement).value = this.username;
           (document.getElementById('email') as HTMLInputElement).value = this.email;
+          (document.getElementById('phone') as HTMLInputElement).value = this.phone;
         },
         preConfirm: () => {
           
-          const nom = (<HTMLInputElement>document.getElementById('nom')).value;
-          const prenom = (<HTMLInputElement>document.getElementById('prenom')).value;
-          const username = (<HTMLInputElement>document.getElementById('username')).value;
-          const email = (<HTMLInputElement>document.getElementById('email')).value;
-         
-          if (!nom || !prenom|| !username || !email) {
+          nom = (<HTMLInputElement>document.getElementById('nom')).value;
+          prenom = (<HTMLInputElement>document.getElementById('prenom')).value;
+          username = (<HTMLInputElement>document.getElementById('username')).value;
+          email = (<HTMLInputElement>document.getElementById('email')).value;
+          phone = (<HTMLInputElement>document.getElementById('phone')).value;
+          if (!nom || !prenom|| !username || !email || !phone) {
             Swal.showValidationMessage('Veuillez remplir tous les champs');
             return false;
           }
@@ -123,7 +147,15 @@ export class UserDetailComponent implements OnInit{
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          // Vous pouvez envoyer les données à votre API ou traitement ici
+          const user  = new User(nom, prenom, username, email, "", "", phone, "");
+          if(username!==this.username){
+             this.updateUser(user);
+             this.router.navigate(["/"]);
+          }
+          else{
+              this.updateUser(user);
+              this.router.navigate(["/user/home"])
+          }
           console.log('Formulaire soumis:', result.value.nom);
           Swal.fire('Utilisateur modifié avec succès', 'Vos informations ont été envoyées.', 'success');
         }
