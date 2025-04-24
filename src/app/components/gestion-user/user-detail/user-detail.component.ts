@@ -13,41 +13,64 @@ import Swal from 'sweetalert2';
   standalone: false
 })
 export class UserDetailComponent implements OnInit{
-   user? : any;
+   user! : any;
    id: any = sessionStorage.getItem("id") ?? "" +this.user.utilisateurId;
-   username: string = sessionStorage.getItem("username") ?? "" ?? this.user.username;
-   email: string = sessionStorage.getItem("email")?? "" ?? this.user.email;
-   prenom: string = sessionStorage.getItem("prenom")?? "" ?? this.user.email;
-   nom: string = sessionStorage.getItem("nom")?? "" ?? this.user.nom;
-   phone: string= sessionStorage.getItem("phone")?.toUpperCase() ?? "" ?? this.user.phone;
-   type: string = sessionStorage.getItem("type") ?? "" ?? this.user.type;
-   photo: string = sessionStorage.getItem("photo") ?? "" ?? this.user.photo;
+   username: string = sessionStorage.getItem("username") ?? this.user?.username ?? "";
+   email: string =  "";
+   prenom: string = "";
+   nom: string =  "";
+   phone: string = "";
+   type: string = "";
+   photo: string = sessionStorage.getItem("photo") ?? this.user?.photo ?? "";
    index= this.photo?.lastIndexOf("assets");
    subPhoto : string= this.photo?.substring(this.index);
    imageUrl: string | ArrayBuffer | null= this.subPhoto == "" ? "assets/images/user.jpg" : this.subPhoto ;
    selectedFile: File | null = null;
+   usernameIsChanged : boolean = false;
 
     constructor(
       private userService : UserService,
       private router : Router
     ){}
 
+    gUser() : User{
+      return this.user;
+    }
+
     ngOnInit(): void {
        this.getUser();
-       console.warn(this.index)
-       console.log(this.photo)
-       console.log(this.imageUrl)
     }
 
     updateUser(user: User){
+  
        this.userService.putUser(this.id,user).subscribe(
            (response: any)=>{
+            console.log(response.success)
+             if(response.success==true){
+                 if(this.usernameIsChanged==true){
+                  Swal.fire('Utilisateur modifié avec succès','','success').then((result)=>{
+                         if(result.isConfirmed) {
+                           this.getUser();
+                           this.router.navigateByUrl('/');
+                         }  
+                    });
+                 }
+                 else{
+                  Swal.fire('Utilisateur modifié avec succès','','success').then((result)=>{
+                         if(result.isConfirmed) {
+                            this.getUser(); 
+                            this.router.navigateByUrl(this.router.url);
+                         }  
+                    });
+                 }
+             }
 
            },(error: HttpErrorResponse)=>{
                if(error.status===500){
                   console.log(error)
                }
-           })
+         })
+      
     }
     
     public getUser() : void
@@ -56,7 +79,13 @@ export class UserDetailComponent implements OnInit{
        this.userService.getUser(this.username).subscribe(
            (data: any)=>{
                this.user = data.object;
-               console.log(this.user.username);
+               this.nom = data.object.nom;
+               this.prenom= data.object.prenom;
+               this.username = data.object.username;
+               this.email = data.object.email;
+               this.type = data.object.nomType;
+               this.phone = data.object.phone;
+               this.photo = data.object.photo;
            },
            (error: HttpErrorResponse)=>{
               console.log("erreur constatee: "+ error.message);
@@ -103,7 +132,7 @@ export class UserDetailComponent implements OnInit{
               <input type="text" id="nom" class="swal2-input"  placeholder="Nom">
             </div>
             <div class="form-group">
-              <label>Preom</label>
+              <label>Prenom</label>
               <input type="text" id="prenom" class="swal2-input" placeholder="Prenom">
             </div>
             <div class="form-group">
@@ -149,15 +178,14 @@ export class UserDetailComponent implements OnInit{
         if (result.isConfirmed) {
           const user  = new User(nom, prenom, username, email, "", "", phone, "");
           if(username!==this.username){
+             this.usernameIsChanged=true;
              this.updateUser(user);
-             this.router.navigate(["/"]);
           }
           else{
+              this.usernameIsChanged=false;
               this.updateUser(user);
-              this.router.navigate(["/user/home"])
           }
-          console.log('Formulaire soumis:', result.value.nom);
-          Swal.fire('Utilisateur modifié avec succès', 'Vos informations ont été envoyées.', 'success');
+            
         }
       });
     }

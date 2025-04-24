@@ -24,32 +24,30 @@ export class UserHomeComponent implements OnInit,AfterViewInit{
  
   ngAfterViewInit(): void {
       //console.log(this.tabRef?.selectedIndex);
-      //this.tabRef?.selectedIndex = 0;
-      
-        
+      //this.tabRef?.selectedIndex = 0;      
   }
 
-    changeTab(index : any)
+ changeTab(index : any)
+ {
+    if(index == 0)
     {
-       if(index == 0)
-       {
-          this.indexDetail=true;
-          this.indexCourtier=false;
-          this.indexMessage=false;
-       }
-       else if(index == 1)
-       {
-          this.indexDetail=false;
-          this.indexCourtier=true;
-          this.indexMessage=false;
-       }
-       else if(index == 2)
-       {
-          this.indexDetail=false;
-          this.indexCourtier=false;
-          this.indexMessage=true;
-       }
-  
+      this.indexDetail=true;
+      this.indexCourtier=false;
+      this.indexMessage=false;
     }
+    else if(index == 1)
+    {
+      this.indexDetail=false;
+      this.indexCourtier=true;
+      this.indexMessage=false;
+    }
+    else if(index == 2)
+   {
+      this.indexDetail=false;
+      this.indexCourtier=false;
+      this.indexMessage=true;
+   }
+  
+ }
  
 }

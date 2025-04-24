@@ -1,7 +1,7 @@
 import { TypeUser } from "./type-user.model";
 
 export class User {
-    //id : number;
+    //utilisateurId: number;
     nom: string;
     prenom: string;
     username: string;
@@ -10,11 +10,11 @@ export class User {
     photo : string;
     phone : string;
     nomType : string;
-    
+     
     constructor(nom: string, prenom: string, username: string, 
         email: string, password: string, photo: string, phone: string, nomType: string)
     {
-        //this.id =id;
+        //this.utilisateurId =utilisateurId;
         this.nom = nom;
         this.prenom = prenom;
         this.username = username;
