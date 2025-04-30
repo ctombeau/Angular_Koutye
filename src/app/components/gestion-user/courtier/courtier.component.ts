@@ -48,11 +48,12 @@ export class CourtierComponent implements OnInit{
     
 })
 
-attachUser()
-{
-    this.userService.getAttachUsers(this.username?? "").subscribe();
-}
+ attachUser()
+ {
+    this.userService.getAttachUsers(this.username?? "").subscribe((data)=>{
+         console.log(data);
+    });
+ }
      
-  
   
 }

@@ -92,7 +92,8 @@ export class UserDetailComponent implements OnInit{
            }
        );
     }
-
+    
+    
     getPicture(event: any){
       const input = event.target as HTMLInputElement;
       if (input?.files?.length) {
