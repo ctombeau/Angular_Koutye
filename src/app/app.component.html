@@ -4,4 +4,8 @@
 <h4>Username: {{(user$ | async).username }}</h4>
 <h4>IsDdmin: {{(user$ | async).isAdmin}}</h4>
 -->
+<div *ngIf="!isOnline" class="offline-banner">
+    <p>🛑 Vous êtes hors connexion.</p>
+    <button (click)="reloadPage()">🔁 Recharger</button>
+  </div>
 <router-outlet></router-outlet>
