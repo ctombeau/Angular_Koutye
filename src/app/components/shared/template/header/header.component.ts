@@ -45,8 +45,7 @@ export class HeaderComponent implements OnInit{
 
     public logout() : void
     {
-        this.userService.removeUserInfo();
-        this.router.navigate(['/']);
+        this.userService.logout();
     }
 
     /*

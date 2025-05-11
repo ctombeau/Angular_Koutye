@@ -106,7 +106,7 @@ export class UserService {
              this.boolSpinner$.next(false);
              this.isError.next(true);
              this.isLoggedIn.next(false);
-             this._message$.next("nous n'arrivons pas a contacter le serveur");
+             this._message$.next("nous n'arrivons pas à contacter le serveur");
           }
           else if(error.status==401)
           {
@@ -179,5 +179,10 @@ export class UserService {
      sessionStorage.removeItem(this.photo);
      sessionStorage.removeItem(this.id);
      this.isLoggedIn.next(false);
+  }
+
+  logout(){
+   this.removeUserInfo();
+    this.router.navigate(['/']);
   }
 }

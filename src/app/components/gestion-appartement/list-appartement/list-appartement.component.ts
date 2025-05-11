@@ -99,7 +99,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
     this.intervalId = setInterval(() => {
         for(let i=0; i<this.currentIndex.length; i++)
           this.currentIndex[i] = (this.currentIndex[i] + 1) % this.images[i].length;
-         console.log(this.currentIndex)
+        // console.log(this.currentIndex)
     }, 5000);  
   }
  
