@@ -97,12 +97,9 @@ export class LoginComponent {
 ) { }
 
   ngOnInit(): void {
-    //console.log("La langue: ", this.gs.getGlobalVariable().subscribe())
     this.variableI18n();
     this.userApiMessage$ = this.userService.message$;
     this.routeMessage$ = this.userService.routeMessage$;
-   
-     //this.route.data.subscribe(data=> console.warn("message: "+data["message"]))
     
       this.routeMessage$.subscribe(
          data => {

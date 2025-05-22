@@ -47,6 +47,8 @@ export class UserService {
      'Authorization': 'Bearer ' + sessionStorage.getItem("token")
    })
   };
+
+  
   
   get message$(): Observable<string>
   {
@@ -90,7 +92,6 @@ export class UserService {
               this._message$.next("");
               this.isLoggedIn.next(true);
               this.isError.next(false);
-              console.log(response)
            }
            else{
                this.isLoggedIn.next(false);
@@ -135,6 +136,10 @@ export class UserService {
   public processForgotPassword(email: string){
        return this.http.get(this.url+"send-email?emailTo="+ email);
   }
+
+  public processResetPassword(body : any){
+     return this.http.post(this.url+"reset-password", body);
+  }
   
   public getUser(username : string) : Observable<any>
   {
@@ -142,11 +147,16 @@ export class UserService {
      
   }
 
+  public sendMailAttachUser(emailFrom: string,emailTo : string): Observable<any>{
+      
+      return this.http.get(this.url+"send-email-attachment?emailFrom="+emailFrom+"&emailTo="+emailTo);
+  }
+
   public getAttachUsers(username: string)
   {
      return this.http.get(this.url+"show-attach-users?username="+username).pipe(
-        map((response)=>{
-            console.log(response);
+        map((response:any)=>{
+            
         }
      ));
   }

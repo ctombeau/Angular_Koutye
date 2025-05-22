@@ -7,7 +7,8 @@
 </head>
 <body>
      <ng-container class="mb-3 mt-3">
-      <form [formGroup]="courtierForm" class="center" (ngSubmit)="attachUser()">
+      <form [formGroup]="courtierForm" class="center" (ngSubmit)="askToAttachUser()">
+        <p *ngIf="showText" class="text-success font-weight-bold " id="animated-text">{{message$ | async}}</p>
         <input matInput type="email" placeholder="Email" formControlName="email"/>
         <button mat-raised-button extended color="warn" class="ms-4">
           <i class="bi bi-send-fill"></i>
@@ -51,6 +52,10 @@
       </table>
 
       <mat-paginator [pageSizeOptions]="[2,5,10]" showFirstLastButtons ></mat-paginator>
+      <div class="spinner-container" *ngIf="isLoading | async">
+          <mat-spinner class="spinner"  color="warn" ></mat-spinner>
+          <img class="spinner-image" src="assets/images/logoKoutye.PNG">
+      </div>
   </div>   
   
 </body>
