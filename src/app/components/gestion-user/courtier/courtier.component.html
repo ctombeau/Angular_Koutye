@@ -7,14 +7,27 @@
 </head>
 <body>
      <ng-container class="mb-3 mt-3">
-      <form [formGroup]="courtierForm" class="center" (ngSubmit)="askToAttachUser()">
-        <p *ngIf="showText" class="text-success font-weight-bold " id="animated-text">{{message$ | async}}</p>
-        <input matInput type="email" placeholder="Email" formControlName="email"/>
-        <button mat-raised-button extended color="warn" class="ms-4">
-          <i class="bi bi-send-fill"></i>
-          ENVOYER
-        </button>
-      </form>
+      <mat-card appearance="outlined">
+       <mat-card-header>
+           <mat-card-subtitle>Demande d'Attachement</mat-card-subtitle>
+       </mat-card-header>
+       <mat-card-content>
+          <form [formGroup]="courtierForm" class="center" (ngSubmit)="askToAttachUser()">
+              <p *ngIf="showText" class="text-success font-weight-bold " id="animated-text">{{message$ | async}}</p>
+               <div class="row g-2 align-items-center">
+                  <div class="col-6">
+                    <input  class="form-control" matInput type="email" placeholder="Email" formControlName="email"/>
+                  </div>
+                   <div class="col-3">
+                       <button mat-raised-button extended color="warn" class="ms-4">
+                      <i class="bi bi-send-fill"></i>
+                       ENVOYER
+                     </button>
+                   </div>
+               </div> 
+        </form>
+       </mat-card-content>
+      </mat-card>
      </ng-container>
      
   <div class="mat-elevation-z8 mt-3">

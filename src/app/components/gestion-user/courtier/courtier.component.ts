@@ -55,7 +55,7 @@ export class CourtierComponent implements OnInit{
        Validators.required,
     ]),
     
-})
+  })
 
  attachUser()
  {
