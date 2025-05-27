@@ -2,6 +2,14 @@ table {
     width: 100%;
   }
 
+::ng-deep th.mat-header-cell {
+  font-weight: bold;
+}
+
+td img{
+   border-radius: 50%;
+}
+
 #animated-text {
   animation: fadeIn 2s ease-in-out;
   color: #007bff;

@@ -154,11 +154,7 @@ export class UserService {
 
   public getAttachUsers(username: string)
   {
-     return this.http.get(this.url+"show-attach-users?username="+username).pipe(
-        map((response:any)=>{
-            
-        }
-     ));
+     return this.http.get(this.url+"show-attach-users?username="+username);      
   }
 
   public setPicture(formData: FormData){

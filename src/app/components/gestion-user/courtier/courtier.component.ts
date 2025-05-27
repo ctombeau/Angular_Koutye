@@ -7,6 +7,7 @@ import {UtilsService} from 'src/app/services/utils.service';
 import { BehaviorSubject, Observable, Subscription, map, combineLatest,tap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { User } from 'src/app/models/user.model';
 
 export interface Courtier {
   photo: string;
@@ -16,13 +17,6 @@ export interface Courtier {
   phone: string;
 }
 
-const ELEMENT_DATA: Courtier[] = [
-  {photo: "1", nom: 'TOMBEAU', prenom: "Chrisnor", email: 'tombeauc@gmail.com',phone:"38051274"},
-  {photo: "2", nom: 'JEAN', prenom: "Edma Sherley", email: 'jeanedmasherley@gmail.com',phone:"49093578"},
-  {photo: "3", nom: 'TOMBEAU', prenom: "Shedmaer Chrisley", email: 'tchrisley@gmail.com',phone:"31065231"},
-  {photo: "4", nom: 'TOMBEAU', prenom: "Chrisnailove", email: 'tlove@gmail.com',phone:"42082521"}
-  
-];
 
 @Component({
   selector: 'app-courtier',
@@ -33,14 +27,16 @@ const ELEMENT_DATA: Courtier[] = [
 export class CourtierComponent implements OnInit{
    
   @ViewChild(MatPaginator) paginator! : MatPaginator;
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
   displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];
   username: string | null= sessionStorage.getItem("username");
   email: string | null= sessionStorage.getItem("email");
   message$?: Observable<string>;
   showText : boolean = true;
   isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  users: User[]=[] ;
+   dataSource = new MatTableDataSource<User>();
+   //ELEMENT_DATA: Courtier[] = this.users;
+   //dataSource = new MatTableDataSource(this.users);
   constructor(private userService: UserService,
      private utilsService: UtilsService
   ){}
@@ -48,6 +44,8 @@ export class CourtierComponent implements OnInit{
   ngOnInit(): void {
       setTimeout(() => this.dataSource.paginator = this.paginator);
       this.message$ = this.userService.message$;
+      this.attachUser()
+      console.log(this.dataSource)
   }
 
   courtierForm = new FormGroup({
@@ -59,7 +57,21 @@ export class CourtierComponent implements OnInit{
 
  attachUser()
  {
-    this.userService.getAttachUsers(this.username?? "").subscribe();
+    this.userService.getAttachUsers(this.username?? "").subscribe(
+       (data: any)=>{
+           this.users = (data.object ?? []).map((user: User) => ({
+                     ...user,
+                photo: user.photo ? user.photo.substring(user.photo.lastIndexOf("assets")) : 'assets/images/user.jpg'
+           }));
+           this.dataSource.data = this.users;
+           this.dataSource.paginator = this.paginator;
+           console.log(this.users)
+       },(error : HttpErrorResponse)=>{
+            Swal.fire({
+                text: "Erreur lors de la récupération des utilisateurs.",
+                icon: "error"
+           });
+       });
  }
      
  askToAttachUser(){
