@@ -27,16 +27,15 @@ export interface Courtier {
 export class CourtierComponent implements OnInit{
    
   @ViewChild(MatPaginator) paginator! : MatPaginator;
-  displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone'];
+  displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone','action'];
   username: string | null= sessionStorage.getItem("username");
   email: string | null= sessionStorage.getItem("email");
   message$?: Observable<string>;
   showText : boolean = true;
   isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   users: User[]=[] ;
-   dataSource = new MatTableDataSource<User>();
-   //ELEMENT_DATA: Courtier[] = this.users;
-   //dataSource = new MatTableDataSource(this.users);
+  dataSource = new MatTableDataSource<User>();
+   
   constructor(private userService: UserService,
      private utilsService: UtilsService
   ){}
@@ -45,7 +44,6 @@ export class CourtierComponent implements OnInit{
       setTimeout(() => this.dataSource.paginator = this.paginator);
       this.message$ = this.userService.message$;
       this.attachUser()
-      console.log(this.dataSource)
   }
 
   courtierForm = new FormGroup({
@@ -65,7 +63,6 @@ export class CourtierComponent implements OnInit{
            }));
            this.dataSource.data = this.users;
            this.dataSource.paginator = this.paginator;
-           console.log(this.users)
        },(error : HttpErrorResponse)=>{
             Swal.fire({
                 text: "Erreur lors de la récupération des utilisateurs.",
@@ -105,5 +102,37 @@ export class CourtierComponent implements OnInit{
                this.courtierForm.reset();
       });
  }
+
+ detachUser(usernameCour : string, nom: string, prenom: string){
+    console.log("Detacher utilisateur")
+    Swal.fire({
+      title: nom + " " + prenom,
+      text: "Voulez-vous le supprimer",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Oui, Supprimez-le"
+      }).then((result) => {
+          if (result.isConfirmed) {
+                this.userService.processDetachUser(this.username??"",usernameCour).subscribe(
+                   (data)=>{
+                          Swal.fire({
+                      title: "Supprimé!",
+                      text: "Votre courtier a été supprimé.",
+                      icon: "success"
+                    });
+                   },(error: HttpErrorResponse)=>{
+                      
+                       Swal.fire({
+                        title: "Supprimé!",
+                        text: "Erreur lors de la suppression.",
+                        icon: "error"
+                     });
+                   }
+                )
+           }
+      });
+  }
   
 }

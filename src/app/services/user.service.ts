@@ -157,6 +157,10 @@ export class UserService {
      return this.http.get(this.url+"show-attach-users?username="+username);      
   }
 
+  public processDetachUser(usernamePro : string, usernameCour:string){
+      return this.http.get(this.url+"detach-users?usernamePro="+usernamePro+"&usernameCour="+usernameCour);
+  }
+
   public setPicture(formData: FormData){
       return this.http.post(this.url+"update-picture",formData);
   }
