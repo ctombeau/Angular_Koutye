@@ -22,5 +22,11 @@
     "householder":"Propriétaire",
     "leaseholder":"Locataire",
     "send":"Envoer",
-    "forgotF":"OUBLI DE MOT DE PASSE"
+    "forgotF":"OUBLI DE MOT DE PASSE",
+    "field": "Les champs sont obligatoires.",
+    "ucas":"Utilisateur créé avec succès",
+    "penr":"Problème lors de l'enregistrement",
+    "pser":"Nous avons rencontré un problème serveur.",
+    "ued":"L'utilisateur existe déja.",
+    "psw":"Les mots de passe sont différents."
 }

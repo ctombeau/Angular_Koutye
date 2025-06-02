@@ -38,6 +38,12 @@ export class RegisterComponent implements OnInit {
     broker: string="";
     householder:string="";
     leaseholder: string="";
+    field: string="";
+    ucas:string="";
+    penr:string="";
+    pser:string="";
+    ued:string="";
+    psw: string="";
 
     constructor(private userService : UserService,
         private router: Router,
@@ -99,6 +105,12 @@ export class RegisterComponent implements OnInit {
                       this.broker=response.broker;
                       this.householder=response.householder;
                       this.leaseholder=response.leaseholder;
+                      this.field=response.field;
+                      this.ucas = response.ucas;
+                      this.penr = response.penr;
+                      this.pser = response.pser;
+                      this.ued = response.ued;
+                      this.psw = response.psw;
                   });
                }else if(val=="fr"){
                  this.frService.getData().subscribe(response2 => {
@@ -116,6 +128,12 @@ export class RegisterComponent implements OnInit {
                       this.broker=response2.broker;
                       this.householder=response2.householder;
                       this.leaseholder=response2.leaseholder;
+                      this.field=response2.field;
+                      this.ucas = response2.ucas;
+                      this.penr = response2.penr;
+                      this.pser = response2.pser;
+                      this.ued = response2.ued;
+                      this.psw= response2.psw;
                   });
                }if(val=="ht"){
                  this.htService.getData().subscribe(response3 => {
@@ -133,6 +151,12 @@ export class RegisterComponent implements OnInit {
                       this.broker=response3.broker;
                       this.householder=response3.householder;
                       this.leaseholder=response3.leaseholder;
+                      this.field=response3.field;
+                      this.ucas = response3.ucas;
+                      this.penr = response3.penr;
+                      this.pser = response3.pser;
+                      this.ued = response3.ued;
+                      this.psw = response3.psw;
                   });
                }
            }
@@ -166,7 +190,7 @@ export class RegisterComponent implements OnInit {
                     {   
                         this.isLoading.next(false);
                         Swal.fire({
-                          text: "Utilisateur créé avec succès",
+                          text: this.ucas,
                           width:'300px',
                           icon: 'success'
                          
@@ -181,17 +205,17 @@ export class RegisterComponent implements OnInit {
                       }
                       else{
                          this.isLoading.next(false);
-                         this.userApiMessage$.next("Problème lors de l'enregistrement")
+                         this.userApiMessage$.next(this.penr)
                       }
                    }),
                    catchError((err: HttpErrorResponse)=>{
                       if(err.status===500 || err.status===0){
                           this.isLoading.next(false);
-                          this.userApiMessage$.next("Nous avons rencontré un problème serveur.");
+                          this.userApiMessage$.next(this.pser);
                       }
                       else if(err.status===409){
                         this.isLoading.next(false);
-                        this.userApiMessage$.next("L'utilisateur existe déja.");
+                        this.userApiMessage$.next(this.ued);
                       }
                        return "";
                    })
@@ -200,13 +224,13 @@ export class RegisterComponent implements OnInit {
              else
              { 
                 this.isLoading.next(false);
-                this.userApiMessage$.next("Les mots de passe sont différents.");
+                this.userApiMessage$.next(this.psw);
              }
         }
         else
         {
             this.isLoading.next(false);
-            this.userApiMessage$.next("Les champs sont obligatoires.");
+            this.userApiMessage$.next(this.field);
         }
     }
 

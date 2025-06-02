@@ -23,5 +23,11 @@
     "householder":"Householder",
     "leaseholder":"Leaseholder",
     "send": "Send",
-    "forgotF":"FORGOT PASSWORD"
+    "forgotF":"FORGOT PASSWORD",
+    "field":"The fiels are required.",
+    "ucas":"User created successfuly",
+    "penr":"Trouble when saving",
+    "pser":"we are a server's trouble.",
+    "ued":"The user already exist.",
+    "psw":"The password are not the same."
 }
