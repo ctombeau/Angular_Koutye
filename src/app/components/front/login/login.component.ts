@@ -20,40 +20,6 @@ import { FrService } from 'src/app/services/i18n/fr.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  /*
-  animations:[
-   
-   state('open', style({
-      height: '200px',
-      opacity: 1,
-      backgroundColor: 'yellow'
-    })),
-    
-    state('closed', style({
-      height: '100px',
-      opacity: 0.8,
-      backgroundColor: 'blue'
-    })),
-    transition('open => closed', [
-      animate('1s')
-    ]),
-    
-   
-     trigger('fade',[
-         transition('void=>*',[
-            style({color: 'yellow', opacity:0}),
-            //animate(200, style({color:'red', opacity:1, transform:'scale(0.85)'})),
-            //animate(1000)
-            animate("5s", keyframes([
-               style({ backgroundColor: "red", offset: 0 }),
-               style({ backgroundColor: "blue", offset: 0.2 }),
-               style({ backgroundColor: "orange", offset: 0.3 }),
-               style({ backgroundColor: "black", offset: 1 })
-             ]))
-         ])
-     ])
-  ]
-*/
   
 })
 
@@ -67,6 +33,7 @@ export class LoginComponent {
    with: string="";
    forgot:string="";
    new:string="";
+   field: string="";
    
    userApiMessage$?: Observable<string>;
    routeMessage$? : Observable<string> ;
@@ -130,6 +97,7 @@ export class LoginComponent {
                 this.with=response.with;
                 this.new=response.new;
                 this.forgot=response.forgot;
+                this.field=response.field;
              });
           }else if(val=="fr"){
             this.frService.getData().subscribe(response2 => {
@@ -141,6 +109,7 @@ export class LoginComponent {
                 this.with=response2.with;
                 this.new=response2.new;
                 this.forgot=response2.forgot;
+                this.field=response2.field;
              });
           }if(val=="ht"){
             this.htService.getData().subscribe(response3 => {
@@ -152,6 +121,7 @@ export class LoginComponent {
                 this.with=response3.with;
                 this.new=response3.new;
                 this.forgot=response3.forgot;
+                this.field=response3.field;
              });
           }
       }
@@ -180,7 +150,7 @@ export class LoginComponent {
             this.userApiMessage$?.subscribe({ 
               
                 next : ()=>{
-                    "Les champs sont obligatoires"
+                    this.field
                 }
              });
         } 

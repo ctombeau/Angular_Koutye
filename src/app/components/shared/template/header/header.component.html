@@ -13,7 +13,7 @@
           <strong> KOUTYE</strong></a>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <!-- {{username | translate}} -->
+     
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item" >
@@ -22,14 +22,10 @@
               <option value="fr">Français</option>
               <option value="ht">Créole</option>
               <option value="en">Anglais</option>
-              <option value="es">Espagnol</option>
+              <!-- <option value="es">Espagnol</option> -->
             </select>
           </li>
-       <!--   <li class="nav-item">
-            <a class="nav-link" *ngIf="checkUrl" href="#">
-              <i class="bi bi-person-fill"></i>
-               Utilisateur</a>
-          </li>  -->
+    
           <li class="nav-item">
             <a class="nav-link" *ngIf="checkUrl" href="home">
               <i class="bi bi-house-door-fill"></i>
@@ -54,10 +50,6 @@
               <li><a class="dropdown-item" (click)="logout()">
                 <i class="bi bi-box-arrow-left"></i>
                  Déconnexion</a></li>
-          <!--  <li>
-                <hr class="dropdown-divider">
-              </li> 
-              <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
         </ul>

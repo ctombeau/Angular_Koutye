@@ -15,6 +15,9 @@
     "firstname": "FirstName",
     "email": "Email",
     "cfPassword":"Confirm password",
+    "nPassword":"New Password",
+    "oPassword":"Old password",
+    "iPassword":"Initialize Password",
     "typeUser": "User's type",
     "phone":"Phone",
     "cancel": "Cancel",
@@ -29,5 +32,7 @@
     "penr":"Trouble when saving",
     "pser":"we are a server's trouble.",
     "ued":"The user already exist.",
-    "psw":"The password are not the same."
+    "psw":"The password are not the same.",
+    "smail":"Mail sent successfuly...",
+    "echmail": "Error when sending mail..."
 }

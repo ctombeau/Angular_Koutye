@@ -24,6 +24,8 @@ export class ForgotpasswordComponent implements OnInit{
   cancel: string= "";
   send : string ="";
   forgotF: string="";
+  smail: string="";
+  echmail: string="";
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -56,6 +58,8 @@ variableI18n(){
                 this.cancel=response.cancel;
                 this.send=response.send;
                 this.forgotF=response.forgotF;
+                this.smail = response.smail;
+                this.echmail = response.echmail;
             });
          }else if(val=="fr"){
            this.frService.getData().subscribe(response2 => {
@@ -63,6 +67,8 @@ variableI18n(){
                 this.cancel=response2.cancel;
                 this.send=response2.send;
                 this.forgotF= response2.forgotF;
+                this.smail = response2.smail;
+                this.echmail = response2.echmail;
             });
          }if(val=="ht"){
            this.htService.getData().subscribe(response3 => {
@@ -70,6 +76,8 @@ variableI18n(){
                 this.cancel=response3.cancel;
                 this.send=response3.send;
                 this.forgotF=response3.forgotF;
+                this.smail = response3.smail;
+                this.echmail = response3.echmail;
             });
          }
      }
@@ -88,8 +96,7 @@ variableI18n(){
                    this.isLoading.next(false);
                    this.forgotPasswordForm.reset();  
                    Swal.fire({
-                    title: "Oubli Mot de Passe",
-                    text:"Mail envoyé avec succès...",
+                    text:this.smail,
                     width:'300px',
                     icon: "success",
                     draggable: true
@@ -102,13 +109,22 @@ variableI18n(){
               }
               else{
                 this.isLoading.next(false);
+                Swal.fire({
+                    text:this.echmail,
+                    width:'300px',
+                    icon: "error",
+                    draggable: true
+                  });
               }
             }),
             catchError((error : Error)=>{
-               this.isLoading.next(false);
-                if(error.name==""){
-
-                }
+                this.isLoading.next(false);
+                Swal.fire({
+                    text:this.echmail,
+                    width:'300px',
+                    icon: "error",
+                    draggable: true
+                  });
                 return "";
             })
      ).subscribe();

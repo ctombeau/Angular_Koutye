@@ -14,6 +14,9 @@
     "firstname": "Non",
     "email": "Imèl",
     "cfPassword":"konfime modpas",
+    "nPassword":"Yon Lot Modpas",
+    "oPassword":"Ansyen modpas",
+    "iPassword":"Inisyalize modpas",
     "typeUser": "tip itilizatè",
     "phone":"telefòn",
     "cancel": "Anile",
@@ -28,5 +31,7 @@
     "penr":"Pwoblèm pandan nap anrejistre",
     "pser":"Nou jwenn yon pwoblèm kote sèvè.",
     "ued":"Itilizatè sa la deja.",
-    "psw":"Modpas yo pa menm."
+    "psw":"Modpas yo pa menm.",
+    "smail":"mesaj ou ale avèk siksè...",
+    "echmail": "Erè pandan wap voye mesaj la..."
 }

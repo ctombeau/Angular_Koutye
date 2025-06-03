@@ -14,6 +14,9 @@
     "firstname": "Prénom",
     "email": "Email",
     "cfPassword":"Confirmez mot de passe",
+    "nPassword":"Nouveau Mot de Passe",
+    "oPassword":"Ancien Mot de Passe",
+    "iPassword":"Initialiser Mot de Passe",
     "typeUser": "Type utilisateur",
     "phone":"téléphone",
     "cancel": "Annuler",
@@ -21,12 +24,14 @@
     "broker":"Courtier",
     "householder":"Propriétaire",
     "leaseholder":"Locataire",
-    "send":"Envoer",
+    "send":"Envoyer",
     "forgotF":"OUBLI DE MOT DE PASSE",
     "field": "Les champs sont obligatoires.",
     "ucas":"Utilisateur créé avec succès",
     "penr":"Problème lors de l'enregistrement",
     "pser":"Nous avons rencontré un problème serveur.",
     "ued":"L'utilisateur existe déja.",
-    "psw":"Les mots de passe sont différents."
+    "psw":"Les mots de passe sont différents.",
+    "smail":"Mail envoyé avec succès...",
+    "echmail": "Erreur lors de l'envoi d'email..."
 }
