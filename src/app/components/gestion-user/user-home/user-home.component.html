@@ -10,20 +10,20 @@
 
     <div class="container mt-5">
         <mat-tab-group class="mt-2" #tabRef (selectedTabChange)="changeTab(tabRef.selectedIndex)">
-            <mat-tab label="Profil Utilisateur"> 
+            <mat-tab label="{{userProfil}}"> 
                 <div class="text-center mt-3 mb-3">
-                    <h3>Profil Utilisateur</h3>
+                    <h3>{{userProfil}}</h3>
                 </div>
                 
             </mat-tab>
-            <mat-tab label="Gestion Courtier">
+            <mat-tab label="{{brokerMan}}">
                 <div class="text-center mt-3 mb-3">
-                    <h3>Gestion Courtier</h3>
+                    <h3>{{brokerMan}}</h3>
                 </div>
             </mat-tab>
-            <mat-tab label="Chat"> 
+            <mat-tab label="{{chat}}"> 
                 <div class="text-center mt-3 mb-3">
-                    <h3>Demandez plus d'Infos</h3>
+                    <h3>{{chat}}</h3>
                 </div>    
             </mat-tab>
           </mat-tab-group>

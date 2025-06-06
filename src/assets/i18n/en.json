@@ -34,5 +34,20 @@
     "ued":"The user already exist.",
     "psw":"The password are not the same.",
     "smail":"Mail sent successfuly...",
-    "echmail": "Error when sending mail..."
+    "echmail": "Error when sending mail...",
+    "userProfil":"User profil",
+    "brokerMan":"Broker Management",
+    "chat": "Chat",
+    "update":"Update",
+    "askAttach": "Attachment request",
+    "picture":"Picture",
+    "action":"Action",
+    "item":"Items per page",
+    "of":"of",
+    "errorUser":"Error while retrieving users.",
+    "isDelete":"Do you want to delete it?",
+    "cDelete":"Yes, Delete it",
+    "delete":"Deleted!",
+    "deleteCour":"Your broker has been deleted.",
+    "errorDelete":"Error while deleting."
 }

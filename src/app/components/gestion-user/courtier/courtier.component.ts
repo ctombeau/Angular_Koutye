@@ -8,6 +8,10 @@ import { BehaviorSubject, Observable, Subscription, map, combineLatest,tap } fro
 import Swal from 'sweetalert2';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
+import { EnService } from 'src/app/services/i18n/en.service';
+import { FrService } from 'src/app/services/i18n/fr.service';
+import { HtService } from 'src/app/services/i18n/ht.service';
+import { GlobalService } from 'src/app/services/global.service';
 
 export interface Courtier {
   photo: string;
@@ -35,15 +39,38 @@ export class CourtierComponent implements OnInit{
   isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   users: User[]=[] ;
   dataSource = new MatTableDataSource<User>();
-   
+
+  askAttach: string= "";
+  picture: string="";
+  action: string="";
+  item: string="";
+  of: string="";
+  send: string="";
+  firstname: string="";
+  lastname: string="";
+  phone: string="";
+  errorUser: string="";
+  smail: string="";
+  echmail: string="";
+  isDelete: string="";
+  cDelete: string="";
+  delete:string="";
+  deleteCour: string=""; 
+  errorDelete: string="";
+
   constructor(private userService: UserService,
-     private utilsService: UtilsService
+     private utilsService: UtilsService,
+     private enService: EnService,
+     private frService: FrService,
+     private htService: HtService,
+     private gs : GlobalService
   ){}
 
   ngOnInit(): void {
       setTimeout(() => this.dataSource.paginator = this.paginator);
       this.message$ = this.userService.message$;
-      this.attachUser()
+      this.attachUser();
+      this.variableI18n();
   }
 
   courtierForm = new FormGroup({
@@ -52,6 +79,78 @@ export class CourtierComponent implements OnInit{
     ]),
     
   })
+  
+  
+   variableI18n(){
+      this.gs.globalVariable$.subscribe(
+          val=>{
+                 if(val=="en"){
+                   this.enService.getData().subscribe(response => {
+                        this.askAttach=response.askAttach;
+                        this.picture= response.picture;
+                        this.action=response.action;
+                        this.item=response.item;
+                        this.of=response.of;
+                        this.send=response.send;
+                        this.firstname=response.firstname;
+                        this.lastname=response.lastname;
+                        this.phone=response.phone;
+                        this.email=response.email;
+                        this.errorUser=response.errorUser;
+                        this.smail=response.smail;
+                        this.echmail=response.echmail;
+                        this.isDelete=response.isDelete;
+                        this.cDelete=response.cDelete;
+                        this.delete=response.delete;
+                        this.deleteCour=response.deleteCour;
+                        this.errorDelete=response.erro;
+                    });
+                 }else if(val=="fr"){
+                   this.frService.getData().subscribe(response2 => {
+                        this.askAttach=response2.askAttach;
+                        this.picture= response2.picture;
+                        this.action=response2.action;
+                        this.item=response2.item;
+                        this.of=response2.of;
+                        this.send=response2.send;
+                        this.firstname=response2.firstname;
+                        this.lastname=response2.lastname;
+                        this.phone=response2.phone;
+                        this.email=response2.email;
+                        this.errorUser=response2.errorUser;
+                        this.smail=response2.smail;
+                        this.echmail=response2.echmail;
+                        this.isDelete=response2.isDelete;
+                        this.cDelete=response2.cDelete;
+                        this.delete=response2.delete;
+                        this.deleteCour=response2.deleteCour;
+                        this.errorDelete=response2.erro;
+                    });
+                 }if(val=="ht"){
+                   this.htService.getData().subscribe(response3 => {
+                        this.askAttach=response3.askAttach;
+                        this.picture= response3.picture;
+                        this.action=response3.action;
+                        this.item=response3.item;
+                        this.of=response3.of;
+                        this.send=response3.send;
+                        this.firstname=response3.firstname;
+                        this.lastname=response3.lastname;
+                        this.phone=response3.phone;
+                        this.email=response3.email;
+                        this.errorUser=response3.errorUser;
+                        this.smail=response3.smail;
+                        this.echmail=response3.echmail;
+                        this.isDelete=response3.isDelete;
+                        this.cDelete=response3.cDelete;
+                        this.delete=response3.delete;
+                        this.deleteCour=response3.deleteCour;
+                        this.errorDelete=response3.erro;
+                    });
+                 }
+             }
+           )
+      }
 
  attachUser()
  {
@@ -65,7 +164,7 @@ export class CourtierComponent implements OnInit{
            this.dataSource.paginator = this.paginator;
        },(error : HttpErrorResponse)=>{
             Swal.fire({
-                text: "Erreur lors de la récupération des utilisateurs.",
+                text: this.errorUser,
                 icon: "error"
            });
        });
@@ -80,7 +179,7 @@ export class CourtierComponent implements OnInit{
             if(response.success===true){
                //this.utilsService.showMessage("Mail envoyé avec succès.", "success")
                Swal.fire({
-                  text: "Mail envoyé avec succès.",
+                  text: this.smail,
                   icon: "success"
               });
               this.courtierForm.reset();
@@ -88,7 +187,7 @@ export class CourtierComponent implements OnInit{
             else{
               //this.utilsService.showMessage("Erreur lors de l'envoi d'email.", "error")
               Swal.fire({
-                text: "Erreur lors de l'envoi d'email.",
+                text: this.echmail,
                 icon: "error"
                });
                this.courtierForm.reset();
@@ -96,7 +195,7 @@ export class CourtierComponent implements OnInit{
       }, (error : HttpErrorResponse)=>{
               this.isLoading.next(false);
               Swal.fire({
-                text: "Erreur lors de l'envoi d'email.",
+                text: this.echmail,
                 icon: "error"
                });
                this.courtierForm.reset();
@@ -104,29 +203,28 @@ export class CourtierComponent implements OnInit{
  }
 
  detachUser(usernameCour : string, nom: string, prenom: string){
-    console.log("Detacher utilisateur")
     Swal.fire({
       title: nom + " " + prenom,
-      text: "Voulez-vous le supprimer",
+      text: this.isDelete,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Oui, Supprimez-le"
+      confirmButtonText: this.cDelete
       }).then((result) => {
           if (result.isConfirmed) {
                 this.userService.processDetachUser(this.username??"",usernameCour).subscribe(
                    (data)=>{
                           Swal.fire({
-                      title: "Supprimé!",
-                      text: "Votre courtier a été supprimé.",
+                      title: this.delete,
+                      text: this.deleteCour,
                       icon: "success"
                     });
                    },(error: HttpErrorResponse)=>{
                       
                        Swal.fire({
-                        title: "Supprimé!",
-                        text: "Erreur lors de la suppression.",
+                        title: this.delete,
+                        text: this.errorDelete,
                         icon: "error"
                      });
                    }

@@ -8,6 +8,10 @@ import { ImageAppartement } from 'src/app/models/image-appartement.model';
 import { VideoAppartement } from 'src/app/models/video-appartement.model';
 import { AppartementService } from 'src/app/services/appartement.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { EnService } from 'src/app/services/i18n/en.service';
+import { FrService } from 'src/app/services/i18n/fr.service';
+import { HtService } from 'src/app/services/i18n/ht.service';
+import { GlobalService } from 'src/app/services/global.service';
 
 
 @Component({
@@ -38,16 +42,43 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   constructor(private router: Router,
     private appService : AppartementService,
     private _sanitizer: DomSanitizer,
+    private enService: EnService,
+    private frService: FrService,
+    private htService: HtService,
+    private gs : GlobalService
   ){}
 
   ngOnInit(): void {
      this.initListAppartement();
      this.startImageRotation();
+     this.variableI18n();
   }
   /*
     Notes : Le tableau images contient les images, c'est sur lui qu'on doit travailler pour
     afficher les images dans le template.
   */
+
+      
+    
+  variableI18n(){
+            this.gs.globalVariable$.subscribe(
+               val=>{
+                   if(val=="en"){
+                     this.enService.getData().subscribe(response => {
+                          
+                      });
+                   }else if(val=="fr"){
+                     this.frService.getData().subscribe(response2 => {
+                          
+                      });
+                   }if(val=="ht"){
+                     this.htService.getData().subscribe(response3 => {
+                          
+                      });
+                   }
+               }
+        )
+   }
 
   ngOnDestroy(): void {
     if (this.intervalId) {

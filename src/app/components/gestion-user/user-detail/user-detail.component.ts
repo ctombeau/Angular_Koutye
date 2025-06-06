@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { GlobalService } from 'src/app/services/global.service';
+import { EnService } from 'src/app/services/i18n/en.service';
+import { FrService } from 'src/app/services/i18n/fr.service';
+import { HtService } from 'src/app/services/i18n/ht.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -27,10 +31,15 @@ export class UserDetailComponent implements OnInit{
    imageUrl: string | ArrayBuffer | null= this.subPhoto == "" ? "assets/images/user.jpg" : this.subPhoto ;
    selectedFile: File | null = null;
    usernameIsChanged : boolean = false;
+   update : string="";
 
     constructor(
       private userService : UserService,
-      private router : Router
+      private router : Router,
+      private enService: EnService,
+      private frService: FrService,
+      private htService: HtService,
+      private gs : GlobalService
     ){}
 
     gUser() : User{
@@ -39,9 +48,30 @@ export class UserDetailComponent implements OnInit{
 
     ngOnInit(): void {
        this.getUser();
+       this.variableI18n();
     }
 
-    updateUser(user: User){
+  variableI18n(){
+        this.gs.globalVariable$.subscribe(
+           val=>{
+               if(val=="en"){
+                 this.enService.getData().subscribe(response => {
+                      this.update=response.update;
+                  });
+               }else if(val=="fr"){
+                 this.frService.getData().subscribe(response2 => {
+                      this.update=response2.update;
+                  });
+               }if(val=="ht"){
+                 this.htService.getData().subscribe(response3 => {
+                      this.update=response3.update;
+                  });
+               }
+           }
+         )
+    }
+
+updateUser(user: User){
   
        this.userService.putUser(this.id,user).subscribe(
            (response: any)=>{

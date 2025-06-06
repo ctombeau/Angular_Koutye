@@ -33,5 +33,20 @@
     "ued":"L'utilisateur existe déja.",
     "psw":"Les mots de passe sont différents.",
     "smail":"Mail envoyé avec succès...",
-    "echmail": "Erreur lors de l'envoi d'email..."
+    "echmail": "Erreur lors de l'envoi d'email...",
+    "userProfil":"Profil Utilisateur",
+    "brokerMan":"Gestion Courtier",
+    "chat": "Discussion",
+    "update":"Modifier",
+    "askAttach": "Demande d'Attachment",
+    "picture":"Photo",
+    "action":"Action",
+    "item":"Elements par page",
+    "of":"de",
+    "errorUser":"Erreur lors de la récupération des utilisateurs.",
+    "isDelete":"Voulez-vous le supprimer?",
+    "cDelete":"Oui, Supprimez-le",
+    "delete":"Supprimé!",
+    "deleteCour":"Votre courtier a été supprimé.",
+    "errorDelete":"Erreur lors de la suppression."
 }
