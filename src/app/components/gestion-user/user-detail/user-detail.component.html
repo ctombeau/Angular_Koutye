@@ -21,13 +21,12 @@
                         <input type="file" name="file" hidden #input ngModel (change)="getPicture($event)"/>
                         <div class="info">
                             <h2 class="space-after">{{prenom}} {{nom | uppercase}}</h2>
-                            <h3 class="space-after">{{email}}</h3>
-                            <h4 class="space-after"> {{username}}</h4>
-                            <p class="space-after">{{type}}</p>
-                            <p class="space-after">{{phone}}</p>
+                            <h3 class="space-after"><strong><i class="bi bi-envelope-at"></i></strong> {{email}}</h3>
+                            <h4 class="space-after"><strong><i class="bi bi-person"></i></strong> {{username}}</h4>
+                            <p class="space-after"><strong><i class="bi bi-telephone"></i></strong> {{phone}}</p>
                         </div>
                         <div id="button" (click)="showHtmlUpdate()">
-                            <button class="btn">{{update}}</button>
+                            <button class="btn">{{update}} <i style="color: white" class="bi bi-pen"></i></button>
                         </div>
                     </mat-card-content>
                 </mat-card>
