@@ -49,5 +49,6 @@
     "cDelete":"Yes, Delete it",
     "delete":"Deleted!",
     "deleteCour":"Your broker has been deleted.",
-    "errorDelete":"Error while deleting."
+    "errorDelete":"Error while deleting.",
+     "titleUpdate":"Update User"
 }

@@ -48,5 +48,6 @@
     "cDelete":"Oui, Supprimez-le",
     "delete":"Supprimé!",
     "deleteCour":"Votre courtier a été supprimé.",
-    "errorDelete":"Erreur lors de la suppression."
+    "errorDelete":"Erreur lors de la suppression.",
+    "titleUpdate":"Mise à jour utilisateur"
 }

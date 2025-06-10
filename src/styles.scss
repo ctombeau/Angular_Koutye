@@ -72,3 +72,21 @@ html { height: 100%; }
     color:#FF5733;
     font-weight: bold;
   }
+
+  //pour les boutons
+
+  .my-confirm-btn {
+    background-color: #FF5733 !important; /* bleu */
+    color: white !important;
+    border: 2px solid white none !important;
+    padding: 8px 20px !important;
+    border-radius: 4px !important;
+  }
+
+  .my-cancel-btn {
+    background-color: gainsboro !important; /* rouge */
+    color: white !important;
+    border: 2px solid #FF5733 !important;
+    padding: 8px 20px !important;
+    border-radius: 4px !important;
+  }

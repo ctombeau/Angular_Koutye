@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
   standalone: false
 })
 export class UserDetailComponent implements OnInit{
+  
    user! : any;
    id: any = sessionStorage.getItem("id") ?? "" +this.user.utilisateurId;
    username: string = sessionStorage.getItem("username") ?? this.user?.username ?? "";
@@ -32,6 +33,13 @@ export class UserDetailComponent implements OnInit{
    selectedFile: File | null = null;
    usernameIsChanged : boolean = false;
    update : string="";
+   lastname: string="";
+   firstname: string="";
+   username1: string="";
+   email1: string="";
+   phone1: string="";
+   cancel: string="";
+   titleUpdate: string="";
 
     constructor(
       private userService : UserService,
@@ -57,14 +65,38 @@ export class UserDetailComponent implements OnInit{
                if(val=="en"){
                  this.enService.getData().subscribe(response => {
                       this.update=response.update;
+                      this.lastname=response.lastname;
+                      this.firstname=response.firstname;
+                      this.username1=response.username;
+                      this.email1=response.email;
+                      this.phone1=response.phone;
+                      this.update=response.update;
+                      this.cancel=response.cancel;
+                      this.titleUpdate=response.titleUpdate;
                   });
                }else if(val=="fr"){
                  this.frService.getData().subscribe(response2 => {
                       this.update=response2.update;
+                      this.lastname= response2.lastname;
+                      this.firstname=response2.firstname;
+                      this.username1=response2.username;
+                      this.email1=response2.email;
+                      this.phone1=response2.phone;
+                      this.update=response2.update;
+                      this.cancel=response2.cancel;
+                      this.titleUpdate=response2.titleUpdate;
                   });
                }if(val=="ht"){
                  this.htService.getData().subscribe(response3 => {
                       this.update=response3.update;
+                      this.lastname=response3.lastname;
+                      this.firstname=response3.firstname;
+                      this.username1=response3.username;
+                      this.email1=response3.email;
+                      this.phone1=response3.phone;
+                      this.update=response3.update;
+                      this.cancel=response3.cancel;
+                      this.titleUpdate=response3.titleUpdate;
                   });
                }
            }
@@ -105,7 +137,6 @@ updateUser(user: User){
     
     public getUser() : void
     {
-       console.log("On test getUser()");
        this.userService.getUser(this.username).subscribe(
            (data: any)=>{
                this.user = data.object;
@@ -155,34 +186,54 @@ updateUser(user: User){
       let nom= "", prenom="",username="",email="",phone="";
 
       Swal.fire({
-        title: 'Mise à jour utilisateur',
+        title: this.titleUpdate,
         html: `
-          <form id="contact-form">
-            <div class="form-group">
-              <label class="swal2-label">Nom</label>
-              <input type="text" id="nom" class="swal2-input"  placeholder="Nom">
+          <form id="contact-form" class="container mt-4">
+            <div class="row mb-3">
+            <label for="nom" class="col-sm-5 col-form-label">${this.lastname}</label>
+              <div class="col-sm-7">
+                <input type="text" id="nom" class="form-control" placeholder="Nom">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Prenom</label>
-              <input type="text" id="prenom" class="swal2-input" placeholder="Prenom">
+
+            <div class="row mb-3">
+              <label for="prenom" class="col-sm-5 col-form-label">${this.firstname}</label>
+              <div class="col-sm-7">
+                <input type="text" id="prenom" class="form-control" placeholder="Prenom">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Username</label>
-              <input type="text" id="username" class="swal2-input" placeholder="Username">
+
+            <div class="row mb-6">
+              <label for="username" class="col-sm-5 col-form-label">${this.username1}</label>
+              <div class="col-sm-7">
+                <input type="text" id="username" class="form-control" placeholder="Username">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Email</label>
-              <input type="email" id="email" class="swal2-input"  placeholder="Email">
+
+            <div class="row mb-3">
+              <label for="email" class="col-sm-5 col-form-label">${this.email1}</label>
+              <div class="col-sm-7">
+                <input type="email" id="email" class="form-control" placeholder="Email">
+              </div>
             </div>
-            <div class="form-group">
-              <label>Phone</label>
-              <input type="text" id="phone" class="swal2-input"  placeholder="Phone">
+
+            <div class="row mb-3">
+              <label for="phone" class="col-sm-5 col-form-label">${this.phone1}</label>
+              <div class="col-sm-7">
+                <input type="text" id="phone" class="form-control" placeholder="Phone">
+              </div>
             </div>
-          </form>
+        </form>
+
         `,
         //focusConfirm: false,
         showCancelButton: true,
-        confirmButtonText: "Valider",
+        confirmButtonText: this.update,
+        cancelButtonText: this.cancel,
+        customClass: {
+            confirmButton: 'my-confirm-btn',
+            cancelButton: 'my-cancel-btn'
+        },
         didOpen: () => {
           // Ici tu peux définir les valeurs
           (document.getElementById('nom') as HTMLInputElement).value = this.nom;
