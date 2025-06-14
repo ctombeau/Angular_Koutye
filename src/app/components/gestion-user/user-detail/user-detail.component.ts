@@ -40,6 +40,9 @@ export class UserDetailComponent implements OnInit{
    phone1: string="";
    cancel: string="";
    titleUpdate: string="";
+   userUpdate: string="";
+   userUpdateError: string="";
+   field : string="";
 
     constructor(
       private userService : UserService,
@@ -73,6 +76,9 @@ export class UserDetailComponent implements OnInit{
                       this.update=response.update;
                       this.cancel=response.cancel;
                       this.titleUpdate=response.titleUpdate;
+                      this.userUpdate=response.updateUser;
+                      this.userUpdateError=response.userUpdateError;
+                      this.field=response.field;
                   });
                }else if(val=="fr"){
                  this.frService.getData().subscribe(response2 => {
@@ -85,6 +91,9 @@ export class UserDetailComponent implements OnInit{
                       this.update=response2.update;
                       this.cancel=response2.cancel;
                       this.titleUpdate=response2.titleUpdate;
+                      this.userUpdate=response2.updateUser;
+                      this.userUpdateError=response2.userUpdateError;
+                      this.field=response2.field;
                   });
                }if(val=="ht"){
                  this.htService.getData().subscribe(response3 => {
@@ -97,6 +106,9 @@ export class UserDetailComponent implements OnInit{
                       this.update=response3.update;
                       this.cancel=response3.cancel;
                       this.titleUpdate=response3.titleUpdate;
+                      this.userUpdate=response3.updateUser;
+                      this.userUpdateError=response3.userUpdateError;
+                      this.field=response3.field;
                   });
                }
            }
@@ -110,7 +122,7 @@ updateUser(user: User){
             console.log(response.success)
              if(response.success==true){
                  if(this.usernameIsChanged==true){
-                  Swal.fire('Utilisateur modifié avec succès','','success').then((result)=>{
+                  Swal.fire(this.userUpdate,'','success').then((result)=>{
                          if(result.isConfirmed) {
                            this.getUser();
                            this.router.navigateByUrl('/');
@@ -118,7 +130,7 @@ updateUser(user: User){
                     });
                  }
                  else{
-                  Swal.fire('Utilisateur modifié avec succès','','success').then((result)=>{
+                  Swal.fire(this.userUpdate,'','success').then((result)=>{
                          if(result.isConfirmed) {
                             this.getUser(); 
                             this.router.navigateByUrl(this.router.url);
@@ -128,9 +140,7 @@ updateUser(user: User){
              }
 
            },(error: HttpErrorResponse)=>{
-               if(error.status===500){
-                  console.log(error)
-               }
+               Swal.fire(this.userUpdateError,'','error');
          })
       
     }
@@ -250,7 +260,7 @@ updateUser(user: User){
           email = (<HTMLInputElement>document.getElementById('email')).value;
           phone = (<HTMLInputElement>document.getElementById('phone')).value;
           if (!nom || !prenom|| !username || !email || !phone) {
-            Swal.showValidationMessage('Veuillez remplir tous les champs');
+            Swal.showValidationMessage(this.field);
             return false;
           }
           return { nom,prenom,username, email};

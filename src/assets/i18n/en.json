@@ -50,5 +50,15 @@
     "delete":"Deleted!",
     "deleteCour":"Your broker has been deleted.",
     "errorDelete":"Error while deleting.",
-     "titleUpdate":"Update User"
+    "titleUpdate":"Update User",
+    "userUpdate":"User updated successfuly.",
+    "userUpdateError":"Error while updating user.",
+    "french": "French",
+    "english": "English",
+    "creole":"Creole",
+    "home":"Home",
+    "apartment":"Apartment",
+    "user":"User",
+    "userM":"User Management",
+    "log":"Logout"
 }

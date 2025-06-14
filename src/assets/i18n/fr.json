@@ -49,5 +49,15 @@
     "delete":"Supprimé!",
     "deleteCour":"Votre courtier a été supprimé.",
     "errorDelete":"Erreur lors de la suppression.",
-    "titleUpdate":"Mise à jour utilisateur"
+    "titleUpdate":"Mise à jour utilisateur",
+    "userUpdate":"Utilisateur modifié avec succès.",
+    "userUpdateError":"Erreur lors de la modification de l'utilisateur.",
+    "french": "Français",
+    "english": "Anglais",
+    "creole":"Créole",
+    "home":"Accueil",
+    "apartment":"Appartement",
+    "user":"Utilisateur",
+    "userM":"Gestion Utilisateur",
+    "log":"Déconnexion"
 }

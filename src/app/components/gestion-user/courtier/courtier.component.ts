@@ -57,6 +57,7 @@ export class CourtierComponent implements OnInit{
   delete:string="";
   deleteCour: string=""; 
   errorDelete: string="";
+  cancel: string="";
 
   constructor(private userService: UserService,
      private utilsService: UtilsService,
@@ -103,7 +104,8 @@ export class CourtierComponent implements OnInit{
                         this.cDelete=response.cDelete;
                         this.delete=response.delete;
                         this.deleteCour=response.deleteCour;
-                        this.errorDelete=response.erro;
+                        this.errorDelete=response.errorDelete;
+                        this.cancel=response.cancel;
                     });
                  }else if(val=="fr"){
                    this.frService.getData().subscribe(response2 => {
@@ -124,7 +126,8 @@ export class CourtierComponent implements OnInit{
                         this.cDelete=response2.cDelete;
                         this.delete=response2.delete;
                         this.deleteCour=response2.deleteCour;
-                        this.errorDelete=response2.erro;
+                        this.errorDelete=response2.errorDelete;
+                        this.cancel=response2.cancel;
                     });
                  }if(val=="ht"){
                    this.htService.getData().subscribe(response3 => {
@@ -145,7 +148,8 @@ export class CourtierComponent implements OnInit{
                         this.cDelete=response3.cDelete;
                         this.delete=response3.delete;
                         this.deleteCour=response3.deleteCour;
-                        this.errorDelete=response3.erro;
+                        this.errorDelete=response3.errorDelete;
+                        this.cancel=response3.cancel;
                     });
                  }
              }
@@ -177,7 +181,6 @@ export class CourtierComponent implements OnInit{
     this.userService.sendMailAttachUser(emailFrom, emailTo).subscribe((response : any)=>{
           this.isLoading.next(false);
             if(response.success===true){
-               //this.utilsService.showMessage("Mail envoyé avec succès.", "success")
                Swal.fire({
                   text: this.smail,
                   icon: "success"
@@ -185,7 +188,6 @@ export class CourtierComponent implements OnInit{
               this.courtierForm.reset();
             }
             else{
-              //this.utilsService.showMessage("Erreur lors de l'envoi d'email.", "error")
               Swal.fire({
                 text: this.echmail,
                 icon: "error"
@@ -210,7 +212,8 @@ export class CourtierComponent implements OnInit{
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: this.cDelete
+      confirmButtonText: this.cDelete,
+      cancelButtonText:this.cancel
       }).then((result) => {
           if (result.isConfirmed) {
                 this.userService.processDetachUser(this.username??"",usernameCour).subscribe(

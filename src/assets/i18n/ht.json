@@ -49,5 +49,15 @@
     "delete":"Efase!",
     "deleteCour":"Koutye ou a efase.",
     "errorDelete":"Erè pandan wap efase.",
-    "titleUpdate":"Chanje Enfomasyon itilizatè"
+    "titleUpdate":"Chanje Enfomasyon itilizatè",
+    "userUpdate":"Itilizatè modifye avèk siksè.",
+    "userUpdateError":"Erè pandan w'ap mofifye itilizatè a.",
+    "french": "Fransè",
+    "english": "Anglè",
+    "creole":"Kreyòl",
+    "home":"Akèy",
+    "apartment":"Kay",
+    "user":"Itilizatè",
+    "userM":"Jesyon itilizatè",
+    "log":"Dekoneksyon"
 }
