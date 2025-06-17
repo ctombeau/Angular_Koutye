@@ -1,4 +1,4 @@
-
+/*
 p
 {
     margin-top: 0;
@@ -22,27 +22,26 @@ h4
     margin-bottom: 0;
     color: #06509F;
 }
-
-/*
-p a
-{
-    text-decoration: none;
-    color: #06509F;
-    font-weight: bold;
-}
 */
+
 .footer
 {
     
     background-color: #E5E7E9;
-    height: auto;
+    height: 50px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 5%;
     bottom: 0;
     left: 0; right: 0;
 }
-
+#text-footer{
+    font-weight: bold;
+    color:#06509F;
+    justify-content: center;
+    align-items: center;
+}
+/*
 #chrisnor
 {
     width: 100px;
@@ -61,3 +60,4 @@ p a
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
 }
+*/

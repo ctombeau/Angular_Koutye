@@ -12,7 +12,7 @@ import { HtService } from 'src/app/services/i18n/ht.service';
   standalone: false
 })
 export class FooterComponent {
-
+  copyRight : string = "@"+new Date().getFullYear().toString();
   
   constructor(private router: Router,
     private enService: EnService,
