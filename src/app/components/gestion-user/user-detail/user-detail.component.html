@@ -14,11 +14,16 @@
             <div class="detail-body">
                 <mat-card>
                     <mat-card-content>
-                        <div class="img" id="image-user" (click)="input.click()"  >
+                        <div class="img" id="image-user" (click)="toggleMenu()" #exclu>
                             <img [src]="imageUrl" id="photo">
-                            <i class="bi bi-camera-fill" id="camera"></i>
+                            <i class="bi bi-camera-fill" id="camera" ></i>
+                        </div>
+                        <div class="photo-menu" *ngIf="menuOpen">
+                             <button (click)="input.click()" >🖼️ {{update}}</button>
+                             <button (click)="onDeletePhoto($event)">🗑️ {{del}}</button>
                         </div>
                         <input type="file" name="file" hidden #input ngModel (change)="getPicture($event)"/>
+                         <!-- <input type="file" name="file" hidden #input ngModel /> -->
                         <div class="info">
                             <h2 class="space-after">{{prenom}} {{nom | uppercase}}</h2>
                             <h3 class="space-after"><strong><i class="bi bi-envelope-at"></i></strong> {{email}}</h3>

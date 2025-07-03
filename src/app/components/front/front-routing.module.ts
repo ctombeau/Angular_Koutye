@@ -11,8 +11,10 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
+      
       {path: 'home', component:HomeComponent},
       {path:'',component:LoginComponent, data:{message: ""}}
+      
     ])
   ],
   exports:[RouterModule]

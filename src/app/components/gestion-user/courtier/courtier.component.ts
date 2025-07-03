@@ -33,7 +33,7 @@ export class CourtierComponent implements OnInit{
   @ViewChild(MatPaginator) paginator! : MatPaginator;
   displayedColumns: string[] = ['photo','nom', 'prenom', 'email','phone','action'];
   username: string | null= sessionStorage.getItem("username");
-  email: string | null= sessionStorage.getItem("email");
+  emailPropietaire: string | null= sessionStorage.getItem("email");
   message$?: Observable<string>;
   showText : boolean = true;
   isLoading : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -58,6 +58,7 @@ export class CourtierComponent implements OnInit{
   deleteCour: string=""; 
   errorDelete: string="";
   cancel: string="";
+  email: string="";
 
   constructor(private userService: UserService,
      private utilsService: UtilsService,
@@ -176,7 +177,7 @@ export class CourtierComponent implements OnInit{
      
  askToAttachUser(){
     this.isLoading.next(true);
-    const emailFrom = this.email??"";
+    const emailFrom = this.emailPropietaire??"";
     const emailTo= this.courtierForm.value.email?? "";
     this.userService.sendMailAttachUser(emailFrom, emailTo).subscribe((response : any)=>{
           this.isLoading.next(false);

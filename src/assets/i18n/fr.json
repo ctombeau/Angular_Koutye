@@ -59,5 +59,6 @@
     "apartment":"Appartement",
     "user":"Utilisateur",
     "userM":"Gestion Utilisateur",
-    "log":"Déconnexion"
+    "log":"Déconnexion",
+    "del":"Supprimer"
 }

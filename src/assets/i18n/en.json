@@ -60,5 +60,6 @@
     "apartment":"Apartment",
     "user":"User",
     "userM":"User Management",
-    "log":"Logout"
+    "log":"Logout",
+    "del":"delete"
 }

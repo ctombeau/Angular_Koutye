@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
@@ -43,6 +43,10 @@ export class UserDetailComponent implements OnInit{
    userUpdate: string="";
    userUpdateError: string="";
    field : string="";
+   menuOpen: boolean = false;
+   del: string="";
+
+   @ViewChild('exclu') excluRef!: ElementRef;
 
     constructor(
       private userService : UserService,
@@ -79,6 +83,7 @@ export class UserDetailComponent implements OnInit{
                       this.userUpdate=response.updateUser;
                       this.userUpdateError=response.userUpdateError;
                       this.field=response.field;
+                      this.del=response.del;
                   });
                }else if(val=="fr"){
                  this.frService.getData().subscribe(response2 => {
@@ -94,6 +99,7 @@ export class UserDetailComponent implements OnInit{
                       this.userUpdate=response2.updateUser;
                       this.userUpdateError=response2.userUpdateError;
                       this.field=response2.field;
+                      this.del=response2.del;
                   });
                }if(val=="ht"){
                  this.htService.getData().subscribe(response3 => {
@@ -109,6 +115,7 @@ export class UserDetailComponent implements OnInit{
                       this.userUpdate=response3.updateUser;
                       this.userUpdateError=response3.userUpdateError;
                       this.field=response3.field;
+                      this.del=response3.del;
                   });
                }
            }
@@ -166,6 +173,8 @@ updateUser(user: User){
     
     
     getPicture(event: any){
+      this.menuOpen=false;
+      event.stopPropagation();
       const input = event.target as HTMLInputElement;
       if (input?.files?.length) {
          this.selectedFile = input.files[0];
@@ -191,6 +200,47 @@ updateUser(user: User){
       }
        
     }
+
+    @HostListener('document:click', ['$event'])
+    onDocumentClick(event: MouseEvent): void {
+      //const clickedInsideZone = this.zoneRef.nativeElement.contains(event.target);
+      const clickedOnExcluded = this.excluRef.nativeElement.contains(event.target);
+
+      if (clickedOnExcluded) {
+        console.log('Ignoré : clic dans la zone exclue ou en dehors de la zone surveillée');
+        return;
+      }
+      this.menuOpen=false;
+      console.log('Clic détecté à l’extérieur du bouton exclu, dans la zone surveillée');
+  }
+    
+    //@HostListener('document:click', ['$event'])
+    onClickButton(event: MouseEvent): void {
+        //this.menuOpen=false;
+        console.log('Bouton cliqué, mais pas traité comme un clic global');
+    }
+
+    toggleMenu() {
+     this.menuOpen = !this.menuOpen;
+   }
+
+   onDeletePhoto(event: Event) {
+    this.menuOpen=false;
+    const payload = {
+        path: this.subPhoto,
+        username: this.username
+    };
+    event.stopPropagation(); 
+    console.log("Suppression de la photo...");
+    
+    this.userService.deletePicture(payload).subscribe((data: any)=>{
+         console.log(data);
+    },(error:HttpErrorResponse)=>{
+       console.log(error);
+    })
+    
+    this.menuOpen = false;
+  }
 
     async showHtmlUpdate() {
       let nom= "", prenom="",username="",email="",phone="";
