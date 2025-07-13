@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOUTYE</title>
+</head>
+<body>
+    <app-header></app-header>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <div class="video">
+                    <video width="640" height="360" controls>
+                        <source src="assets/videos/ma-video.mp4" type="video/mp4" />
+                            Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+                    </video>
+
+                </div>
+
+                <div class="paginator">
+                    <mat-paginator [length]="100"
+                        [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100]"
+                        aria-label="Select page">
+                    </mat-paginator>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="content" >
+                    <p><strong>2500 USD</strong></p>
+                    <p><i class="bi bi-info-circle-fill"></i> Maison avec  2 pieces</p>
+                        <p> <i class="bi bi-geo-alt-fill"></i> 13,
+                            rue soeur Georges, Delmas, Ouest,Haiti
+                        </p>
+                        <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</body>
+</html>

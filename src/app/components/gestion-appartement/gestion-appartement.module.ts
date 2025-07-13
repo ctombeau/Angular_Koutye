@@ -4,12 +4,14 @@ import { ListAppartementComponent } from './list-appartement/list-appartement.co
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { GestionAppartementRoutingModule } from './gestion-appartement-routing.module';
+import { AppartementDetailComponent } from './appartement-detail/appartement-detail.component';
 
 
 
 @NgModule({
   declarations: [
-    ListAppartementComponent
+    ListAppartementComponent,
+    AppartementDetailComponent
   ],
   imports: [
     CommonModule,

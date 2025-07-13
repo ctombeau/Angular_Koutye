@@ -89,3 +89,24 @@
     }
     
  }
+
+ //bouton-detail
+ 
+#detail {
+  width: 100px;
+  height: 40px;
+  border: 3px solid #FF5733;
+  border-radius: 45px;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: white;
+  font-size: 1em;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+#detail:hover {
+  background: #FF5733;
+  color: white;
+  font-size: 1em;
+}
