@@ -13,7 +13,7 @@ import { AppartementDetailComponent } from './appartement-detail/appartement-det
     RouterModule.forChild([
       
       {path: 'list-appartement', component:ListAppartementComponent, canActivate:[AuthGuard]},
-      {path:'datail-appartement', component:AppartementDetailComponent, canActivate:[AuthGuard]}
+      {path:'detail-appartement', component:AppartementDetailComponent, canActivate:[AuthGuard]}
     ])
       
   ],

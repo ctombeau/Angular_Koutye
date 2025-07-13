@@ -5,7 +5,7 @@
  
  .card{
     width: 300px;
-    
+    padding-bottom: 20px;
  }
  
  .content{
@@ -102,7 +102,11 @@
   background: white;
   font-size: 1em;
   font-weight: 300;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-right: 10px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 #detail:hover {

@@ -177,7 +177,8 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
      return event;
   }
 
-   getDetailAppartment(){
-      this.router.navigateByUrl('appartement/datail-appartement');
+   getDetailAppartment(videos : any[]){
+      videos.forEach(v=> console.log(v))
+      this.router.navigateByUrl('appartement/detail-appartement');
    }
 }
