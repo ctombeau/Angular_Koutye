@@ -11,8 +11,9 @@
         <div class="card">
             <div class="card-header">
                 <div class="video">
-                    <video width="640" height="360" controls>
-                        <source src="assets/videos/ma-video.mp4" type="video/mp4" />
+                    <video width="640" height="360" controls *ngFor="let v of videos">
+                        {{v.video}}
+                        <source src="assets/Koutye_Folder/VideoApp/1/myvideo.mp4"/>
                             Votre navigateur ne supporte pas la lecture de vidéos HTML5.
                     </video>
 
@@ -28,13 +29,15 @@
             </div>
             <div class="card-body">
                 <div class="content" >
-                    <p><strong>2500 USD</strong></p>
-                    <p><i class="bi bi-info-circle-fill"></i> Maison avec  2 pieces</p>
-                        <p> <i class="bi bi-geo-alt-fill"></i> 13,
-                            rue soeur Georges, Delmas, Ouest,Haiti
+                    <p><strong>{{app.prix}} {{app.devise}}</strong></p>
+                    <p><i class="bi bi-info-circle-fill"></i> {{app.description}}</p>
+                        <p> <i class="bi bi-geo-alt-fill"></i> {{app.adresse.numero}},
+                            rue {{app.adresse.rue}}, {{app.adresse.commune}}, {{app.adresse.departement}},
+                            {{app.adresse.pays}}
                         </p>
                         <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
                 </div>
+                 <button id="detail" (click)="goBack()">R&eacute;tour</button>
             </div>
         </div>
     </div>

@@ -28,8 +28,7 @@
                    <img class="img-app" [src]="images[i][currentIndex[i]]?.image"/>
                   
                     <div class="card-body">
-                        {{app.appartement_id}}
-                        <p><strong>{{app.prix}} {{app.devise}} {{app.id}}</strong></p>
+                        <p><strong>{{app.prix}} {{app.devise}} </strong></p>
                         <p><i class="bi bi-info-circle-fill"></i> {{app.description}}</p>
                         <p> <i class="bi bi-geo-alt-fill"></i> {{app.adresse.numero}},
                             rue {{app.adresse.rue}}, {{app.adresse.commune}}, {{app.adresse.departement}},
@@ -37,7 +36,7 @@
                         </p>
                         <p><i class="bi bi-telephone-outbound-fill"></i> +509 3805-1274</p>
                     </div>
-                    <button id="detail" (click)="getDetailAppartment(app.videoAppartements)">D&eacute;tail</button>
+                    <button id="detail" (click)="getDetailAppartment(app)">D&eacute;tail</button>
                 </div>
             </div>
             <!-- From Uiverse.io by SteveBloX --> 

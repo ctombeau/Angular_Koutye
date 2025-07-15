@@ -9,6 +9,15 @@ import { Appartement } from '../models/appartement.model';
 })
 export class AppartementService {
   private baseApi = environment.apiUrl;
+  _appartement! : Appartement;
+
+  get appartement(): Appartement{
+     return this._appartement;
+  }
+
+  set appartement(newAppartement: Appartement){
+      this._appartement=newAppartement;
+  }
  
   constructor(private http: HttpClient) { }
 

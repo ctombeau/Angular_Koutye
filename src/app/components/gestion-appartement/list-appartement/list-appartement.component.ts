@@ -12,6 +12,7 @@ import { EnService } from 'src/app/services/i18n/en.service';
 import { FrService } from 'src/app/services/i18n/fr.service';
 import { HtService } from 'src/app/services/i18n/ht.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { VideoAppService } from 'src/app/services/video-app.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   imagesAndVideosApp : string[][] = [];
   listAppartement$! : Observable<any>;
   images: any[][]=[];
-
+  appartement! : Appartement;
   /* pour defiler l'image */
   currentIndex: number []= [];
   intervalId: any;
@@ -45,7 +46,8 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
     private enService: EnService,
     private frService: FrService,
     private htService: HtService,
-    private gs : GlobalService
+    private gs : GlobalService,
+    private videoservcie: VideoAppService
   ){}
 
   ngOnInit(): void {
@@ -177,8 +179,10 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
      return event;
   }
 
-   getDetailAppartment(videos : any[]){
-      videos.forEach(v=> console.log(v))
+   getDetailAppartment(app : any){
+      //videos.forEach(v=> console.log(v))
+      this.videoservcie.videos=app.VideoAppartement;
+      this.appService.appartement=app;
       this.router.navigateByUrl('appartement/detail-appartement');
    }
 }
