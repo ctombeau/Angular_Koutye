@@ -139,7 +139,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   transformImage(appartements : Appartement[]){
     let k=0;
     appartements.forEach(app=>{
-                  
+        console.log(app)        
       for(let i=0; i<app.imageAppartements.length;i++){
              let index= app.imageAppartements[i].image.indexOf("assets");
              app.imageAppartements[i].image=app.imageAppartements[i].image.substring(index);
@@ -180,8 +180,7 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
   }
 
    getDetailAppartment(app : any){
-      //videos.forEach(v=> console.log(v))
-      this.videoservcie.videos=app.VideoAppartement;
+      this.videoservcie.videos=app.videoAppartements;
       this.appService.appartement=app;
       this.router.navigateByUrl('appartement/detail-appartement');
    }

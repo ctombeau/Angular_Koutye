@@ -10,19 +10,22 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <div class="video">
-                    <video width="640" height="360" controls *ngFor="let v of videos">
-                        {{v.video}}
-                        <source src="assets/Koutye_Folder/VideoApp/1/myvideo.mp4"/>
+                <div class="video" *ngIf="videosApp.length; else noVideo">
+                    <video width="560" height="280" controls *ngFor="let v of pagedVideos">
+                        <source [src]="v"/>
                             Votre navigateur ne supporte pas la lecture de vidéos HTML5.
                     </video>
 
                 </div>
+                <ng-template #noVideo>
+                    <p>Aucune vidéo disponible.</p>
+                </ng-template>
 
                 <div class="paginator">
-                    <mat-paginator [length]="100"
-                        [pageSize]="10"
-                        [pageSizeOptions]="[5, 10, 25, 100]"
+                    <mat-paginator [length]="videosApp.length"
+                        [pageSize]="pageSize"
+                        [pageSizeOptions]="[1]"
+                        (page)="onPageChange($event)"
                         aria-label="Select page">
                     </mat-paginator>
                 </div>
