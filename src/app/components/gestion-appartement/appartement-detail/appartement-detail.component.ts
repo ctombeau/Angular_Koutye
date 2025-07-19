@@ -11,10 +11,11 @@ import { VideoAppService } from 'src/app/services/video-app.service';
   styleUrls: ['./appartement-detail.component.scss']
 })
 export class AppartementDetailComponent implements OnInit{
-    videos : any[] = [];
+    
+    videos : any []= [];
     videosApp : any[] = [];
     pagedVideos: string[] = [];
-    app!: Appartement;
+    app!: Appartement ;
     pageSize = 1;
     currentPage = 0;
 
@@ -29,9 +30,11 @@ export class AppartementDetailComponent implements OnInit{
     }
 
     getVideos(){
-        this.app=this.appService.appartement;
-        this.videos=this.videoService.videos;
-        
+       console.log(JSON.parse(localStorage.getItem("app")!))
+       console.log(JSON.parse(localStorage.getItem("videos")!))
+       this.app=this.appService.appartement || JSON.parse(localStorage.getItem("app")!);
+       this.videos=this.videoService.videos.length>0 ? this.videoService.videos.length : JSON.parse(localStorage.getItem("videos")!);
+        console.log("videos length:", this.videos.length);
         this.videos?.forEach(v=>{
            console.log(v)
            let index= v.video.indexOf("assets");
@@ -53,6 +56,8 @@ export class AppartementDetailComponent implements OnInit{
   }
 
     goBack(){
+        localStorage.removeItem("app");
+        localStorage.removeItem("videos");
         this.router.navigate(['home']);
     }
 }

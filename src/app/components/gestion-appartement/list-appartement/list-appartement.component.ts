@@ -182,6 +182,8 @@ export class ListAppartementComponent implements OnInit, OnDestroy{
    getDetailAppartment(app : any){
       this.videoservcie.videos=app.videoAppartements;
       this.appService.appartement=app;
+      localStorage.setItem("app",JSON.stringify(app));
+      localStorage.setItem("videos",JSON.stringify(app.videoAppartements));
       this.router.navigateByUrl('appartement/detail-appartement');
    }
 }
