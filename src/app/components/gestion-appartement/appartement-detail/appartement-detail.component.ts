@@ -33,7 +33,7 @@ export class AppartementDetailComponent implements OnInit{
        console.log(JSON.parse(localStorage.getItem("app")!))
        console.log(JSON.parse(localStorage.getItem("videos")!))
        this.app=this.appService.appartement || JSON.parse(localStorage.getItem("app")!);
-       this.videos=this.videoService.videos.length>0 ? this.videoService.videos.length : JSON.parse(localStorage.getItem("videos")!);
+       this.videos=this.videoService.videos.length>0 ? this.videoService.videos : JSON.parse(localStorage.getItem("videos")!);
         console.log("videos length:", this.videos.length);
         this.videos?.forEach(v=>{
            console.log(v)
