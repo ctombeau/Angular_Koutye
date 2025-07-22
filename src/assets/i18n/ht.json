@@ -60,5 +60,9 @@
     "user":"Itilizatè",
     "userM":"Jesyon itilizatè",
     "log":"Dekoneksyon",
-    "del":"Efase"
+    "del":"Efase",
+    "listApp": "Lis Kay yo",
+    "addApp": "Ajoute yon kay",
+    "addImage":"Ajoute Imaj yo",
+    "addVideo": "Ajoute Videyo yo"
 }

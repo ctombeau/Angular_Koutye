@@ -31,10 +31,27 @@
               <i class="bi bi-house-door-fill"></i>
                {{this.home}}</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="checkUrl" href="home">
-              <i class="bi bi-houses"></i>
-               {{this.apartment}}</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" *ngIf="checkUrl"
+            style="color: white"
+             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             <i class="bi bi-house-door-fill"></i>
+              {{this.apartment}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="appartement/list-appartement">
+                <i class="bi bi-houses-fill"></i>
+                 {{this.listApp}}</a></li>
+              <li><a class="dropdown-item" href="appartement/add-appartement">
+                <i class="bi bi-house-add"></i>
+                 {{this.addApp}}</a></li>
+                 <li><a class="dropdown-item" href="appartement/image-appartement">
+                <i class="bi bi-image-fill"></i>
+                 {{this.addImage}}</a></li>
+                 <li><a class="dropdown-item" href="appartement/video-appartement">
+                <i class="bi bi-camera-video-fill"></i>
+                 {{this.addVideo}}</a></li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" *ngIf="checkUrl"

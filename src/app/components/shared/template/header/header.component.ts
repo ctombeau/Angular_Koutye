@@ -25,6 +25,10 @@ export class HeaderComponent implements OnInit{
    user : string="";
    userM : string="";
    log: string="";
+   listApp: string = "";
+   addApp : string= "";
+   addImage: string ="";
+   addVideo: string = "";
    //public title = '';
 
     constructor( private languageService: LanguageService,
@@ -59,6 +63,10 @@ export class HeaderComponent implements OnInit{
                       this.user = response.user;
                       this.userM = response.userM;
                       this.log = response.log;
+                      this.listApp= response.listApp;
+                      this.addApp = response.addApp;
+                      this.addImage= response.addImage;
+                      this.addVideo= response.addVideo;
                   });
                }else if(val=="fr"){
                  this.frService.getData().subscribe(response2 => {
@@ -70,6 +78,10 @@ export class HeaderComponent implements OnInit{
                       this.user = response2.user;
                       this.userM = response2.userM;
                       this.log = response2.log;
+                      this.listApp= response2.listApp;
+                      this.addApp = response2.addApp;
+                      this.addImage= response2.addImage;
+                      this.addVideo= response2.addVideo;
                   });
                }if(val=="ht"){
                  this.htService.getData().subscribe(response3 => {
@@ -81,6 +93,10 @@ export class HeaderComponent implements OnInit{
                       this.user = response3.user;
                       this.userM = response3.userM;
                       this.log = response3.log;
+                      this.listApp= response3.listApp;
+                      this.addApp = response3.addApp;
+                      this.addImage= response3.addImage;
+                      this.addVideo= response3.addVideo;
                   });
                }
            }

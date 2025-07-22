@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koutye</title>
+</head>
+<body>
+    <app-header></app-header>
+
+    <div class="container mt-5 d-flex align-items-center justify-content-center">
+      <form [formGroup]="appForm" class="center" (ngSubmit)="addAppartement()">
+        <div class="card mt-3">
+            <div class="card-header">
+               <p style="color: #FF5733;">Nouvel Appartement</p> 
+            </div>
+            <div class="line-register mt-2">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Description</mat-label>
+                        <input type="text" formControlName="description" matInput>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Prix</mat-label>
+                        <input type="number" formControlName="prix" matInput>
+                      </mat-form-field>
+                </div>
+            </div>
+
+            <div class="line-register mt-2">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Devise</mat-label>
+                        <mat-select formControlName="devise">
+                            <mat-option value="HTG">HTG</mat-option>
+                            <mat-option value="USD">USD</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" hidden>
+                        <mat-label>Username</mat-label>
+                        <input type="number" formControlName="username" matInput>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <fieldset style="border: 1px solid #ccc; padding: 1rem; border-radius: 4px; margin: 5px;">
+                <legend>Adresse</legend>
+                 
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" style="display: block; margin-bottom: 1rem;">
+                            <mat-label>Num&eacute;ro</mat-label>
+                            <input matInput placeholder="Entrez votre numero" formControlName="numero">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" style="display: block;">
+                            <mat-label>Rue</mat-label>
+                            <input matInput placeholder="Entrez votre rue" formControlName="rue">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Département</mat-label>
+                            <mat-select [(ngModel)]="selectedDepartement" (selectionChange)="onDepartementChange()" formControlName="departement">
+                                <mat-option *ngFor="let dep of departements" [value]="dep.name">
+                                    {{ dep.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" >
+                            <mat-label>Commune</mat-label>
+                            <mat-select [(ngModel)]="selectedCommune" formControlName="commune">
+                                <mat-option *ngFor="let com of filteredCommunes" [value]="com">
+                                    {{ com }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </fieldset>
+           <button id="detail" class="btn" type="submit">Ajouter</button>
+        </div>
+     </form>
+    </div>
+
+    <app-footer></app-footer>
+</body>
+</html>

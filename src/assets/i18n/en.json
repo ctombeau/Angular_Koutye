@@ -61,5 +61,9 @@
     "user":"User",
     "userM":"User Management",
     "log":"Logout",
-    "del":"delete"
+    "del":"delete",
+    "listApp": "List of Apartments",
+    "addApp": "Add Apartment",
+    "addImage":"Add Images",
+    "addVideo": "Add Videos"
 }

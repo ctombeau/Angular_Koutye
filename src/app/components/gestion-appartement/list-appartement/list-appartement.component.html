@@ -6,6 +6,7 @@
     <title>KOUTYE</title>
 </head>
 <body>
+    <app-header></app-header>
     <div class="container mt-5 mb-5">
         <div class="form mt-3 mb-2">
                 <mat-form-field appearance="outline" class="mt-2">
@@ -19,7 +20,12 @@
                  </mat-form-field>
         </div>
         
+        <div class="add-button">
+              <i style="color:white" class="bi bi-house-door-fill"></i>
+             <button class="btn" id="add" routerLink="/appartement/add-appartement">Nouvel Appartement</button>
+        </div>
         <div class="body-row">
+           
             <ng-container *ngIf="listAppartement$ | async as apps">
             
             <div class="content" *ngFor="let app  of apps ; let i=index">
@@ -39,12 +45,11 @@
                     <button id="detail" (click)="getDetailAppartment(app)">D&eacute;tail</button>
                 </div>
             </div>
-            <!-- From Uiverse.io by SteveBloX --> 
             
-
         </ng-container>
         </div>
         
     </div>
+    <app-footer></app-footer>
 </body>
 </html>

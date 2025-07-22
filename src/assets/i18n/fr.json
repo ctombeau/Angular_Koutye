@@ -60,5 +60,9 @@
     "user":"Utilisateur",
     "userM":"Gestion Utilisateur",
     "log":"Déconnexion",
-    "del":"Supprimer"
+    "del":"Supprimer",
+    "listApp": "Liste des Appartements",
+    "addApp": "AJouter Apartment",
+    "addImage":"Ajouter Images",
+    "addVideo": "Ajouter Vidéos"
 }
